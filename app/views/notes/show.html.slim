@@ -1,0 +1,10 @@
+p
+  = Note.human_attribute_name(:title)
+  = @note.title
+p
+  = Note.human_attribute_name(:body)
+  = @note.body
+
+= link_to '編集', edit_note_path(@note)
+|  / 
+= link_to '一覧へ', notes_path

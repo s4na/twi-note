@@ -1,0 +1,14 @@
+ja:
+  date:
+    formats:
+      default: "%Y年%m月%d日"
+  time:
+    formats:
+      default: "%Y年%m月%d日(%a) %H時%M分"
+  activerecord:
+    models:
+      note: ノート
+    attributes:
+      note:
+        title: タイトル
+        body: 本文

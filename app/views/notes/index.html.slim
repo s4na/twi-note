@@ -1,0 +1,24 @@
+h1 ノート一覧
+
+= link_to '追加', new_note_path
+
+br
+
+table
+  thead
+    tr
+      th タイトル
+      th 日付
+      th 操作
+
+  tbody
+    - @notes.each do |note|
+      tr
+        td = note.title
+        td = l(note.updated_at)
+        td
+          = link_to '表示', note
+          |  / 
+          = link_to '編集', edit_note_path(note)
+          |  / 
+          = link_to '削除', note, data: { confirm: '本当に削除しますか？' }, method: :delete
