@@ -61,6 +61,10 @@ group :development, :test do
   gem "pry-doc"
 end
 
+gem "slim-rails"
+
 group :development do
   gem "rubocop", require: false
+  gem "rubocop-performance"
+  gem "slim_lint"
 end
