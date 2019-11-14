@@ -71,3 +71,5 @@ group :development do
 end
 
 gem "rails-i18n", "~> 6.0.0"
+gem "twitter"
+gem "dotenv-rails"
