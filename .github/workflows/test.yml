@@ -17,6 +17,9 @@ jobs:
       run: |
         bundle -j 4
         bin/setup
+    - name: Rubocop
+      run: |
+        bundle exec rubocop ./rubocop.yml --parallel
     - name: Test
       run: |
         bin/rails test
