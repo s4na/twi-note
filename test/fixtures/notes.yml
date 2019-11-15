@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 note_1:
-  title: MyString_1
-  body: MyText_1
+  title: sendagaya.rb
+  body: メモメモ
 
 note_2:
-  title: MyString_2
-  body: MyText_2
+  title: omotesando.rb
+  body: メモメモメモ

@@ -6,7 +6,13 @@
     "@rails/activestorage": "^6.0.0-alpha",
     "@rails/ujs": "^6.0.0-alpha",
     "@rails/webpacker": "^4.0.7",
-    "turbolinks": "^5.2.0"
+    "moment": "^2.24.0",
+    "pug": "^2.0.4",
+    "pug-plain-loader": "^1.0.0",
+    "turbolinks": "^5.2.0",
+    "vue": "^2.5.16",
+    "vue-loader": "14.2.2",
+    "vue-template-compiler": "^2.5.16"
   },
   "version": "0.1.0",
   "devDependencies": {
