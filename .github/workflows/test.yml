@@ -16,5 +16,7 @@ jobs:
     - name: Build and setup
       run: |
         bundle -j 4
-        bin/rails setup
+        bin/setup
+    - name: Test
+      run: |
         bin/rails test
