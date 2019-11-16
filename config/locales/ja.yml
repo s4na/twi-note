@@ -5,8 +5,8 @@ ja:
   time:
     formats:
       default: "%Y年%m月%d日(%a) %H時%M分"
-      ymd_hy: "%Y-%m-%d %H:%M"
-      ymd: "%Y-%m-%d"
+      ymdhm_hy: "%Y-%m-%d %H:%M"
+      ymd_hy: "%Y-%m-%d"
   activerecord:
     models:
       note: ノート
