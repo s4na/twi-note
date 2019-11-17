@@ -7,7 +7,7 @@ class Api::TweetsController < ApplicationController
 
   def index
     query = params[:query]
-    start_datetime = Time.strptime(params[:start_datetime], "%Y-%m-%d %H:%M").to_time
+    # start_datetime = Time.strptime(params[:start_datetime], "%Y-%m-%d %H:%M").to_time
     end_datetime = Time.strptime(params[:end_datetime], "%Y-%m-%d %H:%M").to_time
     end_date = I18n.l(end_datetime, format: :ymd)
 
