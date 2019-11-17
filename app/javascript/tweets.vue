@@ -1,17 +1,28 @@
 <template lang="pug">
-  .app
-    p
+  .tweets
+    label
+      | query
+    input(ref="query" type="text" value="s4na_penguin")
+    label
+      | tart_datetime
+    input(ref="start_datetime" type="text" value="2019-11-15%2023:59")
+    label
+      | end_datetime
+    input(ref="end_datetime" type="text" value="2019-11-16%2023:59")
+    .search
+      button(@click="searchTweets")
+        | 検索
+    .results
       | {{ this.tweets }}
-    button(@click="searchTweets")
-      | 検索
-    
 </template>
 <script>
 export default {
+  props: {},
+  components: {
+  },
   data: function () {
     return {
-      tweets: [],
-      message: "Hello tweets!"
+      tweets: []
     }
   },
   methods: {
@@ -20,9 +31,11 @@ export default {
       return meta ? meta.getAttribute('content') : ''
     },
     searchTweets: function() {
-      const query = 's4na_penguin';
-      const start_datetime = '2019-11-01%2023:59';
-      const end_datetime = '2019-11-11%2023:59';
+      this.tweets = [];
+      const query = this.$refs.query.value;
+      const start_datetime = this.$refs.start_datetime.value;
+      const end_datetime = this.$refs.end_datetime.value;
+
       fetch(`/api/tweets.json?start_datetime=${start_datetime}&end_datetime=${end_datetime}&query=${query}`, {
         method: 'GET',
         headers: {
@@ -38,7 +51,6 @@ export default {
           json.forEach(c => { this.tweets.push(c); });
         })
         .catch(error => { console.warn('Failed to parsing', error); })
-
     }
   }
 }
