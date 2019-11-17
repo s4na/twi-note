@@ -5,10 +5,10 @@
     input(ref="query" type="text" value="s4na_penguin")
     label
       | tart_datetime
-    input(ref="start_datetime" type="text" value="2019-11-15%2023:59")
+    input(ref="start_datetime" type="text" value="2019-11-15 23:59")
     label
       | end_datetime
-    input(ref="end_datetime" type="text" value="2019-11-16%2023:59")
+    input(ref="end_datetime" type="text" value="2019-11-16 23:59")
     .search
       button(@click="searchTweets")
         | 検索
@@ -32,9 +32,9 @@ export default {
     },
     searchTweets: function() {
       this.tweets = [];
-      const query = this.$refs.query.value;
-      const start_datetime = this.$refs.start_datetime.value;
-      const end_datetime = this.$refs.end_datetime.value;
+      const query = encodeURI(this.$refs.query.value);
+      const start_datetime = encodeURI(this.$refs.start_datetime.value);
+      const end_datetime = encodeURI(this.$refs.end_datetime.value);
 
       fetch(`/api/tweets.json?start_datetime=${start_datetime}&end_datetime=${end_datetime}&query=${query}`, {
         method: 'GET',
