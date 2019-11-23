@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-json.(user, :id, :screen_name, :name)
+json.(user, :id_str, :screen_name, :name)

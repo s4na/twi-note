@@ -4,16 +4,16 @@
       .search-tweets
         p
           | Tweets
-        draggable(class="list-group" :list="result_tweets" group="people" @change="log")
+        draggable(class="list-group" :list="result_tweets" group="people")
           .list-group-item(v-for="(element, index) in result_tweets" :key="element.name")
-            | {{ element.text }} {{ index }}
+            tweet(:tweet="element")
     .tweet(style="max-width: 400px;")
       .note-tweets
         p
           | Notes
-        draggable(class="list-group" :list="note_tweets" group="people" @change="log")
+        draggable(class="list-group" :list="note_tweets" group="people")
           .list-group-item(v-for="(element, index) in note_tweets" :key="element.name")
-            | {{ element.text }} {{ index }}
+            tweet(:tweet="element")
 
     | 検索欄
     .search
@@ -32,16 +32,25 @@
 </template>
 <script>
 import Draggable from 'vuedraggable'
+import Tweet from 'tweet'
 
 export default {
   props: {},
   components: {
-    'draggable': Draggable
+    'draggable': Draggable,
+    'tweet': Tweet
+  },
+  created() {
+    let ckeditor = document.createElement('script');
+    ckeditor.setAttribute('src',"//platform.twitter.com/widgets.js");
+    document.head.appendChild(ckeditor);
   },
   data: function () {
     return {
       result_tweets: [],
-      note_tweets: []
+      note_tweets: [
+        { text: 'colum',id: 0}
+      ]
     }
   },
   methods: {
