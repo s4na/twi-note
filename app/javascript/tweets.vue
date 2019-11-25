@@ -1,19 +1,6 @@
 <template lang="pug">
   .tweets
-    .tweet(style="max-width: 400px;")
-      .search-tweets
-        p
-          | Tweets
-        draggable(class="list-group" :list="result_tweets" group="people")
-          .list-group-item(v-for="(element, index) in result_tweets" :key="element.name")
-            tweet(:tweet="element")
-    .tweet(style="max-width: 400px;")
-      .note-tweets
-        p
-          | Notes
-        draggable(class="list-group" :list="note_tweets" group="people")
-          .list-group-item(v-for="(element, index) in note_tweets" :key="element.name")
-            tweet(:tweet="element")
+    | {{ this.result_tweets }}
 
     | 検索欄
     .search
@@ -29,6 +16,23 @@
       .search
         button(@click="searchTweets")
           | 検索
+
+    .tweets_bodys
+      .tweets_body
+        .search-tweets
+          p
+            | Tweets
+          draggable(class="list-group" :list="result_tweets" group="people")
+            .list-group-item(v-for="(element, index) in result_tweets" :key="element.name")
+              tweet(:tweet="element")
+      .tweets_body
+        .note-tweets
+          p
+            | Notes
+          draggable(class="list-group" :list="note_tweets" group="people")
+            .list-group-item(v-for="(element, index) in note_tweets" :key="element.name")
+              tweet(:tweet="element")
+
 </template>
 <script>
 import Draggable from 'vuedraggable'
@@ -48,9 +52,7 @@ export default {
   data: function () {
     return {
       result_tweets: [],
-      note_tweets: [
-        { text: 'colum',id: 0}
-      ]
+      note_tweets: []
     }
   },
   methods: {
@@ -83,3 +85,12 @@ export default {
   }
 }
 </script>
+<style scoped lang="scss">
+.tweets_bodys {
+  display: flex;
+  flex-direction: row;
+}
+.tweets_body {
+  max-width: 40%;
+}
+</style>
