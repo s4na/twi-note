@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Tweet
-  def self.all(params)
+  def self.search(params)
     @params = params
     set_params
     if Rails.env.test? || ENV["NO_EXTERNAL_API"]
