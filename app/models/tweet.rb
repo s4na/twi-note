@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 class Tweet
-  def self.all(params)
+  def self.search(params)
     @params = params
     set_params
-
-    if Rails.env.test?
+    if Rails.env.test? || ENV["NO_EXTERNAL_API"]
       load_file_tweets
     else
       search_tweets
     end
-
     extract_time_period
     @tweets
   end
@@ -51,6 +49,7 @@ class Tweet
         since_id: @since_id).to_h
 
       @tweets = result_tweets[:statuses]
+
     end
 
     def self.extract_time_period

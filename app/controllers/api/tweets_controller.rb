@@ -4,6 +4,6 @@ class Api::TweetsController < ApplicationController
   before_action :set_api_tweet, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tweets = Tweet.all(params)
+    @tweets = Tweet.search(params)
   end
 end
