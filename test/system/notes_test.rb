@@ -16,8 +16,8 @@ class NotesTest < ApplicationSystemTestCase
     visit notes_url
     click_on "追加"
 
-    fill_in "タイトル", with: @note.title
-    fill_in "本文", with: @note.body
+    fill_in "note[title]", with: @note.title
+    fill_in "note[body]", with: @note.body
     click_on "登録する"
 
     assert_text "ノートを作成しました"
@@ -28,8 +28,8 @@ class NotesTest < ApplicationSystemTestCase
     visit notes_url
     click_on "編集", match: :first
 
-    fill_in "タイトル", with: @note.title
-    fill_in "本文", with: @note.body
+    fill_in "note[title]", with: @note.title
+    fill_in "note[body]", with: @note.body
     click_on "更新"
 
     assert_text "ノートを更新しました"
