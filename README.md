@@ -1,24 +1,17 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## Twitter APIへの接続オフ
 
-* Ruby version
+```
+NO_EXTERNAL_API=1 <実行コマンド>
+```
 
-* System dependencies
+### 実行コマンド例
 
-* Configuration
+```
+rails s
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+./bin/test
+```

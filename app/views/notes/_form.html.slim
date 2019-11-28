@@ -9,8 +9,20 @@
   .field
     = f.label :title
     = f.text_field :title
+  
+  / debug
+  | @note.body
+  = @note.body
 
   #js-tweets
     #js-tweets-body
       = @note.body
-    .actions = f.submit
+  
+  / .field
+
+  /   <label for="note_body">本文</label>
+  /   = f.label :body
+
+  /   <textarea name="note[body]" id="note_body">iii</textarea>
+  /   = f.text_area :body
+  .actions = f.submit

@@ -84,6 +84,22 @@ export default {
           json.forEach(c => { this.result_tweets.push(c); });
         })
         .catch(error => { console.warn('Failed to parsing', error); })
+    },
+
+    // add: function() {
+    //   this.list.push({ name: "Juan" });
+    // },
+    // replace: function() {
+    //   this.list = [{ name: "Edgard" }];
+    // },
+    // clone: function(el) {
+    //   return {
+    //     name: el.name + " cloned"
+    //   };
+    // },
+    // log: function(evt) {
+    //   window.console.log(evt);
+    // }
   }
 }
 </script>
