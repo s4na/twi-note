@@ -57,5 +57,12 @@ class Tweet
         tweet_datetime = Time.parse(tweet[:created_at].to_s)
         (@start_datetime < tweet_datetime) && (@end_datetime > tweet_datetime)
       end
+      add_tweet_url
+    end
+
+    def self.add_tweet_url
+      @tweets.each do |tweet|
+        tweet[:url] = "https://twitter.com/#{tweet[:user][:screen_name]}/status/#{tweet[:id_str]}?ref_src=twsrc%5Etfw"
+      end
     end
 end
