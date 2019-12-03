@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TweetRepository < ApplicationRecord
+  belongs_to :note
+
   def search(params)
     @params = params
     set_params
