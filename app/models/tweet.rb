@@ -38,7 +38,8 @@ class Tweet
     def self.search_tweets
       client = Twitter::REST::Client.new(
         consumer_key: ENV["CONSUMER_KEY"],
-        consumer_secret: ENV["CONSUMER_SECRET"])
+        consumer_secret: ENV["CONSUMER_SECRET"]
+      )
 
       result_tweets = client.search(
         @query,
@@ -49,7 +50,6 @@ class Tweet
         since_id: @since_id).to_h
 
       @tweets = result_tweets[:statuses]
-
     end
 
     def self.extract_time_period
@@ -57,12 +57,13 @@ class Tweet
         tweet_datetime = Time.parse(tweet[:created_at].to_s)
         (@start_datetime < tweet_datetime) && (@end_datetime > tweet_datetime)
       end
-      add_tweet_url
+      add_tweet_params
     end
 
-    def self.add_tweet_url
+    def self.add_tweet_params
       @tweets.each do |tweet|
         tweet[:url] = "https://twitter.com/#{tweet[:user][:screen_name]}/status/#{tweet[:id_str]}?ref_src=twsrc%5Etfw"
+        tweet[:markdown] = "> [#{tweet[:text]}](#{tweet[:url]})".gsub(/\R/, " ") + "\n\n"
       end
     end
 end

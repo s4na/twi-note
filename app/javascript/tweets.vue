@@ -1,7 +1,7 @@
 <template lang="pug">
   .tweets
     | 検索欄
-    .search
+    .search-form
       label
         | query
       input(ref="query" type="text" value="s4na_penguin")
@@ -11,7 +11,7 @@
       label
         | end_datetime
       input(ref="end_datetime" type="text" name="tweets-search[end_datetime]" value="2019-11-25 23:59")
-      .search
+      .search-form__button
         button(type="button" @click="searchTweets")
           | 検索
 
@@ -20,8 +20,8 @@
         .search-tweets
           p
             | Tweets
-          draggable(class="list-group" :list="result_tweets" group="people")
-            .list-group-item(v-for="(element, index) in result_tweets" :key="element.name")
+          draggable(class="list-group" :list="search_result_tweets" group="people")
+            .list-group-item(v-for="(element, index) in search_result_tweets" :key="element.name")
               tweet(:tweet="element")
       .form__item
         .note-tweets
@@ -49,7 +49,7 @@ export default {
   },
   data: function () {
     return {
-      result_tweets: [],
+      search_result_tweets: [],
       note_tweets: []
     }
   },
@@ -62,7 +62,7 @@ export default {
       return meta ? meta.getAttribute('content') : ''
     },
     searchTweets: function() {
-      this.result_tweets = [];
+      this.search_result_tweets = [];
       const query = encodeURI(this.$refs.query.value);
       const start_datetime = encodeURI(this.$refs.start_datetime.value);
       const end_datetime = encodeURI(this.$refs.end_datetime.value);
@@ -79,9 +79,12 @@ export default {
       })
         .then(response => { return response.json(); })
         .then(json=> {
-          json.forEach(c => { this.result_tweets.push(c); });
+          json.forEach(c => { this.search_result_tweets.push(c); });
         })
         .catch(error => { console.warn('Failed to parsing', error); })
+    },
+    getViewTweets (tweets) {
+      return tweets;
     }
   }
 }

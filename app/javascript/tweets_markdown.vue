@@ -32,7 +32,7 @@ export default {
         result = result + `> [${tweet["text"]}](https://twitter.com/${tweet["user"]["screen_name"]}/status/${tweet["id_str"]}?ref_src=twsrc%5Etfw)`.replace(/\r?\n/g, ' ') + "\n\n";
       }
       return result;
-    },
+    }
   }
 };
 </script>
