@@ -7,7 +7,7 @@
       input(ref="query" type="text" value="s4na_penguin")
       label
         | start_datetime
-      input(ref="start_datetime" type="text" name="tweets-search[start_datetime]" value="2019-11-20 23:59")
+      input(ref="start_datetime" type="text" name="tweets-search[start_datetime]" value="2019-11-01 23:59")
       label
         | end_datetime
       input(ref="end_datetime" type="text" name="tweets-search[end_datetime]" value="2019-11-25 23:59")
@@ -27,12 +27,18 @@
         .note-tweets
           p
             | Notes
+          button(type="button" @click="changTweets()")
+            | Tweetsに切り替え
           draggable(class="list-group" :list="note_tweets" group="people")
             .list-group-item(v-for="(element, index) in note_tweets" :key="element.name")
               tweet(:tweet="element")
       .form__item
         .tweets_markdown
-          tweets_markdown(:value="note_tweets" title="List 1")
+          tweets_markdown(ref="tweets_markdown"
+            :tweets="note_tweets"
+            :parent_all_search_result_tweets="all_search_result_tweets"
+            title="List 1"
+          )
 
 </template>
 <script>
@@ -49,12 +55,14 @@ export default {
   },
   data: function () {
     return {
+      all_search_result_tweets: [],
       search_result_tweets: [],
       note_tweets: []
     }
   },
   created() {
-    this.note_tweets = JSON.parse(document.querySelector('#js-tweets-body').innerText);
+    // if innerText is null then []
+    this.note_tweets = JSON.parse(document.querySelector('#js-tweets-body').innerText || null) || [];
   },
   methods: {
     token () {
@@ -79,12 +87,20 @@ export default {
       })
         .then(response => { return response.json(); })
         .then(json=> {
-          json.forEach(c => { this.search_result_tweets.push(c); });
+          json.forEach(c => {
+            this.search_result_tweets.push(c);
+            this.all_search_result_tweets.push(c);
+          });
         })
         .catch(error => { console.warn('Failed to parsing', error); })
     },
-    getViewTweets (tweets) {
-      return tweets;
+    changTweets () {
+      var body = "";
+      var indexs = JSON.parse(JSON.stringify(this.note_tweets, null, 2));
+      for(var index of indexs){
+        body = body + index["markdown"];
+      }
+      this.$refs.tweets_markdown.body = body;
     }
   }
 }

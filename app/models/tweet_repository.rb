@@ -1,20 +1,28 @@
 # frozen_string_literal: true
 
-class Tweet
-  def self.search(params)
+class TweetRepository
+  def initialize
+    @client ||= Twitter::REST::Client.new(
+      consumer_key: ENV["CONSUMER_KEY"],
+      consumer_secret: ENV["CONSUMER_SECRET"]
+    )
+  end
+
+  def search(params)
     @params = params
     set_params
     if Rails.env.test? || ENV["NO_EXTERNAL_API"]
       load_file_tweets
     else
       search_tweets
+      extract_time_period
     end
-    extract_time_period
+    add_tweet_params
     @tweets
   end
 
   private
-    def self.set_params
+    def set_params
       @query = @params[:query]
       @start_datetime = Time.strptime(@params[:start_datetime], "%Y-%m-%d %H:%M").to_time
       @end_datetime = Time.strptime(@params[:end_datetime], "%Y-%m-%d %H:%M").to_time
@@ -22,7 +30,7 @@ class Tweet
       @since_id = nil
     end
 
-    def self.load_file_tweets
+    def load_file_tweets
       file_path = "#{Rails.root}/test/fixtures/files/twitter_api_search_response.json"
       result_tweets = open(file_path) do |file|
         JSON.load(file)
@@ -35,13 +43,8 @@ class Tweet
       end
     end
 
-    def self.search_tweets
-      client = Twitter::REST::Client.new(
-        consumer_key: ENV["CONSUMER_KEY"],
-        consumer_secret: ENV["CONSUMER_SECRET"]
-      )
-
-      result_tweets = client.search(
+    def search_tweets
+      result_tweets = @client.search(
         @query,
         count: 100,
         result_type: "recent",
@@ -52,15 +55,14 @@ class Tweet
       @tweets = result_tweets[:statuses]
     end
 
-    def self.extract_time_period
+    def extract_time_period
       @tweets.select! do |tweet|
         tweet_datetime = Time.parse(tweet[:created_at].to_s)
         (@start_datetime < tweet_datetime) && (@end_datetime > tweet_datetime)
       end
-      add_tweet_params
     end
 
-    def self.add_tweet_params
+    def add_tweet_params
       @tweets.each do |tweet|
         tweet[:url] = "https://twitter.com/#{tweet[:user][:screen_name]}/status/#{tweet[:id_str]}?ref_src=twsrc%5Etfw"
         tweet[:markdown] = "> [#{tweet[:text]}](#{tweet[:url]})".gsub(/\R/, " ") + "\n\n"
