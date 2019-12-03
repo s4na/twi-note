@@ -7,10 +7,10 @@
       input(ref="query" type="text" value="s4na_penguin")
       label
         | start_datetime
-      input(ref="start_datetime" type="text" name="tweets-search[start_datetime]" value="2019-11-01 23:59")
+      input(ref="start_datetime" type="text" name="tweets-search[start_datetime]" value="2019-12-01 23:59")
       label
         | end_datetime
-      input(ref="end_datetime" type="text" name="tweets-search[end_datetime]" value="2019-11-25 23:59")
+      input(ref="end_datetime" type="text" name="tweets-search[end_datetime]" value="2019-12-25 23:59")
       .search-form__button
         button(type="button" @click="searchTweets")
           | 検索
@@ -47,7 +47,9 @@ import Tweet from 'tweet'
 import TweetsMarkdown from 'tweets_markdown'
 
 export default {
-  props: {},
+  props: {
+    note_id: String
+  },
   components: {
     'draggable': Draggable,
     'tweet': Tweet,
@@ -75,7 +77,7 @@ export default {
       const start_datetime = encodeURI(this.$refs.start_datetime.value);
       const end_datetime = encodeURI(this.$refs.end_datetime.value);
 
-      fetch(`/api/tweets.json?start_datetime=${start_datetime}&end_datetime=${end_datetime}&query=${query}`, {
+      fetch(`/api/tweets.json?start_datetime=${start_datetime}&end_datetime=${end_datetime}&query=${query}&note_id=${this.note_id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
