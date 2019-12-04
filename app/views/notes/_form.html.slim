@@ -10,7 +10,9 @@
     = f.label :title
     = f.text_field :title
   #js-tweets(data-note-id="#{@note.id}")
-    #js-tweets-body
+    #js-note-body
       = @note.body
+    #js-note-tweets
+      = @note.tweets
 
   .actions = f.submit

@@ -18,20 +18,21 @@
     .form__items
       .form__item
         .search-tweets
-          p
+          label
             | Tweets
           draggable(class="list-group" :list="search_result_tweets" group="people")
             .list-group-item(v-for="(element, index) in search_result_tweets" :key="element.name")
               tweet(:tweet="element")
       .form__item
         .note-tweets
-          p
+          label
             | Notes
           button(type="button" @click="changTweets()")
             | Tweetsに切り替え
           draggable(class="list-group" :list="note_tweets" group="people")
             .list-group-item(v-for="(element, index) in note_tweets" :key="element.name")
               tweet(:tweet="element")
+          input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
       .form__item
         .tweets_markdown
           tweets_markdown(ref="tweets_markdown"
@@ -48,7 +49,6 @@ import TweetsMarkdown from 'tweets_markdown'
 
 export default {
   props: {
-    note_id: String
   },
   components: {
     'draggable': Draggable,
@@ -59,12 +59,18 @@ export default {
     return {
       all_search_result_tweets: [],
       search_result_tweets: [],
-      note_tweets: []
+      note_tweets: [],
+      note_body: String
     }
   },
   created() {
     // if innerText is null then []
-    this.note_tweets = JSON.parse(document.querySelector('#js-tweets-body').innerText || null) || [];
+    if (document.querySelector('#js-note-tweets') !== null) {
+      this.note_tweets = JSON.parse(document.querySelector('#js-note-tweets').innerText || null) || [];
+    }
+    if (document.querySelector('#js-note-body') !== null) {
+      this.note_body = document.querySelector('#js-note-body').innerText || null;
+    }
   },
   methods: {
     token () {
@@ -77,7 +83,7 @@ export default {
       const start_datetime = encodeURI(this.$refs.start_datetime.value);
       const end_datetime = encodeURI(this.$refs.end_datetime.value);
 
-      fetch(`/api/tweets.json?start_datetime=${start_datetime}&end_datetime=${end_datetime}&query=${query}&note_id=${this.note_id}`, {
+      fetch(`/api/tweets.json?start_datetime=${start_datetime}&end_datetime=${end_datetime}&query=${query}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',

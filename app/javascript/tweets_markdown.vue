@@ -35,7 +35,7 @@ export default {
   created() {
     var indexs = JSON.parse(this.tweetsString)
     for(var index of indexs){
-      body = body + index["markdown"];
+      this.body = this.body + index["markdown"];
     }
   },
   methods: {

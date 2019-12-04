@@ -1,41 +1,36 @@
 # frozen_string_literal: true
 
-class TweetRepository < ApplicationRecord
-  belongs_to :note
-
+class TweetRepository
   def search(params)
-    @params = params
-    set_params
-    if Rails.env.test? || ENV["NO_EXTERNAL_API"]
-      load_file_tweets
-    else
-      search_tweets
-      extract_time_period
-    end
-    add_tweet_params
-
-    tr = TweetRepository.new(note_id: @note_id, body: @tweets)
-    tr.save
-
-    @tweets
+    set_params(params)
+    tweets
   end
 
   private
-    def tweets
+    def set_params(params)
+      @query = params[:query]
+      @start_datetime = Time.strptime(params[:start_datetime], "%Y-%m-%d %H:%M").to_time
+      @end_datetime = Time.strptime(params[:end_datetime], "%Y-%m-%d %H:%M").to_time
+      @end_date = I18n.l(@end_datetime, format: :ymd_hy)
+      @since_id = nil
     end
+
+    def tweets
+      if Rails.env.test? || ENV["NO_EXTERNAL_API"]
+        load_file_tweets
+      else
+        search_tweets
+      end
+      add_tweet_params
+
+      @tweets
+    end
+
     def client
       @client ||= Twitter::REST::Client.new(
         consumer_key: ENV["CONSUMER_KEY"],
         consumer_secret: ENV["CONSUMER_SECRET"]
       )
-    end
-    def set_params
-      @query = @params[:query]
-      @start_datetime = Time.strptime(@params[:start_datetime], "%Y-%m-%d %H:%M").to_time
-      @end_datetime = Time.strptime(@params[:end_datetime], "%Y-%m-%d %H:%M").to_time
-      @end_date = I18n.l(@end_datetime, format: :ymd_hy)
-      @since_id = nil
-      @note_id = @params[:note_id]
     end
 
     def load_file_tweets
@@ -61,6 +56,8 @@ class TweetRepository < ApplicationRecord
         since_id: @since_id).to_h
 
       @tweets = result_tweets[:statuses]
+
+      extract_time_period
     end
 
     def extract_time_period
@@ -76,5 +73,4 @@ class TweetRepository < ApplicationRecord
         tweet[:markdown] = "> [#{tweet[:text]}](#{tweet[:url]})".gsub(/\R/, " ") + "\n\n"
       end
     end
-
 end
