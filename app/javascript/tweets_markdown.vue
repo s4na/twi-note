@@ -1,27 +1,56 @@
 <template lang="pug">
   .tweets_markdown
+    button(type="button" @click="changeNotes()")
+      | Notesに切り替え
     label
       | 本文
-    textarea(name="note[body]" id="note_body")
-      | {{ valueString }}
+    textarea(ref="textArea" v-model="body" name="note[body]" id="note_body")
 </template>
 <script>
-const props = {
-  title: {
-    type: String,
-    required: true,
-    default: ""
-  },
-  value: {
-    required: true,
-    default: ""
-  }
-};
 export default {
-  props,
+  props: {
+    title: {
+      type: String,
+      required: true,
+      default: ""
+    },
+    tweets: {
+      required: true,
+      default: []
+    },
+    parent_all_search_result_tweets: {
+      type: Array
+    }
+  },
+  data: function () {
+    return {
+      body: ""
+    }
+  },
   computed: {
-    valueString() {
-      return JSON.stringify(this.value, null, 2);
+    tweetsString() {
+      return JSON.stringify(this.tweets, null, 2);
+    }
+  },
+  created() {
+    var indexs = JSON.parse(this.tweetsString)
+    for(var index of indexs){
+      this.body = this.body + index["markdown"];
+    }
+  },
+  methods: {
+    changeNotes() {
+      this.$parent.note_tweets = this._markdown2tweet(this.$refs.textArea.value);
+    },
+    _markdown2tweet(text) {
+      var lists = [];
+      const tweets = this.parent_all_search_result_tweets;
+      for(const tweet of tweets) {
+        if (text.indexOf(tweet["markdown"]) >= 0) {
+          lists.push(tweet);
+        }
+      }
+      return lists || [];
     }
   }
 };
