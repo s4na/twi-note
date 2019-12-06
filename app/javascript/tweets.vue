@@ -21,16 +21,16 @@
           label
             | Tweets
           draggable(class="list-group" :list="search_result_tweets" group="people")
-            .list-group-item(v-for="(element, index) in search_result_tweets" :key="element.name")
+            .list-group-item(v-for="(element, index) in search_result_tweets" :key="element.id_str")
               tweet(:tweet="element")
       .form__item
         .note-tweets
           label
             | Notes
-          button(type="button" @click="changTweets()")
+          button(type="button" @click="changeTweets()")
             | Tweetsに切り替え
           draggable(class="list-group" :list="note_tweets" group="people")
-            .list-group-item(v-for="(element, index) in note_tweets" :key="element.name")
+            .list-group-item(v-for="(element, index) in note_tweets" :key="element.id_str")
               tweet(:tweet="element")
           input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
       .form__item
@@ -102,7 +102,7 @@ export default {
         })
         .catch(error => { console.warn('Failed to parsing', error); })
     },
-    changTweets () {
+    changeTweets () {
       var body = "";
       var indexs = JSON.parse(JSON.stringify(this.note_tweets, null, 2));
       for(var index of indexs){
