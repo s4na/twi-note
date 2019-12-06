@@ -1,6 +1,9 @@
 <template lang="pug">
   .tweet
-    blockquote(class="twitter-tweet" data-lang="ja" data-dnt="true" data-theme="light")
+    | debug id_str[{{ tweet['id_str'] }}]
+    .tweet(v-if="tweet['user'] == undefined")
+      | {{ tweet["text"] }}
+    blockquote(v-else class="twitter-tweet" data-lang="ja" data-dnt="true" data-theme="light")
       p(lang="ja" dir="ltr")
         | {{ tweet["text"] }}
         br
