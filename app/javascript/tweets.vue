@@ -20,15 +20,15 @@
         .search-tweets
           label
             | Tweets
-          draggable(class="list-group" :list="search_result_tweets" group="people")
+          draggable(class="list-group" :list="search_result_tweets" group="people")#note-tweets-preview
             .list-group-item(v-for="(element, index) in search_result_tweets" :key="element.id_str")
               tweet(:tweet="element")
       .form__item
-        .note-tweets
+        .note-tweets#note-tweets
           label
             | Notes
           button(type="button" @click="changeTweets()")
-            | Tweetsに切り替え
+            | Markdownに切り替え
           draggable(class="list-group" :list="note_tweets" group="people")
             .list-group-item(v-for="(element, index) in note_tweets" :key="element.id_str")
               tweet(:tweet="element")
@@ -66,10 +66,10 @@ export default {
   created() {
     // if innerText is null then []
     if (document.querySelector('#js-note-tweets') !== null) {
-      this.note_tweets = JSON.parse(document.querySelector('#js-note-tweets').innerText || null) || [];
+      this.note_tweets = JSON.parse(document.querySelector('#js-note-tweets').innerText || null) || []
     }
     if (document.querySelector('#js-note-body') !== null) {
-      this.note_body = document.querySelector('#js-note-body').innerText || null;
+      this.note_body = document.querySelector('#js-note-body').innerText || null
     }
   },
   methods: {
@@ -78,10 +78,10 @@ export default {
       return meta ? meta.getAttribute('content') : ''
     },
     searchTweets: function() {
-      this.search_result_tweets = [];
-      const query = encodeURI(this.$refs.query.value);
-      const start_datetime = encodeURI(this.$refs.start_datetime.value);
-      const end_datetime = encodeURI(this.$refs.end_datetime.value);
+      this.search_result_tweets = []
+      const query = encodeURI(this.$refs.query.value)
+      const start_datetime = encodeURI(this.$refs.start_datetime.value)
+      const end_datetime = encodeURI(this.$refs.end_datetime.value)
 
       fetch(`/api/tweets.json?start_datetime=${start_datetime}&end_datetime=${end_datetime}&query=${query}`, {
         method: 'GET',
@@ -93,22 +93,22 @@ export default {
         credentials: 'same-origin',
         redirect: 'manual',
       })
-        .then(response => { return response.json(); })
+        .then(response => { return response.json() })
         .then(json=> {
           json.forEach(c => {
-            this.search_result_tweets.push(c);
-            this.all_search_result_tweets.push(c);
-          });
+            this.search_result_tweets.push(c)
+            this.all_search_result_tweets.push(c)
+          })
         })
-        .catch(error => { console.warn('Failed to parsing', error); })
+        .catch(error => { console.warn('Failed to parsing', error) })
     },
     changeTweets () {
-      var body = "";
-      var indexs = JSON.parse(JSON.stringify(this.note_tweets, null, 2));
+      var body = ""
+      var indexs = JSON.parse(JSON.stringify(this.note_tweets, null, 2))
       for(var index of indexs){
-        body = body + index["markdown"];
+        body = body + index["markdown"]
       }
-      this.$refs.tweets_markdown.body = body;
+      this.$refs.tweets_markdown.body = body
     }
   }
 }

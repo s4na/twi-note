@@ -5,8 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = document.getElementById('js-tweets')
   if (app) {
     new Vue({
-      render: h => h(Tweets, { props: {
-      }})
+      render: h => h(Tweets)
     }).$mount('#js-tweets')
   }
 })
