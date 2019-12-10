@@ -39,6 +39,9 @@ Style/AndOr:
 Layout/CaseIndentation:
   Enabled: true
 
+Layout/ClosingHeredocIndentation:
+  Enabled: true
+
 # Align comments with method definitions.
 Layout/CommentIndentation:
   Enabled: true
@@ -167,7 +170,7 @@ Style/StringLiterals:
 Layout/Tab:
   Enabled: true
 
-# Blank lines should not have any spaces.
+# Empty lines should not have any spaces.
 Layout/TrailingEmptyLines:
   Enabled: true
 
