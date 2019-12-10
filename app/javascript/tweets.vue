@@ -4,7 +4,7 @@
     .search-form
       label
         | query
-      input(ref="query" type="text" value="s4na_penguin")
+      input(ref="query" type="text" value="#sendagayarb")
       label
         | start_datetime
       input(ref="start_datetime" type="text" name="tweets-search[start_datetime]" value="2019-12-01 23:59")
@@ -79,11 +79,11 @@ export default {
     },
     searchTweets: function() {
       this.search_result_tweets = []
-      const query = encodeURI(this.$refs.query.value)
-      const start_datetime = encodeURI(this.$refs.start_datetime.value)
-      const end_datetime = encodeURI(this.$refs.end_datetime.value)
+      const query = encodeURIComponent(this.$refs.query.value)
+      const start_datetime = encodeURIComponent(this.$refs.start_datetime.value)
+      const end_datetime = encodeURIComponent(this.$refs.end_datetime.value)
 
-      fetch(`/api/tweets.json?start_datetime=${start_datetime}&end_datetime=${end_datetime}&query=${query}`, {
+      fetch(`/api/tweets.json?query=${query}&start_datetime=${start_datetime}&end_datetime=${end_datetime}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
