@@ -1,7 +1,12 @@
 {
+  "//": [
+    "Normal data.",
+    "Test data with not fragment at the beginning and end of text"
+  ],
+
+
   "text": "> [rspecとminitest両方入っていたら邪道かなあ・・・  簡単なのはminitestで。難しいのはrspecでやっていきたい・・・](https://twitter.com/s4na_penguin/status/1204252154837393408?ref_src=twsrc%5Etfw)\n\n> [命名困ったら「GitHubで検索」助かる](https://twitter.com/s4na_penguin/status/1204254220741828608?ref_src=twsrc%5Etfw)\n\n",
-  "tweets":
-  [
+  "tweets": [
     {
       "id_str": "1204254220741828608",
       "text": "命名困ったら「GitHubで検索」助かる",
@@ -25,33 +30,32 @@
       }
     }
   ],
-  "lists":
-    [
-      {
-        "id_str": "1204252154837393408",
-        "text": "rspecとminitest両方入っていたら邪道かなあ・・・\n\n簡単なのはminitestで。難しいのはrspecでやっていきたい・・・",
-        "url": "https://twitter.com/s4na_penguin/status/1204252154837393408?ref_src=twsrc%5Etfw",
-        "markdown": "> [rspecとminitest両方入っていたら邪道かなあ・・・  簡単なのはminitestで。難しいのはrspecでやっていきたい・・・](https://twitter.com/s4na_penguin/status/1204252154837393408?ref_src=twsrc%5Etfw)\n\n",
-        "user": {
-          "id_str": "1072823223190835201",
-          "screen_name": "s4na_penguin",
-          "name": "s4na / Nabetani 🐧そうだ！Rubyを書こう！"
-        }
-      },
-      {
-        "id_str": "1204254220741828608",
-        "text": "命名困ったら「GitHubで検索」助かる",
-        "url": "https://twitter.com/s4na_penguin/status/1204254220741828608?ref_src=twsrc%5Etfw",
-        "markdown": "> [命名困ったら「GitHubで検索」助かる](https://twitter.com/s4na_penguin/status/1204254220741828608?ref_src=twsrc%5Etfw)\n\n",
-        "user": {
-          "id_str": "1072823223190835201",
-          "screen_name": "s4na_penguin",
-          "name": "s4na / Nabetani 🐧そうだ！Rubyを書こう！"
-        }
-      },
-      {
-        "id_str": "3f2779e4-6b87-43fc-97eb-1a092d568dd9",
-        "text": ""
+  "lists": [
+    {
+      "id_str": "1204252154837393408",
+      "text": "rspecとminitest両方入っていたら邪道かなあ・・・\n\n簡単なのはminitestで。難しいのはrspecでやっていきたい・・・",
+      "url": "https://twitter.com/s4na_penguin/status/1204252154837393408?ref_src=twsrc%5Etfw",
+      "markdown": "> [rspecとminitest両方入っていたら邪道かなあ・・・  簡単なのはminitestで。難しいのはrspecでやっていきたい・・・](https://twitter.com/s4na_penguin/status/1204252154837393408?ref_src=twsrc%5Etfw)\n\n",
+      "user": {
+        "id_str": "1072823223190835201",
+        "screen_name": "s4na_penguin",
+        "name": "s4na / Nabetani 🐧そうだ！Rubyを書こう！"
       }
-    ]
+    },
+    {
+      "id_str": "1204254220741828608",
+      "text": "命名困ったら「GitHubで検索」助かる",
+      "url": "https://twitter.com/s4na_penguin/status/1204254220741828608?ref_src=twsrc%5Etfw",
+      "markdown": "> [命名困ったら「GitHubで検索」助かる](https://twitter.com/s4na_penguin/status/1204254220741828608?ref_src=twsrc%5Etfw)\n\n",
+      "user": {
+        "id_str": "1072823223190835201",
+        "screen_name": "s4na_penguin",
+        "name": "s4na / Nabetani 🐧そうだ！Rubyを書こう！"
+      }
+    },
+    {
+      "id_str": "3f2779e4-6b87-43fc-97eb-1a092d568dd9",
+      "text": ""
+    }
+  ]
 }
