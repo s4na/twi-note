@@ -30,12 +30,10 @@ test('Convert tweets to markdown', () => {
 
 test('Convert markdown to tweets', () => {
   const data = dataNormal
-  const markdown = data.markdown
   const tweets = data.tweets
-  var m2t = new Markdown2Tweets({ 'markdown': markdown, 'tweets': tweets })
+  var m2t = new Markdown2Tweets({ 'tweets': tweets })
 
-  var returnMarkdown = m2t.setMarkdown()
-  expect(JSON.stringify(returnMarkdown)).toBe(JSON.stringify(data.return_markdown))
+  expect(JSON.stringify(m2t.setMarkdown())).toBe(JSON.stringify(data.return_markdown))
 })
 
 test('When there is fragment data in markdown, convert it to tweets', () => {
