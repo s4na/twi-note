@@ -44,7 +44,7 @@ export default {
     changeTweets() {
       const text = this.$refs.textArea.value
       const tweets = this.parent_all_search_result_tweets
-      var m2t = new Markdown2Tweets(text, tweets)
+      var m2t = new Markdown2Tweets({ 'text': text, 'tweets': tweets })
 
       const lists = m2t.lists()
       this.$parent.note_tweets = lists

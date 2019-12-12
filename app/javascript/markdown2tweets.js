@@ -1,12 +1,15 @@
 import uuid from 'uuid'
 
 export default class Markdown2Tweets {
-  constructor (text, tweets) {
-    this.text = text
+  constructor (params) {
+    this.text = params['text']
+    this.tweets = params['tweets']
+  }
+  lists () {
     this.orders = []
     if (this.text !== '') {
-      for (const tweet of tweets) {
-        var address = text.indexOf(tweet.markdown)
+      for (const tweet of this.tweets) {
+        var address = this.text.indexOf(tweet.markdown)
 
         if (address >= 0) {
           this.orders.push({
@@ -19,6 +22,12 @@ export default class Markdown2Tweets {
       }
       this.setOrder()
     }
+
+    this.lists = []
+    for (var id = 0; id < this.orders.length; id++) {
+      this.lists.push(this.orders[id].data)
+    }
+    return this.lists || []
   }
   setOrder () {
     this.ascendingSort()
@@ -26,13 +35,6 @@ export default class Markdown2Tweets {
     this.addFirstFragmentTextText()
     this.addLastFragmentText()
     this.ascendingSort()
-  }
-  lists () {
-    this.lists = []
-    for (var id = 0; id < this.orders.length; id++) {
-      this.lists.push(this.orders[id].data)
-    }
-    return this.lists || []
   }
   ascendingSort () {
     this.orders = this.orders.sort(function (a, b) { return (a.address < b.address ? -1 : 1) })

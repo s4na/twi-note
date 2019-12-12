@@ -2,7 +2,7 @@
   "//": ["Test data with fragment at the beginning and end of text"],
 
 
-  "text": "first text> [比較したくない要素を除外すれば良いのか💡](https://twitter.com/s4na_penguin/status/1204269365434019841?ref_src=twsrc%5Etfw)\n\n> [JS, encodeURIだと`#hoge`が消えてしまうけど、nencodeURIComponentなら消えないのか  理解](https://twitter.com/s4na_penguin/status/1204293898777976833?ref_src=twsrc%5Etfw)\n\nlast text",
+  "markdown": "first text> [比較したくない要素を除外すれば良いのか💡](https://twitter.com/s4na_penguin/status/1204269365434019841?ref_src=twsrc%5Etfw)\n\n> [JS, encodeURIだと`#hoge`が消えてしまうけど、nencodeURIComponentなら消えないのか  理解](https://twitter.com/s4na_penguin/status/1204293898777976833?ref_src=twsrc%5Etfw)\n\nlast text",
   "tweets": [
     {
       "id_str": "1204293898777976833",

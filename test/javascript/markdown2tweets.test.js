@@ -4,7 +4,7 @@ import dataWithFragment from './data/markdown2tweets/with_fragment.json'
 import dataNull from './data/markdown2tweets/null.json'
 
 test('load json file data', () => {
-  const text = data.text
+  const text = data.markdown
   const tweets = data.tweets
   const lists = data.list
 
@@ -13,10 +13,10 @@ test('load json file data', () => {
   expect(lists).not.toBe(null)
 })
 
-test('Convert text to tweet', () => {
-  const text = data.text
+test('Convert markdown to tweet', () => {
+  const text = data.markdown
   const tweets = data.tweets
-  var m2t = new Markdown2Tweets(text, tweets)
+  var m2t = new Markdown2Tweets({ 'text': text, 'tweets': tweets })
 
   var lists = m2t.lists()
   var list
@@ -26,11 +26,11 @@ test('Convert text to tweet', () => {
   expect(JSON.stringify(lists)).toBe(JSON.stringify(data.lists))
 })
 
-test('When there is fragment data in text, convert it to tweet', () => {
+test('When there is fragment data in markdown, convert it to tweets', () => {
   const data = dataWithFragment
-  const text = data.text
+  const text = data.markdown
   const tweets = data.tweets
-  var m2t = new Markdown2Tweets(text, tweets)
+  var m2t = new Markdown2Tweets({ 'text': text, 'tweets': tweets })
 
   var lists = m2t.lists()
   var list
@@ -42,9 +42,9 @@ test('When there is fragment data in text, convert it to tweet', () => {
 
 test('If the data is null, return null', () => {
   const data = dataNull
-  const text = data.text
+  const text = data.markdown
   const tweets = data.tweets
-  var m2t = new Markdown2Tweets(text, tweets)
+  var m2t = new Markdown2Tweets({ 'text': text, 'tweets': tweets })
 
   var lists = m2t.lists()
   var list
