@@ -1,6 +1,6 @@
 <template lang="pug">
   .tweets_markdown
-    button(type="button" @click="changeNotes()")
+    button(type="button" @click="changeTweets()")
       | Previewに切り替え
     label
       | 本文
@@ -41,7 +41,7 @@ export default {
     }
   },
   methods: {
-    changeNotes() {
+    changeTweets() {
       const text = this.$refs.textArea.value
       const tweets = this.parent_all_search_result_tweets
       var m2t = new Markdown2Tweet(text, tweets)

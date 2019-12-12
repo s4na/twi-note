@@ -27,7 +27,7 @@
         .note-tweets#note-tweets
           label
             | Notes
-          button(type="button" @click="changeTweets()")
+          button(type="button" @click="changeMarkdown()")
             | Markdownに切り替え
           draggable(class="list-group" :list="note_tweets" group="people")
             .list-group-item(v-for="(element, index) in note_tweets" :key="element.id_str")
@@ -102,12 +102,10 @@ export default {
         })
         .catch(error => { console.warn('Failed to parsing', error) })
     },
-    changeTweets () {
+    changeMarkdown () {
       var body = ""
       var indexs = JSON.parse(JSON.stringify(this.note_tweets, null, 2))
-      for(var index of indexs){
-        body = body + index["markdown"]
-      }
+      for(var index of indexs){ body = body + index["markdown"] }
       this.$refs.tweets_markdown.body = body
     }
   }
