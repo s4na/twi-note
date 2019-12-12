@@ -7,34 +7,34 @@ export default class Markdown2Tweets {
   }
   lists () {
     this.orders = []
-    if (this.markdown !== '') {
-      for (const tweet of this.tweets) {
-        var address = this.markdown.indexOf(tweet.markdown)
-
-        if (address >= 0) {
-          this.orders.push({
-            'address': address,
-            'length': tweet.markdown.length,
-            'end_point': (address + tweet.markdown.length),
-            'data': tweet
-          })
-        }
-      }
-      this.setOrder()
-    }
-
     this.lists = []
-    for (var id = 0; id < this.orders.length; id++) {
-      this.lists.push(this.orders[id].data)
-    }
+    if (this.markdown !== '') { this.setLists() }
+
     return this.lists || []
   }
-  setOrder () {
+  setLists () {
+    this.setOrder()
     this.ascendingSort()
     this.changeFragment()
     this.addFirstFragmentTextText()
     this.addLastFragmentText()
     this.ascendingSort()
+
+    for (var id = 0; id < this.orders.length; id++) { this.lists.push(this.orders[id].data) }
+  }
+  setOrder () {
+    for (const tweet of this.tweets) {
+      var address = this.markdown.indexOf(tweet.markdown)
+
+      if (address >= 0) {
+        this.orders.push({
+          'address': address,
+          'length': tweet.markdown.length,
+          'end_point': (address + tweet.markdown.length),
+          'data': tweet
+        })
+      }
+    }
   }
   ascendingSort () {
     this.orders = this.orders.sort(function (a, b) { return (a.address < b.address ? -1 : 1) })
