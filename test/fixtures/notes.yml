@@ -1,5 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+# とりあえず表示用
 note_1:
   title: sendagaya.rb
   body: |-
@@ -24,6 +25,7 @@ note_1:
       }
     ]
 
+# とりあえず表示用
 note_2:
   title: omotesando.rb
   body: |-
@@ -44,6 +46,35 @@ note_2:
           "id_str": "1072823223190835201",
           "screen_name": "s4na_penguin",
           "name": "s4na / Nabetani そうだ！Rubyを書こう！"
+        }
+      }
+    ]
+
+# tweetからbody変換用
+note_3:
+  title: tweet2body_test用
+  tweets: |-
+    [
+      {
+        "id_str": "1203913714161745920",
+        "text": "export default class xxx {}としてなくてWebpack errorが出て数十分溶かしたnnJSへの理解がまだまだ足りない😢nnそしてexport, importするとstrictモードらしいので、これまで… https://t.co/7v6kQYLl4K",
+        "url": "https://twitter.com/s4na_penguin/status/1203913714161745920?ref_src=twsrc%5Etfw",
+        "markdown": "> [export default class xxx {}としてなくてWebpack errorが出て数十分溶かした  JSへの理解がまだまだ足りない😢  そしてexport, importするとstrictモードらしいので、これまで… https://t.co/7v6kQYLl4K](https://twitter.com/s4na_penguin/status/1203913714161745920?ref_src=twsrc%5Etfw)nn",
+        "user": {
+          "id_str": "1072823223190835201",
+          "screen_name": "s4na_penguin",
+          "name": "s4na / Nabetani 🐧そうだ！Rubyを書こう！"
+        }
+      },
+      {
+        "id_str": "1203914003405164546",
+        "text": "@hase_kun_ ありがとうございます！！nnそうですね😢nIEがclass使えないので・・・nnReact.jsのtestらへんがclass使っているみたいなので、参考にしようかと思っています",
+        "url": "https://twitter.com/s4na_penguin/status/1203914003405164546?ref_src=twsrc%5Etfw",
+        "markdown": "> [@hase_kun_ ありがとうございます！！  そうですね😢 IEがclass使えないので・・・  React.jsのtestらへんがclass使っているみたいなので、参考にしようかと思っています](https://twitter.com/s4na_penguin/status/1203914003405164546?ref_src=twsrc%5Etfw)nn",
+        "user": {
+          "id_str": "1072823223190835201",
+          "screen_name": "s4na_penguin",
+          "name": "s4na / Nabetani 🐧そうだ！Rubyを書こう！"
         }
       }
     ]
