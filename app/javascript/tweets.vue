@@ -46,6 +46,7 @@
 import Draggable from 'vuedraggable'
 import Tweet from 'tweet'
 import TweetsMarkdown from 'tweets_markdown'
+import Markdown2Tweets from './markdown2tweets.js'
 
 export default {
   props: {
@@ -103,9 +104,9 @@ export default {
         .catch(error => { console.warn('Failed to parsing', error) })
     },
     changeMarkdown () {
-      var body = ""
-      var indexs = JSON.parse(JSON.stringify(this.note_tweets, null, 2))
-      for(var index of indexs){ body = body + index["markdown"] }
+      
+
+      var body = Markdown2Tweets({'markdown': this.note_tweets})
       this.$refs.tweets_markdown.body = body
     }
   }

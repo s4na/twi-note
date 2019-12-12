@@ -6,13 +6,23 @@ export default class Markdown2Tweets {
     this.tweets = params['tweets']
   }
   setTweets () {
-    this.orders = []
-    this.lists = []
-    if (this.markdown !== '') { this.setLists() }
-
-    return this.lists || []
+    this.returnTweets = []
+    if (this.markdown !== '') { this.setReturnTweets() }
+    return this.returnTweets || []
   }
-  setLists () {
+  setMarkdown () {
+    this.returnMarkdown = ''
+    if (this.tweets !== '') { this.setReturnMarkdown() }
+    return this.returnMarkdown
+  }
+  setReturnMarkdown () {
+    // this.markdown = params['markdown']
+    var body = ''
+    var indexs = JSON.parse(JSON.stringify(this.markdown, null, 2))
+    for (var index of indexs) { body = body + index['markdown'] }
+    return body || ''
+  }
+  setReturnTweets () {
     this.setOrder()
     this.ascendingSort()
     this.changeFragment()
@@ -20,9 +30,10 @@ export default class Markdown2Tweets {
     this.addLastFragmentText()
     this.ascendingSort()
 
-    for (var id = 0; id < this.orders.length; id++) { this.lists.push(this.orders[id].data) }
+    for (var id = 0; id < this.orders.length; id++) { this.returnTweets.push(this.orders[id].data) }
   }
   setOrder () {
+    this.orders = []
     for (const tweet of this.tweets) {
       var address = this.markdown.indexOf(tweet.markdown)
 
@@ -49,7 +60,7 @@ export default class Markdown2Tweets {
 
           this.orders.push({
             'address': address,
-            'data': { 'id_str': uuid(), 'text': fragmentText }
+            'data': { 'id_str': uuid(), 'markdown': fragmentText }
           })
         }
       }
@@ -65,7 +76,7 @@ export default class Markdown2Tweets {
 
       this.orders.push({
         'address': 0,
-        'data': { 'id_str': uuid(), 'text': fragmentText }
+        'data': { 'id_str': uuid(), 'markdown': fragmentText }
       })
     }
   }
@@ -81,7 +92,7 @@ export default class Markdown2Tweets {
 
       const fragmentOrder = {
         'address': address,
-        'data': { 'id_str': uuid(), 'text': fragmentText }
+        'data': { 'id_str': uuid(), 'markdown': fragmentText }
       }
       this.orders.push(fragmentOrder)
     }
