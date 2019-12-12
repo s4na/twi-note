@@ -1,13 +1,13 @@
 <template lang="pug">
   .tweets_markdown
-    button(type="button" @click="changeNotes()")
+    button(type="button" @click="changeTweets()")
       | Previewに切り替え
     label
       | 本文
     textarea(ref="textArea" v-model="body" name="note[body]" id="note_body")
 </template>
 <script>
-import Markdown2Tweet from './markdown2tweet.js'
+import Markdown2Tweets from './markdown2tweets.js'
 
 export default {
   props: {
@@ -41,12 +41,12 @@ export default {
     }
   },
   methods: {
-    changeNotes() {
-      const text = this.$refs.textArea.value
+    changeTweets() {
+      const markdown = this.$refs.textArea.value
       const tweets = this.parent_all_search_result_tweets
-      var m2t = new Markdown2Tweet(text, tweets)
+      var m2t = new Markdown2Tweets({ 'markdown': markdown, 'tweets': tweets })
 
-      const lists = m2t.lists()
+      const lists = m2t.setTweets()
       this.$parent.note_tweets = lists
     }
   }

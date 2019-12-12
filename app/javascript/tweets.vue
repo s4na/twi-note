@@ -27,7 +27,7 @@
         .note-tweets#note-tweets
           label
             | Notes
-          button(type="button" @click="changeTweets()")
+          button(type="button" @click="changeMarkdown()")
             | Markdownに切り替え
           draggable(class="list-group" :list="note_tweets" group="people")
             .list-group-item(v-for="(element, index) in note_tweets" :key="element.id_str")
@@ -46,6 +46,7 @@
 import Draggable from 'vuedraggable'
 import Tweet from 'tweet'
 import TweetsMarkdown from 'tweets_markdown'
+import Markdown2Tweets from './markdown2tweets.js'
 
 export default {
   props: {
@@ -102,13 +103,9 @@ export default {
         })
         .catch(error => { console.warn('Failed to parsing', error) })
     },
-    changeTweets () {
-      var body = ""
-      var indexs = JSON.parse(JSON.stringify(this.note_tweets, null, 2))
-      for(var index of indexs){
-        body = body + index["markdown"]
-      }
-      this.$refs.tweets_markdown.body = body
+    changeMarkdown () {
+      var m2t = new Markdown2Tweets({'tweets': this.note_tweets})
+      this.$refs.tweets_markdown.body = m2t.setMarkdown()
     }
   }
 }

@@ -5,7 +5,7 @@
   ],
 
 
-  "text": "> [rspecとminitest両方入っていたら邪道かなあ・・・  簡単なのはminitestで。難しいのはrspecでやっていきたい・・・](https://twitter.com/s4na_penguin/status/1204252154837393408?ref_src=twsrc%5Etfw)\n\n> [命名困ったら「GitHubで検索」助かる](https://twitter.com/s4na_penguin/status/1204254220741828608?ref_src=twsrc%5Etfw)\n\n",
+  "markdown": "> [rspecとminitest両方入っていたら邪道かなあ・・・  簡単なのはminitestで。難しいのはrspecでやっていきたい・・・](https://twitter.com/s4na_penguin/status/1204252154837393408?ref_src=twsrc%5Etfw)\n\n> [命名困ったら「GitHubで検索」助かる](https://twitter.com/s4na_penguin/status/1204254220741828608?ref_src=twsrc%5Etfw)\n\n",
   "tweets": [
     {
       "id_str": "1204254220741828608",
@@ -30,7 +30,8 @@
       }
     }
   ],
-  "lists": [
+  "return_markdown": "> [命名困ったら「GitHubで検索」助かる](https://twitter.com/s4na_penguin/status/1204254220741828608?ref_src=twsrc%5Etfw)\n\n> [rspecとminitest両方入っていたら邪道かなあ・・・  簡単なのはminitestで。難しいのはrspecでやっていきたい・・・](https://twitter.com/s4na_penguin/status/1204252154837393408?ref_src=twsrc%5Etfw)\n\n",
+  "return_tweets": [
     {
       "id_str": "1204252154837393408",
       "text": "rspecとminitest両方入っていたら邪道かなあ・・・\n\n簡単なのはminitestで。難しいのはrspecでやっていきたい・・・",
@@ -55,7 +56,7 @@
     },
     {
       "id_str": "3f2779e4-6b87-43fc-97eb-1a092d568dd9",
-      "text": ""
+      "markdown": ""
     }
   ]
 }
