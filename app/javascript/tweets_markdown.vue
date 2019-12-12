@@ -42,9 +42,9 @@ export default {
   },
   methods: {
     changeTweets() {
-      const text = this.$refs.textArea.value
+      const markdown = this.$refs.textArea.value
       const tweets = this.parent_all_search_result_tweets
-      var m2t = new Markdown2Tweets({ 'text': text, 'tweets': tweets })
+      var m2t = new Markdown2Tweets({ 'markdown': markdown, 'tweets': tweets })
 
       const lists = m2t.lists()
       this.$parent.note_tweets = lists

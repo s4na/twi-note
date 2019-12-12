@@ -2,14 +2,14 @@ import uuid from 'uuid'
 
 export default class Markdown2Tweets {
   constructor (params) {
-    this.text = params['text']
+    this.markdown = params['markdown']
     this.tweets = params['tweets']
   }
   lists () {
     this.orders = []
-    if (this.text !== '') {
+    if (this.markdown !== '') {
       for (const tweet of this.tweets) {
-        var address = this.text.indexOf(tweet.markdown)
+        var address = this.markdown.indexOf(tweet.markdown)
 
         if (address >= 0) {
           this.orders.push({
@@ -44,7 +44,7 @@ export default class Markdown2Tweets {
       if (id !== 0) {
         if (this.orders[id - 1].end_point < this.orders[id].address) {
           const fragmentTextLength = this.orders[id].address - this.orders[id - 1].end_point
-          const fragmentText = this.text.substr(this.orders[id - 1].end_point, fragmentTextLength)
+          const fragmentText = this.markdown.substr(this.orders[id - 1].end_point, fragmentTextLength)
           const address = this.orders[id - 1].end_point
 
           this.orders.push({
@@ -61,7 +61,7 @@ export default class Markdown2Tweets {
 
     if (ordersFirstAddress !== 0) {
       const fragmentTextLength = firstOrder.address
-      const fragmentText = this.text.substr(0, fragmentTextLength)
+      const fragmentText = this.markdown.substr(0, fragmentTextLength)
 
       this.orders.push({
         'address': 0,
@@ -72,11 +72,11 @@ export default class Markdown2Tweets {
   addLastFragmentText () {
     const ordersLastAddress = Math.max.apply(null, this.orders.map(function (o) { return o.address }))
     const lastOrder = this.orders.filter(o => o.address === ordersLastAddress)[0]
-    const textLength = this.text.length
+    const markdownLength = this.markdown.length
 
-    if (ordersLastAddress !== textLength) {
-      const fragmentTextLength = textLength - lastOrder.end_point
-      const fragmentText = this.text.substr(lastOrder.end_point, fragmentTextLength)
+    if (ordersLastAddress !== markdownLength) {
+      const fragmentTextLength = markdownLength - lastOrder.end_point
+      const fragmentText = this.markdown.substr(lastOrder.end_point, fragmentTextLength)
       const address = lastOrder.end_point + 1
 
       const fragmentOrder = {
