@@ -5,7 +5,7 @@ export default class Markdown2Tweets {
     this.markdown = params['markdown']
     this.tweets = params['tweets']
   }
-  lists () {
+  setTweets () {
     this.orders = []
     this.lists = []
     if (this.markdown !== '') { this.setLists() }

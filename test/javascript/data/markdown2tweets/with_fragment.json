@@ -27,7 +27,7 @@
       }
     }
   ],
-  "lists": [
+  "return_tweets": [
     {
       "id_str": "ca144b1e-9100-41d2-a3bb-3c9d52bc52a1",
       "text": "first text"

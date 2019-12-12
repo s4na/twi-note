@@ -30,7 +30,7 @@
       }
     }
   ],
-  "lists": [
+  "return_tweets": [
     {
       "id_str": "1204252154837393408",
       "text": "rspecとminitest両方入っていたら邪道かなあ・・・\n\n簡単なのはminitestで。難しいのはrspecでやっていきたい・・・",
