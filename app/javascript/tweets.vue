@@ -104,10 +104,8 @@ export default {
         .catch(error => { console.warn('Failed to parsing', error) })
     },
     changeMarkdown () {
-      
-
-      var body = Markdown2Tweets({'markdown': this.note_tweets})
-      this.$refs.tweets_markdown.body = body
+      var m2t = new Markdown2Tweets({'tweets': this.note_tweets})
+      this.$refs.tweets_markdown.body = m2t.setMarkdown()
     }
   }
 }

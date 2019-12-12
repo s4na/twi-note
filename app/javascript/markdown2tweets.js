@@ -12,15 +12,12 @@ export default class Markdown2Tweets {
   }
   setMarkdown () {
     this.returnMarkdown = ''
-    if (this.tweets !== '') { this.setReturnMarkdown() }
-    return this.returnMarkdown
+    if (this.tweets.length !== 0) { this.setReturnMarkdown() }
+    return this.returnMarkdown || ''
   }
   setReturnMarkdown () {
-    // this.markdown = params['markdown']
-    var body = ''
-    var indexs = JSON.parse(JSON.stringify(this.markdown, null, 2))
-    for (var index of indexs) { body = body + index['markdown'] }
-    return body || ''
+    var indexs = JSON.parse(JSON.stringify(this.tweets, null, 2))
+    for (var index of indexs) { this.returnMarkdown += index['markdown'] }
   }
   setReturnTweets () {
     this.setOrder()

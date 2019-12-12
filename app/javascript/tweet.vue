@@ -1,7 +1,7 @@
 <template lang="pug">
   .tweet
     .tweet(v-if="tweet['user'] == undefined")
-      | {{ tweet["text"] }}
+      | {{ tweet["markdown"] }}
     blockquote(v-else class="twitter-tweet" data-lang="ja" data-dnt="true" data-theme="light")
       p(lang="ja" dir="ltr")
         | {{ tweet["text"] }}

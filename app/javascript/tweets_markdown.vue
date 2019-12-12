@@ -46,7 +46,7 @@ export default {
       const tweets = this.parent_all_search_result_tweets
       var m2t = new Markdown2Tweets({ 'markdown': markdown, 'tweets': tweets })
 
-      const lists = m2t.lists()
+      const lists = m2t.setTweets()
       this.$parent.note_tweets = lists
     }
   }
