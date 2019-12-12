@@ -7,7 +7,7 @@
     textarea(ref="textArea" v-model="body" name="note[body]" id="note_body")
 </template>
 <script>
-import Markdown2Tweet from './markdown2tweet.js'
+import Markdown2Tweets from './markdown2tweets.js'
 
 export default {
   props: {
@@ -44,7 +44,7 @@ export default {
     changeTweets() {
       const text = this.$refs.textArea.value
       const tweets = this.parent_all_search_result_tweets
-      var m2t = new Markdown2Tweet(text, tweets)
+      var m2t = new Markdown2Tweets(text, tweets)
 
       const lists = m2t.lists()
       this.$parent.note_tweets = lists

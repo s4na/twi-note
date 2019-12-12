@@ -1,7 +1,7 @@
-import Markdown2Tweet from '../../app/javascript/markdown2tweet.js'
-import data from './data/markdown2tweet/normal.json'
-import dataWithFragment from './data/markdown2tweet/with_fragment.json'
-import dataNull from './data/markdown2tweet/null.json'
+import Markdown2Tweets from '../../app/javascript/markdown2tweets.js'
+import data from './data/markdown2tweets/normal.json'
+import dataWithFragment from './data/markdown2tweets/with_fragment.json'
+import dataNull from './data/markdown2tweets/null.json'
 
 test('load json file data', () => {
   const text = data.text
@@ -16,7 +16,7 @@ test('load json file data', () => {
 test('Convert text to tweet', () => {
   const text = data.text
   const tweets = data.tweets
-  var m2t = new Markdown2Tweet(text, tweets)
+  var m2t = new Markdown2Tweets(text, tweets)
 
   var lists = m2t.lists()
   var list
@@ -30,7 +30,7 @@ test('When there is fragment data in text, convert it to tweet', () => {
   const data = dataWithFragment
   const text = data.text
   const tweets = data.tweets
-  var m2t = new Markdown2Tweet(text, tweets)
+  var m2t = new Markdown2Tweets(text, tweets)
 
   var lists = m2t.lists()
   var list
@@ -44,7 +44,7 @@ test('If the data is null, return null', () => {
   const data = dataNull
   const text = data.text
   const tweets = data.tweets
-  var m2t = new Markdown2Tweet(text, tweets)
+  var m2t = new Markdown2Tweets(text, tweets)
 
   var lists = m2t.lists()
   var list

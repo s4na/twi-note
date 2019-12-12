@@ -1,6 +1,6 @@
 import uuid from 'uuid'
 
-export default class Markdown2Tweet {
+export default class Markdown2Tweets {
   constructor (text, tweets) {
     this.text = text
     this.orders = []
