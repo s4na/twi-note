@@ -28,6 +28,27 @@ test('Convert tweets to markdown', () => {
   expect(JSON.stringify(returnTweets)).toBe(JSON.stringify(data.return_tweets))
 })
 
+test('Convert tweets to markdown, convert to tweets and convert to markdown', () => {
+  const data = dataWithFragment
+  const markdown = data.markdown
+  const tweets = data.tweets
+  var m2t = new Markdown2Tweets({ 'markdown': markdown, 'tweets': tweets })
+
+  var returnTweets = m2t.setTweets()
+  var list
+  for (list of returnTweets) { delete (list.id_str) }
+  for (list of data.return_tweets) { delete (list.id_str) }
+  expect(JSON.stringify(returnTweets)).toBe(JSON.stringify(data.return_tweets))
+
+  var m2t2 = new Markdown2Tweets({ 'tweets': returnTweets })
+  var returnMarkdown = m2t2.setMarkdown()
+
+  var m2t3 = new Markdown2Tweets({ 'markdown': returnMarkdown, 'tweets': returnTweets })
+  var returnTweets3 = m2t3.setTweets()
+  for (list of returnTweets3) { delete (list.id_str) }
+  expect(JSON.stringify(returnTweets3)).toBe(JSON.stringify(data.return_tweets))
+})
+
 test('Convert markdown to tweets', () => {
   const data = dataNormal
   const tweets = data.tweets
