@@ -1,7 +1,10 @@
 {
   "extends": "standard",
   "env": {
-    "jquery": true
+    "jquery": true,
+    "browser": true,
+    "node": true,
+    "jest": true
   },
   "globals": {
     "window": true,
