@@ -82,7 +82,7 @@ export default class Markdown2Tweets {
     const lastOrder = this.orders.filter(o => o.address === ordersLastAddress)[0]
     const markdownLength = this.markdown.length
 
-    if (ordersLastAddress !== markdownLength) {
+    if (lastOrder.end_point !== markdownLength) {
       const fragmentTextLength = markdownLength - lastOrder.end_point
       const fragmentText = this.markdown.substr(lastOrder.end_point, fragmentTextLength)
       const address = lastOrder.end_point + 1
