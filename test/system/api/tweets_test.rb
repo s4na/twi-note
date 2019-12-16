@@ -4,7 +4,13 @@ require "application_system_test_case"
 require "webmock"
 
 class TweetsTest < ApplicationSystemTestCase
+  include Warden::Test::Helpers
+
   setup do
+    Warden.test_mode!
+    @user = users(:user_1)
+    login_as(@user, scope: :user)
+
     @note = notes(:note_1)
   end
 
