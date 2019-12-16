@@ -67,7 +67,7 @@ group :development do
   gem "rubocop-rails"
   gem "rubocop-performance"
   gem "slim_lint"
-  gem 'html2slim'
+  gem "html2slim"
 end
 
 gem "rails-i18n", "~> 6.0.0"
