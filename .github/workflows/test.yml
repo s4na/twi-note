@@ -26,6 +26,12 @@ jobs:
     - name: Rubocop
       run: |
         bundle exec rubocop ./rubocop.yml --parallel
+    - name: Lint
+      run: |
+        # deviseでのエラーがあるのでまだ導入しない
+        # bundle exec slim-lint app/views -c config/slim_lint.yml
+        bin/yarn eslint app/javascript
+        bin/yarn eslint test/javascript
     - name: Test
       run: |
         bin/test
