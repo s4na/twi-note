@@ -107,6 +107,7 @@ GEM
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashdiff (1.0.0)
+    hashie (3.6.0)
     hpricot (0.8.6)
     html2slim (0.2.0)
       hpricot
@@ -152,6 +153,16 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
+    oauth (0.5.4)
+    omniauth (1.9.0)
+      hashie (>= 3.4.6, < 3.7.0)
+      rack (>= 1.6.2, < 3)
+    omniauth-oauth (1.1.0)
+      oauth
+      omniauth (~> 1.0)
+    omniauth-twitter (1.4.0)
+      omniauth-oauth (~> 1.1)
+      rack
     orm_adapter (0.5.0)
     parallel (1.19.0)
     parser (2.6.5.0)
@@ -339,6 +350,8 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  omniauth
+  omniauth-twitter
   pry-byebug
   pry-doc
   pry-rails

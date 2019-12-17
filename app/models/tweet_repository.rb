@@ -28,8 +28,8 @@ class TweetRepository
 
     def client
       @client ||= Twitter::REST::Client.new(
-        consumer_key: ENV["CONSUMER_KEY"],
-        consumer_secret: ENV["CONSUMER_SECRET"]
+        consumer_key: ENV["TWITTWE_APP_ID"],
+        consumer_secret: ENV["TWITTWE_APP_SECRET"]
       )
     end
 
