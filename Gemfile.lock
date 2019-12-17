@@ -160,6 +160,9 @@ GEM
     omniauth-oauth (1.1.0)
       oauth
       omniauth (~> 1.0)
+    omniauth-rails_csrf_protection (0.1.2)
+      actionpack (>= 4.2)
+      omniauth (>= 1.3.1)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
@@ -351,6 +354,7 @@ DEPENDENCIES
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   omniauth
+  omniauth-rails_csrf_protection
   omniauth-twitter
   pry-byebug
   pry-doc
