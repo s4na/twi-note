@@ -1,2 +1,5 @@
 user_1:
   email: test@test.co.jp
+
+user_2:
+  email: test2@test.co.jp

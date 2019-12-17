@@ -1,4 +1,5 @@
 note_1:
+  user: user_1
   title: sendagaya.rb
   body: |-
     [
@@ -23,6 +24,7 @@ note_1:
     ]
 
 note_2:
+  user: user_1
   title: omotesando.rb
   body: |-
     [

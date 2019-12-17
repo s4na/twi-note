@@ -18,6 +18,11 @@ class NotesTest < ApplicationSystemTestCase
     assert_selector "h1", text: "ノート一覧"
   end
 
+  test "show note" do
+    visit note_path(@note)
+    assert_selector "h1", text: @note.title
+  end
+
   test "create note" do
     visit notes_url
     click_on "追加"
