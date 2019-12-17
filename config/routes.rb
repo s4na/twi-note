@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users
   root "notes#index"
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'omniauth_callbacks'
+  }
+  
   resources :notes
   namespace "api" do
     resources :tweets, only: %i(index)
