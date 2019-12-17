@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2019_12_16_071145) do
     t.string "title"
     t.text "body"
     t.text "tweets"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

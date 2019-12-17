@@ -6,6 +6,7 @@ class CreateNotes < ActiveRecord::Migration[6.0]
       t.string :title
       t.text :body
       t.text :tweets
+      t.integer :user_id, foreign_key: true
 
       t.timestamps
     end
