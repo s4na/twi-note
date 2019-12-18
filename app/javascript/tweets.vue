@@ -1,30 +1,39 @@
 <template lang="pug">
-  .tweets
-    | 検索欄
-    .search-form
-      label
+  .search-form__items
+    .search-form__item
+      h2.search-form__title
+        label
+          | {{ noteTitleHumanAttributeName }}
+        input(type="text" name="note[title]" id="note_title" :value="noteTitle")
+    .search-form__item
+      p
+        | 検索欄
+    .search-form__item
+      label.search-form__query
         | query
       input(ref="query" type="text" value="#sendagayarb")
-      label
+    .search-form__item
+      label.search-form__start-datetime
         | start_datetime
       input(ref="start_datetime" type="text" name="tweets-search[start_datetime]" value="2019-12-01 23:59")
-      label
+    .search-form__item
+      label.search-form__end-datetime
         | end_datetime
       input(ref="end_datetime" type="text" name="tweets-search[end_datetime]" value="2019-12-25 23:59")
       .search-form__button
         button(type="button" @click="searchTweets")
           | 検索
 
-    .form__items
-      .form__item
-        .search-tweets
-          label
-            | Tweets
-          draggable(class="list-group" :list="search_result_tweets" group="people")#note-tweets-preview
-            .list-group-item(v-for="(element, index) in search_result_tweets" :key="element.id_str")
-              tweet(:tweet="element")
-      .form__item
-        .note-tweets#note-tweets
+    .search-form__body
+      .search-result
+        label
+          | Tweets
+        draggable(class="list-group" :list="search_result_tweets" group="people")#note-tweets-preview
+          .list-group-item(v-for="(element, index) in search_result_tweets" :key="element.id_str")
+            tweet(:tweet="element")
+
+      .note
+        .note__inner.is-preview
           label
             | Notes
           button(type="button" @click="changeMarkdown()")
@@ -33,13 +42,13 @@
             .list-group-item(v-for="(element, index) in note_tweets" :key="element.id_str")
               tweet(:tweet="element")
           input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
-      .form__item
-        .tweets_markdown
-          tweets_markdown(ref="tweets_markdown"
-            :tweets="note_tweets"
-            :parent_all_search_result_tweets="all_search_result_tweets"
-            title="List 1"
-          )
+        .note__inner.is-markdown
+          .note__form
+            tweets_markdown.note__textarea(ref="tweets_markdown"
+              :tweets="note_tweets"
+              :parent_all_search_result_tweets="all_search_result_tweets"
+              title="List 1"
+            )
 
 </template>
 <script>
@@ -50,6 +59,8 @@ import Markdown2Tweets from './markdown2tweets.js'
 
 export default {
   props: {
+    noteTitleHumanAttributeName: String,
+    noteTitle: String,
   },
   components: {
     'draggable': Draggable,
@@ -111,11 +122,18 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.form__items {
+.search-form__body {
   display: flex;
   flex-direction: row;
-}
-.form__item {
-  width: 33%;
+  .search-result {
+    width: 33%;
+  }
+  .note {
+    display: flex;
+    width: 66%;
+    .note__inner {
+      width: 50%;
+    }
+  }
 }
 </style>

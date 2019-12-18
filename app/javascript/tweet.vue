@@ -1,8 +1,8 @@
 <template lang="pug">
-  .tweet
-    .tweet(v-if="tweet['user'] == undefined")
+  .cards
+    .cards__text(v-if="tweet['user'] == undefined")
       | {{ tweet["markdown"] }}
-    blockquote(v-else class="twitter-tweet" data-lang="ja" data-dnt="true" data-theme="light")
+    blockquote.cards__text(v-else class="twitter-tweet" data-lang="ja" data-dnt="true" data-theme="light")
       p(lang="ja" dir="ltr")
         | {{ tweet["text"] }}
         br
