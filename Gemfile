@@ -74,7 +74,6 @@ gem "rails-i18n", "~> 6.0.0"
 gem "twitter"
 gem "dotenv-rails"
 
-gem "bootstrap", "~> 4.3.1"
 gem "jquery-rails"
 gem "devise"
 gem "devise-i18n"
