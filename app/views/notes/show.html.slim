@@ -1,9 +1,14 @@
-h1
-  = @note.title
-p
-  = Note.human_attribute_name(:body)
-  = @note.body
+.row
+  .col.s12
+    h1
+      = @note.title
 
-= link_to '編集', edit_note_path(@note)
-|  / 
-= link_to '一覧へ', notes_path
+    = link_to edit_note_path(@note), class: "waves-effect waves-light btn"
+      i.material-icons
+        | edit
+      | 編集
+
+.container
+  p
+    = Note.human_attribute_name(:body)
+    = @note.body

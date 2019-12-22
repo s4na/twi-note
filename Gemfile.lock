@@ -59,6 +59,8 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.0)
+    autoprefixer-rails (9.7.3)
+      execjs
     bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.5)
@@ -96,6 +98,7 @@ GEM
       railties (>= 3.2, < 6.1)
     equalizer (0.0.11)
     erubi (1.9.0)
+    execjs (2.7.0)
     ffi (1.11.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -115,6 +118,8 @@ GEM
     http_parser.rb (0.6.0)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
+    i18n-js (3.5.0)
+      i18n (>= 0.6.6)
     jaro_winkler (1.5.4)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
@@ -133,6 +138,10 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
+    material_icons (2.2.1)
+      railties (>= 3.2)
+    materialize-sass (1.0.0)
+      autoprefixer-rails (>= 6.0.3)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
     method_source (0.9.2)
@@ -333,9 +342,12 @@ DEPENDENCIES
   devise-i18n
   dotenv-rails
   html2slim
+  i18n-js
   jbuilder (~> 2.7)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  material_icons
+  materialize-sass (~> 1.0.0)
   omniauth
   omniauth-rails_csrf_protection
   omniauth-twitter

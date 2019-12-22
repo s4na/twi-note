@@ -80,3 +80,7 @@ gem "devise-i18n"
 gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-rails_csrf_protection"
+
+gem "materialize-sass", "~> 1.0.0"
+gem "material_icons"
+gem "i18n-js"
