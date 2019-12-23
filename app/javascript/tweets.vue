@@ -32,29 +32,30 @@
 
       .note.col.s6
         .note__title
-          label
+          h3
             | Notes
           .search-form__title
             label
               | {{ noteTitleHumanAttributeName }}
             input(type="text" name="note[title]" id="note_title" :value="noteTitle")
         .note__body
-          .note__inner
+          .note-body__inner
             button(type="button" @click="changeMarkdown()").waves-effect.waves-light.btn
               | Markdownに切り替え
             button(type="button" @click="changeTweets()").waves-effect.waves-light.btn
               | Previewに切り替え
-          .note__inner.is-preview.col.s6
-            draggable(:list="note_tweets" group="people").cards
-              tweet(:tweet="element" v-for="(element, index) in note_tweets" :key="element.id_str")
-          .note__inner.is-markdown.col.s6
-            .note__form
-              tweets_markdown.note__textarea(
-                ref="tweets_markdown"
-                :tweets="note_tweets"
-                :parent_all_search_result_tweets="all_search_result_tweets"
-                title="List 1"
-              )
+          .note-body__inner
+            .note__inner.is-preview.col.s6
+              draggable(:list="note_tweets" group="people").cards
+                tweet(:tweet="element" v-for="(element, index) in note_tweets" :key="element.id_str")
+            .note__inner.is-markdown.col.s6
+              .note__form
+                tweets_markdown.note__textarea(
+                  ref="tweets_markdown"
+                  :tweets="note_tweets"
+                  :parent_all_search_result_tweets="all_search_result_tweets"
+                  title="List 1"
+                )
       .hide
         input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
         input.note_all_search_result_tweets(type="hidden" name="note[all_search_result_tweets]" :value="JSON.stringify(all_search_result_tweets)")

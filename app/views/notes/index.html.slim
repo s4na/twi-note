@@ -21,19 +21,16 @@
           td.col.s3
             = l(note.updated_at)
           td.col.s5
-
             = link_to note, class: "waves-effect waves-light btn"
               i.material-icons
                 | view_module
               | 表示
             |  
-
             = link_to edit_note_path(note), class: "waves-effect waves-light btn"
               i.material-icons
                 | edit
               | 編集
             |  
-
             = link_to note, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "waves-effect waves-light btn red lighten-2" do
               i.material-icons
                 | delete
