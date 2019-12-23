@@ -8,7 +8,8 @@
         | edit
       | 編集
 
-.container
-  p
+.container  
+  h3
     = Note.human_attribute_name(:body)
+  pre.grey.lighten-2
     = @note.body

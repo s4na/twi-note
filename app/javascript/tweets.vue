@@ -1,11 +1,11 @@
 <template lang="pug">
   .search-form__inner
     .row
-      .hoge.col.s6
-        .hoge
+      .col.s6
+        .search-form__title
           h3
             | ツイート検索
-        .hoge.col.s12
+        .search-form__body.col.s12
           .search-form__items.col.s6
             .search-form__item
               label.search-form__query
@@ -39,16 +39,14 @@
               | {{ noteTitleHumanAttributeName }}
             input(type="text" name="note[title]" id="note_title" :value="noteTitle")
         .note__body
-          .note__inner.is-preview.col.s6
+          .note__inner
             button(type="button" @click="changeMarkdown()").waves-effect.waves-light.btn
               | Markdownに切り替え
             button(type="button" @click="changeTweets()").waves-effect.waves-light.btn
               | Previewに切り替え
+          .note__inner.is-preview.col.s6
             draggable(:list="note_tweets" group="people").cards
               tweet(:tweet="element" v-for="(element, index) in note_tweets" :key="element.id_str")
-
-            input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
-            input.note_all_search_result_tweets(type="hidden" name="note[all_search_result_tweets]" :value="JSON.stringify(all_search_result_tweets)")
           .note__inner.is-markdown.col.s6
             .note__form
               tweets_markdown.note__textarea(
@@ -57,6 +55,9 @@
                 :parent_all_search_result_tweets="all_search_result_tweets"
                 title="List 1"
               )
+      .hide
+        input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
+        input.note_all_search_result_tweets(type="hidden" name="note[all_search_result_tweets]" :value="JSON.stringify(all_search_result_tweets)")
 
 </template>
 <script>
