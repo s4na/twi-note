@@ -23,7 +23,6 @@
                 button(type="button" @click="searchTweets").a-search-button.waves-effect.waves-light.btn
                   | 検索
 
-
           //- .search-form__body
           .search-result.col.s6
             label
@@ -47,6 +46,7 @@
               tweet(:tweet="element" v-for="(element, index) in note_tweets" :key="element.id_str")
 
             input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
+            input.note_all_search_result_tweets(type="hidden" name="note[all_search_result_tweets]" :value="JSON.stringify(all_search_result_tweets)")
           .note__inner.is-markdown.col.s6
             .note__form
               tweets_markdown.note__textarea(
@@ -85,6 +85,9 @@ export default {
     // if innerText is null then []
     if (document.querySelector('#js-note-tweets') !== null) {
       this.note_tweets = JSON.parse(document.querySelector('#js-note-tweets').innerText || null) || []
+    }
+    if (document.querySelector('#js-note_all-search-result-tweets') !== null) {
+      this.all_search_result_tweets = JSON.parse(document.querySelector('#js-note_all-search-result-tweets').innerText || null) || []
     }
     if (document.querySelector('#js-note-body') !== null) {
       this.note_body = document.querySelector('#js-note-body').innerText || null
