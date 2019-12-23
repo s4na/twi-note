@@ -1,7 +1,13 @@
 <template lang="pug">
   .tweets_markdown
     .input-field.col.s12
-      textarea(ref="textArea" v-model="body" name="note[body]" id="note_body").materialize-textarea
+      textarea(
+        ref="textArea"
+        v-model="body"
+        name="note[body]"
+        id="note_body"
+        v-bind:rows="rows"
+      ).materialize-textarea
 </template>
 <script>
 import Markdown2Tweets from './markdown2tweets.js'
@@ -29,6 +35,10 @@ export default {
   computed: {
     tweetsString() {
       return JSON.stringify(this.tweets, null, 2)
+    },
+    rows:function() {
+        var num = this.body.split("\n").length;
+        return (num > 4) ? num : 4;
     }
   },
   created() {
