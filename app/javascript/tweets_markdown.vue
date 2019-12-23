@@ -1,10 +1,9 @@
 <template lang="pug">
   .tweets_markdown
-    button(type="button" @click="changeTweets()")
+    button(type="button" @click="changeTweets()").waves-effect.waves-light.btn
       | Previewに切り替え
-    label
-      | 本文
-    textarea(ref="textArea" v-model="body" name="note[body]" id="note_body")
+    .input-field.col.s12
+      textarea(ref="textArea" v-model="body" name="note[body]" id="note_body").materialize-textarea
 </template>
 <script>
 import Markdown2Tweets from './markdown2tweets.js'
@@ -52,11 +51,3 @@ export default {
   }
 }
 </script>
-<style scoped lang="scss">
-textarea {
-  resize: none;
-
-  width: 100%;
-  height: 2000px;
-}
-</style>

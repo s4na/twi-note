@@ -1,45 +1,60 @@
 <template lang="pug">
-  .tweets
-    | 検索欄
-    .search-form
-      label
-        | query
-      input(ref="query" type="text" value="#sendagayarb")
-      label
-        | start_datetime
-      input(ref="start_datetime" type="text" name="tweets-search[start_datetime]" value="2019-12-01 23:59")
-      label
-        | end_datetime
-      input(ref="end_datetime" type="text" name="tweets-search[end_datetime]" value="2019-12-25 23:59")
-      .search-form__button
-        button(type="button" @click="searchTweets")
-          | 検索
+  .search-form__inner
+    .row
+      .hoge.col.s6
+        .hoge
+          h3
+            | ツイート検索
+        .hoge.col.s12
+          .search-form__items.col.s6
+            .search-form__item
+              label.search-form__query
+                | 検索キーワード（例：#sendagayarb）
+              input(ref="query" type="text" value="#sendagayarb")
+            .search-form__item
+              label.search-form__start-datetime
+                | 開始日時
+              input(ref="start_datetime" type="text" name="tweets-search[start_datetime]" value="2019-12-15 23:59")
+            .search-form__item
+              label.search-form__end-datetime
+                | 終了日時
+              input(ref="end_datetime" type="text" name="tweets-search[end_datetime]" value="2019-12-25 23:59")
+              .search-form__button
+                button(type="button" @click="searchTweets").a-search-button.waves-effect.waves-light.btn
+                  | 検索
 
-    .form__items
-      .form__item
-        .search-tweets
-          label
-            | Tweets
-          draggable(class="list-group" :list="search_result_tweets" group="people")#note-tweets-preview
-            .list-group-item(v-for="(element, index) in search_result_tweets" :key="element.id_str")
-              tweet(:tweet="element")
-      .form__item
-        .note-tweets#note-tweets
+
+          //- .search-form__body
+          .search-result.col.s6
+            label
+              | 検索結果
+            draggable(:list="search_result_tweets" group="people")#note-tweets-preview.cards
+              tweet(:tweet="element" v-for="(element, index) in search_result_tweets" :key="element.id_str")
+
+      .note.col.s6
+        .note__title
           label
             | Notes
-          button(type="button" @click="changeMarkdown()")
-            | Markdownに切り替え
-          draggable(class="list-group" :list="note_tweets" group="people")
-            .list-group-item(v-for="(element, index) in note_tweets" :key="element.id_str")
-              tweet(:tweet="element")
-          input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
-      .form__item
-        .tweets_markdown
-          tweets_markdown(ref="tweets_markdown"
-            :tweets="note_tweets"
-            :parent_all_search_result_tweets="all_search_result_tweets"
-            title="List 1"
-          )
+          .search-form__title
+            label
+              | {{ noteTitleHumanAttributeName }}
+            input(type="text" name="note[title]" id="note_title" :value="noteTitle")
+        .note__body
+          .note__inner.is-preview.col.s6
+            button(type="button" @click="changeMarkdown()").waves-effect.waves-light.btn
+              | Markdownに切り替え
+            draggable(:list="note_tweets" group="people").cards
+              tweet(:tweet="element" v-for="(element, index) in note_tweets" :key="element.id_str")
+
+            input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
+          .note__inner.is-markdown.col.s6
+            .note__form
+              tweets_markdown.note__textarea(
+                ref="tweets_markdown"
+                :tweets="note_tweets"
+                :parent_all_search_result_tweets="all_search_result_tweets"
+                title="List 1"
+              )
 
 </template>
 <script>
@@ -50,6 +65,8 @@ import Markdown2Tweets from './markdown2tweets.js'
 
 export default {
   props: {
+    noteTitleHumanAttributeName: String,
+    noteTitle: String,
   },
   components: {
     'draggable': Draggable,
@@ -110,12 +127,3 @@ export default {
   }
 }
 </script>
-<style scoped lang="scss">
-.form__items {
-  display: flex;
-  flex-direction: row;
-}
-.form__item {
-  width: 33%;
-}
-</style>

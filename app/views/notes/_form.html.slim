@@ -1,4 +1,4 @@
-= form_for @note do |f|
+= form_with model: @note, class: "search-form", local: true do |f|
   - if @note.errors.any?
     #error_explanation
       h2 = "#{pluralize(@note.errors.count, "error")} prohibited this note from being saved:"
@@ -6,13 +6,14 @@
         - @note.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  #js-tweets(data-note-id="#{@note.id}")
+  #js-tweets(data-note-id="#{@note.id}" data-note-title="#{@note.title}" data-note-title-human-attribute-name="#{Note.human_attribute_name('title')}")
     #js-note-body
       = @note.body
     #js-note-tweets
       = @note.tweets
 
-  .actions = f.submit
+  .actions
+    = button_tag type: "submit", class: "waves-effect waves-light btn blue lighten-2" do
+      i.material-icons
+        | done
+      | 保存

@@ -1,24 +1,51 @@
-h1 ノート一覧
+.row
+  .col.s12
+    h1 ノート一覧
 
-= link_to '追加', new_note_path
+.container
+  table.highlight
+    thead
+      tr.row
+        th.col.s4
+          | タイトル
+        th.col.s3
+          | 日付
+        th.col.s5
+          | 操作
 
-br
+    tbody
+      - @notes.each do |note|
+        tr.row
+          td.col.s4
+            = note.title
+          td.col.s3
+            = l(note.updated_at)
+          td.col.s5
 
-table
-  thead
-    tr
-      th タイトル
-      th 日付
-      th 操作
+            = link_to note, class: "waves-effect waves-light btn"
+              i.material-icons
+                | view_module
+              | 表示
+            |  
 
-  tbody
-    - @notes.each do |note|
-      tr
-        td = note.title
-        td = l(note.updated_at)
-        td
-          = link_to '表示', note
-          |  / 
-          = link_to '編集', edit_note_path(note)
-          |  / 
-          = link_to '削除', note, data: { confirm: '本当に削除しますか？' }, method: :delete
+            = link_to edit_note_path(note), class: "waves-effect waves-light btn"
+              i.material-icons
+                | edit
+              | 編集
+            |  
+
+            = link_to note, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "waves-effect waves-light btn red lighten-2" do
+              i.material-icons
+                | delete
+              | 削除
+            |  
+
+footer
+  .container
+    .row
+      ul#nav-mobile.right.hide-on-med-and-down
+        li
+          = link_to new_note_path, class: "waves-effect waves-light btn blue lighten-2" do
+            i.material-icons
+              | add
+            | 追加
