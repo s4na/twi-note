@@ -39,6 +39,8 @@
               | {{ noteTitleHumanAttributeName }}
             input(type="text" name="note[title]" id="note_title" :value="noteTitle")
         .note__body
+          button(type="button" @click="copyToClipboard()").waves-effect.waves-light.btn
+            | Copy text
           .note-body__inner
             button(type="button" @click="changeMarkdown()").waves-effect.waves-light.btn
               | Markdownに切り替え
@@ -133,6 +135,12 @@ export default {
     },
     changeTweets () {
       this.$refs.tweets_markdown.changeTweets()
+    },
+    copyToClipboard() {
+      var copyTarget = document.getElementById("note_body");
+      copyTarget.select();
+      document.execCommand("Copy");
+      alert("クリップボードにコピーしました");
     }
   }
 }
