@@ -1,17 +1,19 @@
 nav
   .nav-wrapper.light-blue.lighten-3
     .col.s12
-      a.brand-logo
+      = link_to root_path, class: "brand-logo" do
         | ついノート
       ul.global-nav_items.right
         - if user_signed_in?
           li.global-nav_item
             = link_to notes_path do
-              / i.material-icons
-              /   | list
-              | ノート一覧
+              span
+                i.material-icons
+                  | list
+                | ノート一覧
           li.global-nav_item
             = link_to destroy_user_session_path, method: :delete do
-              / i.material-icons
-              /   | exit_to_app
-              | ログアウト
+              span
+                i.material-icons
+                  | exit_to_app
+                | ログアウト

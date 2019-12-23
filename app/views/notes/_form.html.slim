@@ -7,10 +7,12 @@
           li = message
 
   #js-tweets(data-note-id="#{@note.id}" data-note-title="#{@note.title}" data-note-title-human-attribute-name="#{Note.human_attribute_name('title')}")
-    #js-note-body
+    #js-note-body.hidden
       = @note.body
-    #js-note-tweets
+    #js-note-tweets.hidden
       = @note.tweets
+    #js-note_all-search-result-tweets.hidden
+      = @note.all_search_result_tweets
 
   .actions
     = button_tag type: "submit", class: "waves-effect waves-light btn blue lighten-2" do
