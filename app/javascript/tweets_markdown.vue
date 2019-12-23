@@ -1,7 +1,5 @@
 <template lang="pug">
   .tweets_markdown
-    button(type="button" @click="changeTweets()").waves-effect.waves-light.btn
-      | Previewに切り替え
     .input-field.col.s12
       textarea(ref="textArea" v-model="body" name="note[body]" id="note_body").materialize-textarea
 </template>

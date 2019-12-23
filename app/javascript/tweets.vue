@@ -42,6 +42,8 @@
           .note__inner.is-preview.col.s6
             button(type="button" @click="changeMarkdown()").waves-effect.waves-light.btn
               | Markdownに切り替え
+            button(type="button" @click="changeTweets()").waves-effect.waves-light.btn
+              | Previewに切り替え
             draggable(:list="note_tweets" group="people").cards
               tweet(:tweet="element" v-for="(element, index) in note_tweets" :key="element.id_str")
 
@@ -126,6 +128,9 @@ export default {
     changeMarkdown () {
       var m2t = new Markdown2Tweets({'tweets': this.note_tweets})
       this.$refs.tweets_markdown.body = m2t.setMarkdown()
+    },
+    changeTweets () {
+      this.$refs.tweets_markdown.changeTweets()
     }
   }
 }
