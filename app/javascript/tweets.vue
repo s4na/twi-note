@@ -100,6 +100,19 @@ export default {
     }
   },
   methods: {
+    changeMarkdown () {
+      var m2t = new Markdown2Tweets({'tweets': this.note_tweets})
+      this.$refs.tweets_markdown.body = m2t.setMarkdown()
+    },
+    changeTweets () {
+      this.$refs.tweets_markdown.changeTweets()
+    },
+    copyToClipboard() {
+      var copyTarget = document.getElementById("note_body");
+      copyTarget.select();
+      document.execCommand("Copy");
+      alert("クリップボードにコピーしました");
+    },
     token () {
       const meta = document.querySelector('meta[name="csrf-token"]')
       return meta ? meta.getAttribute('content') : ''
@@ -128,19 +141,6 @@ export default {
           })
         })
         .catch(error => { console.warn('Failed to parsing', error) })
-    },
-    changeMarkdown () {
-      var m2t = new Markdown2Tweets({'tweets': this.note_tweets})
-      this.$refs.tweets_markdown.body = m2t.setMarkdown()
-    },
-    changeTweets () {
-      this.$refs.tweets_markdown.changeTweets()
-    },
-    copyToClipboard() {
-      var copyTarget = document.getElementById("note_body");
-      copyTarget.select();
-      document.execCommand("Copy");
-      alert("クリップボードにコピーしました");
     }
   }
 }
