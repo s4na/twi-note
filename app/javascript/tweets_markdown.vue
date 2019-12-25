@@ -37,8 +37,9 @@ export default {
       return JSON.stringify(this.tweets, null, 2)
     },
     rows:function() {
-        var num = this.body.split("\n").length;
-        return (num > 4) ? num : 4;
+        var size = this.body.split("\n").length;
+        var min = 40
+        return (size > min) ? size : min;
     }
   },
   created() {
