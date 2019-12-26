@@ -19,3 +19,4 @@ require('channels')
 // const imagePath = (name) => images(name, true)
 
 require('../tweets.js')
+require('./materialize2.js')

@@ -70,7 +70,7 @@ class TweetRepository
     def add_tweet_params
       @tweets.each do |tweet|
         tweet[:url] = "https://twitter.com/#{tweet[:user][:screen_name]}/status/#{tweet[:id_str]}?ref_src=twsrc%5Etfw"
-        tweet[:markdown] = "> [#{tweet[:text]}](#{tweet[:url]})".gsub(/\R/, " ") + "\n\n"
+        tweet[:markdown] = "> [#{tweet[:text]}](#{tweet[:url]})".gsub(/\R/, " ")
       end
     end
 end
