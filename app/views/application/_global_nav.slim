@@ -2,6 +2,7 @@ nav
   .nav-wrapper.light-blue.lighten-3
     .col.s12
       = link_to root_path, class: "brand-logo" do
+        = image_tag "twi-note-icon__36x36.png", alt: "twi-note icon", class: "icon-36x36"
         | ついノート
       ul.global-nav_items.right
         - if user_signed_in?
