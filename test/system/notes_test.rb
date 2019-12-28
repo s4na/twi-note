@@ -29,10 +29,9 @@ class NotesTest < ApplicationSystemTestCase
 
     fill_in "note[title]", with: @note.title
     fill_in "note[body]", with: @note.body
-    click_on "登録する"
+    click_on "保存"
 
     assert_text "ノートを作成しました"
-    click_on "一覧へ"
   end
 
   test "update note" do
@@ -41,10 +40,9 @@ class NotesTest < ApplicationSystemTestCase
 
     fill_in "note[title]", with: @note.title
     fill_in "note[body]", with: @note.body
-    click_on "更新"
+    click_on "保存"
 
     assert_text "ノートを更新しました"
-    click_on "一覧へ"
   end
 
   test "destroy note" do
@@ -54,5 +52,9 @@ class NotesTest < ApplicationSystemTestCase
     end
 
     assert_text "ノートを削除しました"
+  end
+
+  test "edit a saved note and save it again" do
+    # ツイートをドラッグできないのが・・・
   end
 end
