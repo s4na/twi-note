@@ -135,12 +135,21 @@ export default {
       })
         .then(response => { return response.json() })
         .then(json=> {
-          json.forEach(c => {
-            this.search_result_tweets.push(c)
-            this.all_search_result_tweets.push(c)
-          })
+          json.forEach(c => { this.search_result_tweets.push(c) })
+          this._check_add_tweets(json)
         })
         .catch(error => { console.warn('Failed to parsing', error) })
+    },
+    _check_add_tweets (tweets) {
+      var addTweets = []
+      tweets.forEach(c => {
+        var isMatch = 0
+        for(var i = 0; i < this.all_search_result_tweets.length ; i++){
+          if (this.all_search_result_tweets[i].id_str === c.id_str && this.all_search_result_tweets[i].user.id_str === c.user.id_str){ isMatch = 1 }
+        }
+        if ( isMatch === 0){ addTweets.push(c) }
+      })
+      addTweets.forEach(c => { this.all_search_result_tweets.push(c) })
     }
   }
 }
