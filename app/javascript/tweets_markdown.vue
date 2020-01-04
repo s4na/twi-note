@@ -37,14 +37,14 @@ export default {
       return JSON.stringify(this.tweets, null, 2)
     },
     rows:function() {
-        var size = this.body.split("\n").length;
-        var min = 40
+        let size = this.body.split("\n").length;
+        let min = 40
         return (size > min) ? size : min;
     }
   },
   created() {
-    var indexs = JSON.parse(this.tweetsString)
-    for(var index of indexs){
+    let indexs = JSON.parse(this.tweetsString)
+    for(let index of indexs){
       this.body = this.body + index["markdown"]
     }
   },
@@ -52,7 +52,7 @@ export default {
     changeTweets() {
       const markdown = this.$refs.textArea.value
       const tweets = this.parent_all_search_result_tweets
-      var m2t = new Markdown2Tweets({ 'markdown': markdown, 'tweets': tweets })
+      let m2t = new Markdown2Tweets({ 'markdown': markdown, 'tweets': tweets })
 
       const lists = m2t.setTweets()
       this.$parent.note_tweets = lists

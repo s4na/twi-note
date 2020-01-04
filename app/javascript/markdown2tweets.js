@@ -16,8 +16,8 @@ export default class Markdown2Tweets {
     return this.returnMarkdown || ''
   }
   _setReturnMarkdown () {
-    var indexs = JSON.parse(JSON.stringify(this.tweets, null, 2))
-    for (var index of indexs) { this.returnMarkdown += (index['markdown'] + '\n\n') }
+    let indexs = JSON.parse(JSON.stringify(this.tweets, null, 2))
+    for (let index of indexs) { this.returnMarkdown += (index['markdown'] + '\n\n') }
   }
   _setReturnTweets () {
     this._setOrder()
@@ -27,7 +27,7 @@ export default class Markdown2Tweets {
     this._addLastFragmentText()
     this._ascendingSort()
 
-    for (var id = 0; id < this.orders.length; id++) { this.returnTweets.push(this.orders[id].data) }
+    for (let id = 0; id < this.orders.length; id++) { this.returnTweets.push(this.orders[id].data) }
   }
   _setOrder () {
     this.orders = []
@@ -35,15 +35,15 @@ export default class Markdown2Tweets {
       const address = this.markdown.indexOf(tweet.markdown)
 
       if (address >= 0) {
-        var newTweet = this._checkLineBreak(tweet, address)
+        let newTweet = this._checkLineBreak(tweet, address)
 
         this.orders.push(newTweet)
       }
     }
   }
   _checkLineBreak (tweet, address) {
-    var length = tweet.markdown.length
-    var endPoint = (address + length)
+    let length = tweet.markdown.length
+    let endPoint = (address + length)
     const tweetSpace = this.markdown.substr(endPoint, 2)
 
     if (tweetSpace === '\n\n') {
@@ -65,7 +65,7 @@ export default class Markdown2Tweets {
     this.orders = this.orders.sort(function (a, b) { return (a.address < b.address ? -1 : 1) })
   }
   _changeFragment () {
-    for (var id = 0; id < this.orders.length; id++) {
+    for (let id = 0; id < this.orders.length; id++) {
       if (id !== 0) {
         if (this.orders[id - 1].end_point < this.orders[id].address) {
           const fragmentTextLength = this.orders[id].address - this.orders[id - 1].end_point
