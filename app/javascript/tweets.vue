@@ -9,16 +9,16 @@
           .search-form__items.col.s6
             .search-form__item
               label.search-form__query
-                | 検索キーワード（例：#sendagayarb）
-              input(ref="query" type="text" value="#sendagayarb")
+                | 検索キーワード（例：#Ruby）
+              input(ref="query" type="text" value="#Ruby")
             .search-form__item
               label.search-form__start-datetime
                 | 開始日時
-              input(ref="start_datetime" type="text" name="tweets-search[start_datetime]" value="2019-12-15 23:59")
+              input(ref="start_datetime" type="text" name="tweets-search[start_datetime]" value="2020-01-01 23:59")
             .search-form__item
               label.search-form__end-datetime
                 | 終了日時
-              input(ref="end_datetime" type="text" name="tweets-search[end_datetime]" value="2019-12-25 23:59")
+              input(ref="end_datetime" type="text" name="tweets-search[end_datetime]" value="2020-01-03 23:59")
               .search-form__button
                 button(type="button" @click="searchTweets").a-search-button.waves-effect.waves-light.btn
                   | 検索
@@ -101,14 +101,14 @@ export default {
   },
   methods: {
     changeMarkdown () {
-      var m2t = new Markdown2Tweets({'tweets': this.note_tweets})
+      let m2t = new Markdown2Tweets({'tweets': this.note_tweets})
       this.$refs.tweets_markdown.body = m2t.setMarkdown()
     },
     changeTweets () {
       this.$refs.tweets_markdown.changeTweets()
     },
     copyToClipboard() {
-      var copyTarget = document.getElementById("note_body");
+      let copyTarget = document.getElementById("note_body");
       copyTarget.select();
       document.execCommand("Copy");
       alert("クリップボードにコピーしました");
@@ -141,10 +141,10 @@ export default {
         .catch(error => { console.warn('Failed to parsing', error) })
     },
     _check_add_tweets (tweets) {
-      var addTweets = []
+      let addTweets = []
       tweets.forEach(c => {
-        var isMatch = 0
-        for(var i = 0; i < this.all_search_result_tweets.length ; i++){
+        let isMatch = 0
+        for(let i = 0; i < this.all_search_result_tweets.length ; i++){
           if (this.all_search_result_tweets[i].id_str === c.id_str && this.all_search_result_tweets[i].user.id_str === c.user.id_str){ isMatch = 1 }
         }
         if ( isMatch === 0){ addTweets.push(c) }
