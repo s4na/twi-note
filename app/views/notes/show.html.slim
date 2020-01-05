@@ -3,13 +3,13 @@
     h1
       = @note.title
 
-    = link_to edit_note_path(@note), class: "waves-effect waves-light btn"
+    = link_to edit_note_path(@note), class: "waves-effect waves-light btn grey"
       i.material-icons
         | edit
       | 編集
 
-.container  
-  h3
-    = Note.human_attribute_name(:body)
-  pre.grey.lighten-2
-    = @note.body
+  .container  
+    h3
+      = Note.human_attribute_name(:body)
+    pre.grey.lighten-2
+      = @note.body
