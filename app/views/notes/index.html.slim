@@ -21,12 +21,12 @@
           td.col.s3
             = l(note.updated_at)
           td.col.s5
-            = link_to note, class: "waves-effect waves-light btn"
+            = link_to note, class: "waves-effect waves-light btn grey"
               i.material-icons
                 | view_module
               | 表示
             |  
-            = link_to edit_note_path(note), class: "waves-effect waves-light btn"
+            = link_to edit_note_path(note), class: "waves-effect waves-light btn grey"
               i.material-icons
                 | edit
               | 編集
@@ -42,7 +42,7 @@ footer
     .row
       ul#nav-mobile.right.hide-on-med-and-down
         li
-          = link_to new_note_path, class: "waves-effect waves-light btn blue lighten-2" do
+          = link_to new_note_path, class: "waves-effect waves-light btn" do
             i.material-icons
               | add
             | 追加

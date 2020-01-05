@@ -20,7 +20,7 @@
                 | 終了日時
               input(ref="end_datetime" type="text" name="tweets-search[end_datetime]" value="2020-01-03 23:59")
               .search-form__button
-                button(type="button" @click="searchTweets").a-search-button.waves-effect.waves-light.btn
+                button(type="button" @click="searchTweets").a-search-button.waves-effect.waves-light.btn.blue.lighten-2
                   | 検索
 
           //- .search-form__body
@@ -39,12 +39,12 @@
               | {{ noteTitleHumanAttributeName }}
             input(type="text" name="note[title]" id="note_title" :value="noteTitle")
         .note__body
-          button(type="button" @click="copyToClipboard()").waves-effect.waves-light.btn
-            | Copy text
+          button(type="button" @click="copyToClipboard()").waves-effect.waves-light.btn.grey
+            | コピー
           .note-body__inner
-            button(type="button" @click="changeMarkdown()").waves-effect.waves-light.btn
+            button(type="button" @click="changeMarkdown()").waves-effect.waves-light.btn.grey
               | Markdownに切り替え
-            button(type="button" @click="changeTweets()").waves-effect.waves-light.btn
+            button(type="button" @click="changeTweets()").waves-effect.waves-light.btn.grey
               | Previewに切り替え
           .note-body__inner
             .note__inner.is-preview.col.s6
