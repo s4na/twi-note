@@ -7,8 +7,6 @@ ruby "2.6.5"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 6.0.1"
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
 # Use Puma as the app server
 gem "puma", "~> 3.12"
 # Use SCSS for stylesheets
@@ -51,16 +49,23 @@ group :test do
   gem "webmock"
 end
 
+
+# not default
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
 
 group :development, :test do
   gem "pry-rails"
   gem "pry-byebug"
   gem "pry-doc"
+  gem "sqlite3", "~> 1.4"
 end
 
-gem "slim-rails"
+group :production do
+  gem 'pg'
+end
 
 group :development do
   gem "rubocop", require: false
@@ -70,10 +75,10 @@ group :development do
   gem "html2slim"
 end
 
+gem "slim-rails"
 gem "rails-i18n", "~> 6.0.0"
 gem "twitter"
 gem "dotenv-rails"
-
 gem "jquery-rails"
 gem "devise"
 gem "devise-i18n"
