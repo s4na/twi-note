@@ -1,4 +1,11 @@
-h2
-  = t(".sign_in")
-
-= render "devise/shared/links"
+.container
+  p.sign_in__text
+    | Twitterと連携することで、
+  p.sign_in__text
+    | 「ついノート」が使えるようになります！
+  .sign_in__link
+    = render "devise/shared/links"
+  p.sign_in__proviso
+    | ※ついノートによるツイートやフォローは行いません。
+  p.sign_in__proviso
+    | 利用規約に同意したことと致します。

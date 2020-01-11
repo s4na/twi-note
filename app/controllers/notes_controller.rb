@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
 class NotesController < ApplicationController
+  before_action :authenticate_user!, only: [:show, :new, :edit, :create, :update, :destroy]
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
   def index
-    @notes = current_user.notes.all
+    if user_signed_in?
+      @notes = current_user.notes.all
+    else
+      render template: "welcome/index", layout: "welcome"
+    end
   end
 
   def show
