@@ -1,7 +1,53 @@
 .container
+  / .welcome-logo-main-visual
   .welcome-logo__block--center
     .welcome-logo__image-container
       img.welcome-logo__image src="./assets/twi-note-icon/icon-256x256.png"
-  .welcome__block--center
-    = link_to new_user_session_path(), class: "welcome__block--icon"
+    = link_to new_user_session_path(), class: "welcome__block--button"
       | サインイン画面に移動
+  .welcome__block
+    h1.welcome__title
+      | ついノート
+  .welcome__block
+    h2.welcome__sub-title
+      | ついノートとは何ですか？
+    p.welcome__text
+      | 勉強会参加者向けの、ノート作成支援アプリです
+    / img.welcome__image src="./assets/welcome/what-does-twi-note-do.png"
+  .welcome__block
+    h2.welcome__sub-title
+      | ついノートは何ができますか？
+    p.welcome__text
+      | ついノートは、勉強会での勉強をサポートします。<br>ついノートを使うことで、ユーザーは知見を貯めることができます
+    img.welcome__image src="./assets/welcome/before-and-after-using-twi-note.png"
+  .welcome__block
+    h2.welcome__sub-title
+      | ついノートは何を解決してくれますか？
+    p.welcome__text
+      | 勉強会参加者は「交流してばかりだと、知見が溜まっていかない」という悩みを抱えています。<br>ついノートを使うことで、「交流しながら知見も溜まる」ようになります
+    img.welcome__image src="./assets/welcome/what-twi-note-can-do.png"
+  .welcome__block
+    h2.welcome__sub-title
+      | ついノートはどうやって悩みを解決してくれますか？
+    p.welcome__text
+      | 勉強会用ハッシュタグのツイートを集めてノートにします
+  
+  / TODO: Add when product is complete
+  / .welcome__block
+  /   h2.welcome__sub-title
+  /     | ついノートの使い方
+  /   p.welcome__text
+  /     | 「勉強会ハッシュタグ」と「開始時刻」「終了時刻」を入力するだけで、簡単にツイートをまとめることができます
+  /   img.welcome__image src="./assets/welcome/3-steps.png"
+  
+  / TODO: Add when product is complete
+  / .welcome__block
+  /   h2.welcome__sub-title
+  /     | （【予定】画面の説明を追加）
+  /   p.welcome__text
+  /     | （【予定】説明を追加）
+
+
+
+
+
