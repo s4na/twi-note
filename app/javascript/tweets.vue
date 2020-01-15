@@ -80,7 +80,6 @@ import Tweet from 'tweet'
 import TweetsMarkdown from 'tweets_markdown'
 import Markdown2Tweets from './markdown2tweets.js'
 import { Datetime } from 'vue-datetime'
-import 'vue-datetime/dist/vue-datetime.css'
 
 export default {
   props: {
