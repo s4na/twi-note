@@ -14,22 +14,32 @@
             .search-form__item
               label.search-form__start-datetime
                 | 開始日時
-              input(ref="start_datetime" type="text" name="tweets-search[start_datetime]" value="2020-01-01 23:59")
+              datetime(
+                v-model="start_datetime"
+                type="datetime"
+                input-id="start_datetime"
+                format="yyyy/LL/dd hh:mm"
+                name="tweets-search[start_datetime]"
+              )
             .search-form__item
               label.search-form__end-datetime
                 | 終了日時
-              input(ref="end_datetime" type="text" name="tweets-search[end_datetime]" value="2020-01-03 23:59")
+              datetime(
+                v-model="end_datetime"
+                type="datetime"
+                input-id="end_datetime"
+                format="yyyy/LL/dd hh:mm"
+                name="tweets-search[end_datetime]"
+              )
+            .search-form__item
               .search-form__button
                 button(type="button" @click="searchTweets").a-search-button.waves-effect.waves-light.btn.blue.lighten-2
                   | 検索
-
-          //- .search-form__body
           .search-result.col.s6
             label
               | 検索結果
             draggable(:list="search_result_tweets" group="people")#note-tweets-preview.cards
               tweet(:tweet="element" v-for="(element, index) in search_result_tweets" :key="element.id_str")
-
       .note.col.s6
         .note__title
           h3
@@ -65,9 +75,12 @@
 </template>
 <script>
 import Draggable from 'vuedraggable'
+import moment from 'moment'
 import Tweet from 'tweet'
 import TweetsMarkdown from 'tweets_markdown'
 import Markdown2Tweets from './markdown2tweets.js'
+import { Datetime } from 'vue-datetime'
+import 'vue-datetime/dist/vue-datetime.css'
 
 export default {
   props: {
@@ -78,13 +91,16 @@ export default {
     'draggable': Draggable,
     'tweet': Tweet,
     'tweets_markdown': TweetsMarkdown,
+    'datetime': Datetime,
   },
   data: function () {
     return {
       all_search_result_tweets: [],
       search_result_tweets: [],
       note_tweets: [],
-      note_body: String
+      note_body: String,
+      start_datetime: '',
+      end_datetime: '',
     }
   },
   created() {
@@ -98,6 +114,11 @@ export default {
     if (document.querySelector('#js-note-body') !== null) {
       this.note_body = document.querySelector('#js-note-body').innerText || null
     }
+
+    const today = new Date()
+    const oneWeekBefore = moment(today).add(-7, "days").toDate()
+    this.start_datetime = oneWeekBefore.toISOString()
+    this.end_datetime = today.toISOString()
   },
   methods: {
     changeMarkdown () {
@@ -120,8 +141,8 @@ export default {
     searchTweets: function() {
       this.search_result_tweets = []
       const query = encodeURIComponent(this.$refs.query.value)
-      const start_datetime = encodeURIComponent(this.$refs.start_datetime.value)
-      const end_datetime = encodeURIComponent(this.$refs.end_datetime.value)
+      const start_datetime = encodeURIComponent(moment(this.start_datetime).format('YYYY-MM-DD HH:mm'));
+      const end_datetime = encodeURIComponent(moment(this.end_datetime).format('YYYY-MM-DD HH:mm'));
 
       fetch(`/api/tweets.json?query=${query}&start_datetime=${start_datetime}&end_datetime=${end_datetime}`, {
         method: 'GET',
