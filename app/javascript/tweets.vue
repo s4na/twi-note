@@ -1,7 +1,7 @@
 <template lang="pug">
   .search-form__inner
     .row
-      .col.s6
+      .col.s8
         .search-form__title
           h3
             | ツイート検索
@@ -40,7 +40,7 @@
               | 検索結果
             draggable(:list="search_result_tweets" group="people")#note-tweets-preview.cards
               tweet(:tweet="element" v-for="(element, index) in search_result_tweets" :key="element.id_str")
-      .note.col.s6
+      .note.col.s4
         .note__title
           h3
             | Notes
@@ -52,22 +52,32 @@
           button(type="button" @click="copyToClipboard()").waves-effect.waves-light.btn.grey
             | コピー
           .note-body__inner
-            button(type="button" @click="changeMarkdown()").waves-effect.waves-light.btn.grey
+            input(
+              type="radio" id="tab1" name="tab" value="preview" v-model="isActive"
+              @click="changeMarkdown()"
+            )
+            label(for="tab1").waves-effect.waves-light.btn.grey
               | Markdownに切り替え
-            button(type="button" @click="changeTweets()").waves-effect.waves-light.btn.grey
+            input(
+              type="radio" id="tab2" name="tab" value="markdown" v-model="isActive"
+              @click="changeTweets()"
+            )
+            label(for="tab2").waves-effect.waves-light.btn.grey
               | Previewに切り替え
-          .note-body__inner
-            .note__inner.is-preview.col.s6
-              draggable(:list="note_tweets" group="people").cards
-                tweet(:tweet="element" v-for="(element, index) in note_tweets" :key="element.id_str")
-            .note__inner.is-markdown.col.s6
-              .note__form
-                tweets_markdown.note__textarea(
-                  ref="tweets_markdown"
-                  :tweets="note_tweets"
-                  :parent_all_search_result_tweets="all_search_result_tweets"
-                  title="List 1"
-                )
+          ul.note-body__inner
+            li(v-if="isActive === 'preview'")
+              .note__inner.is-preview.col.s12
+                draggable(:list="note_tweets" group="people").cards
+                  tweet(:tweet="element" v-for="(element, index) in note_tweets" :key="element.id_str")
+            li(v-if="isActive === 'markdown'")
+              .note__inner.is-markdown.col.s12
+                .note__form
+                  tweets_markdown.note__textarea(
+                    ref="tweets_markdown"
+                    :tweets="note_tweets"
+                    :parent_all_search_result_tweets="all_search_result_tweets"
+                    title="List 1"
+                  )
       .hide
         input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
         input.note_all_search_result_tweets(type="hidden" name="note[all_search_result_tweets]" :value="JSON.stringify(all_search_result_tweets)")
@@ -100,6 +110,7 @@ export default {
       note_body: String,
       start_datetime: '',
       end_datetime: '',
+      isActive: 'preview',
     }
   },
   created() {
