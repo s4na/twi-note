@@ -2,14 +2,16 @@
   .col.s12
     h1
       = @note.title
-
-    = link_to edit_note_path(@note), class: "waves-effect waves-light btn grey"
-      i.material-icons
-        | edit
-      | 編集
-
+  
   .container  
     h3
       = Note.human_attribute_name(:body)
     pre.grey.lighten-2
       = @note.body
+
+.action
+  = link_to edit_note_path(@note), class: "waves-effect waves-light btn grey"
+    .action__inner
+      i.material-icons
+        | edit
+      | 編集

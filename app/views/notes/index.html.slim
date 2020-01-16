@@ -37,12 +37,9 @@
               | 削除
             |  
 
-footer
-  .container
-    .row
-      ul#nav-mobile.right.hide-on-med-and-down
-        li
-          = link_to new_note_path, class: "waves-effect waves-light btn" do
-            i.material-icons
-              | add
-            | 追加
+.action
+  = link_to new_note_path, class: "waves-effect waves-light btn" do
+    .action__inner
+      i.material-icons
+        | add
+      | 追加
