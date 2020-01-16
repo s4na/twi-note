@@ -14,8 +14,9 @@
     #js-note_all-search-result-tweets.hidden
       = @note.all_search_result_tweets
 
-  .actions
+  .action
     = button_tag type: "submit", class: "waves-effect waves-light btn" do
-      i.material-icons
-        | done
-      | 保存
+      .action__inner
+        i.material-icons
+          | done
+        | 保存
