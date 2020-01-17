@@ -53,31 +53,34 @@
             | コピー
           .note-body__inner
             input(
-              type="radio" id="tab1" name="tab" value="preview" v-model="isActive"
-              @click="changeMarkdown()"
-            )
-            label(for="tab1").waves-effect.waves-light.btn.grey
-              | Markdownに切り替え
-            input(
-              type="radio" id="tab2" name="tab" value="markdown" v-model="isActive"
+              type="radio" id="tab1" name="tab" value="1" v-model="isActive"
               @click="changeTweets()"
             )
-            label(for="tab2").waves-effect.waves-light.btn.grey
-              | Previewに切り替え
+            label(for="tab1" :class="{'blue lighten-2': isActive === '1', 'grey': isActive !== '1'}").waves-effect.waves-light.btn
+              | Markdown
+            input(
+              type="radio" id="tab2" name="tab" value="2" v-model="isActive"
+              @click="changeMarkdown()"
+            )
+            label(for="tab2" :class="{'blue lighten-2': isActive ==='2', 'grey': isActive !== '2'}").waves-effect.waves-light.btn
+              | Preview
           ul.note-body__inner
-            li(v-if="isActive === 'preview'")
+            li(v-if="isActive === '1'")
               .note__inner.is-preview.col.s12
                 draggable(:list="note_tweets" group="people").cards
                   tweet(:tweet="element" v-for="(element, index) in note_tweets" :key="element.id_str")
-            li(v-if="isActive === 'markdown'")
+            li(v-if="isActive === '2'")
               .note__inner.is-markdown.col.s12
                 .note__form
-                  tweets_markdown.note__textarea(
-                    ref="tweets_markdown"
-                    :tweets="note_tweets"
-                    :parent_all_search_result_tweets="all_search_result_tweets"
-                    title="List 1"
-                  )
+                  .tweets_markdown
+                    .input-field.col.s12
+                      textarea(
+                        ref="textArea"
+                        v-model="markdownBody"
+                        name="note[body]"
+                        id="note_body"
+                        v-bind:rows="rows"
+                      ).materialize-textarea
       .hide
         input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
         input.note_all_search_result_tweets(type="hidden" name="note[all_search_result_tweets]" :value="JSON.stringify(all_search_result_tweets)")
@@ -87,7 +90,6 @@
 import Draggable from 'vuedraggable'
 import moment from 'moment'
 import Tweet from 'tweet'
-import TweetsMarkdown from 'tweets_markdown'
 import Markdown2Tweets from './markdown2tweets.js'
 import { Datetime } from 'vue-datetime'
 
@@ -99,7 +101,6 @@ export default {
   components: {
     'draggable': Draggable,
     'tweet': Tweet,
-    'tweets_markdown': TweetsMarkdown,
     'datetime': Datetime,
   },
   data: function () {
@@ -110,7 +111,8 @@ export default {
       note_body: String,
       start_datetime: '',
       end_datetime: '',
-      isActive: 'preview',
+      isActive: '1',
+      markdownBody: '',
     }
   },
   created() {
@@ -133,10 +135,15 @@ export default {
   methods: {
     changeMarkdown () {
       let m2t = new Markdown2Tweets({'tweets': this.note_tweets})
-      this.$refs.tweets_markdown.body = m2t.setMarkdown()
+      const markdown = m2t.setMarkdown()
+      this.markdownBody = markdown
     },
     changeTweets () {
-      this.$refs.tweets_markdown.changeTweets()
+      const markdown = this.markdownBody
+      const tweets = this.all_search_result_tweets
+      let m2t = new Markdown2Tweets({ 'markdown': markdown, 'tweets': tweets })
+
+      this.note_tweets = m2t.setTweets()
     },
     copyToClipboard() {
       let copyTarget = document.getElementById("note_body");
@@ -181,6 +188,16 @@ export default {
         if ( isMatch === 0){ addTweets.push(c) }
       })
       addTweets.forEach(c => { this.all_search_result_tweets.push(c) })
+    }
+  },
+  computed: {
+    tweetsString() {
+      return JSON.stringify(this.note_tweets, null, 2)
+    },
+    rows:function() {
+        let size = this.markdownBody.split("\n").length;
+        let min = 40
+        return (size > min) ? size : min;
     }
   }
 }
