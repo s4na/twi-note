@@ -6,6 +6,7 @@ ja:
     formats:
       default: "%Y年%m月%d日(%a) %H時%M分"
       ymdhm_hy: "%Y-%m-%d %H:%M"
+      ymdhm_sla: "%Y/%m/%d %H:%M"
       ymd_hy: "%Y-%m-%d"
   activerecord:
     models:
