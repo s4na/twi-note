@@ -6,7 +6,7 @@ class NotesController < ApplicationController
 
   def index
     if user_signed_in?
-      @notes = current_user.notes.all
+      @notes = current_user.notes.all.order(updated_at: "DESC")
     else
       render template: "welcome/index", layout: "welcome"
     end

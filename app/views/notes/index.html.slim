@@ -19,7 +19,7 @@
           td.col.s4
             = note.title
           td.col.s3
-            = l(note.updated_at)
+            = l note.updated_at, format: :ymdhm_sla
           td.col.s5
             = link_to note, class: "waves-effect waves-light btn grey"
               i.material-icons

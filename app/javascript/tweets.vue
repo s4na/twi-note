@@ -18,7 +18,7 @@
                 v-model="start_datetime"
                 type="datetime"
                 input-id="start_datetime"
-                format="yyyy/L/d hh:mm"
+                format="yyyy/LL/d hh:mm"
                 name="tweets-search[start_datetime]"
               )
             .search-form__item
@@ -28,7 +28,7 @@
                 v-model="end_datetime"
                 type="datetime"
                 input-id="end_datetime"
-                format="yyyy/L/d hh:mm"
+                format="yyyy/LL/d hh:mm"
                 name="tweets-search[end_datetime]"
               )
             .search-form__item
