@@ -56,13 +56,21 @@
               type="radio" id="tab1" name="tab" value="1" v-model="isActive"
               @click="changeTweets()"
             )
-            label(for="tab1" :class="{'blue lighten-2': isActive === '1', 'grey': isActive !== '1'}").waves-effect.waves-light.btn
+            label(
+              for="tab1"
+              :class="{'blue lighten-2': isActive === '1'}"
+              :disabled="isActive ==='1'"
+            ).waves-effect.waves-light.btn.grey
               | Markdown
             input(
               type="radio" id="tab2" name="tab" value="2" v-model="isActive"
               @click="changeMarkdown()"
             )
-            label(for="tab2" :class="{'blue lighten-2': isActive ==='2', 'grey': isActive !== '2'}").waves-effect.waves-light.btn
+            label(
+              for="tab2"
+              :class="{'blue lighten-2': isActive ==='2'}"
+              :disabled="isActive ==='2'"
+            ).waves-effect.waves-light.btn.grey
               | Preview
           ul.note-body__inner
             li(v-if="isActive === '1'")
