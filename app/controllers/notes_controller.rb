@@ -4,9 +4,10 @@ class NotesController < ApplicationController
   before_action :authenticate_user!, only: [:show, :new, :edit, :create, :update, :destroy]
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
+  CONTENTS_NUM = 10
   def index
     if user_signed_in?
-      @notes = current_user.notes.all.order(updated_at: "DESC")
+      @notes = current_user.notes.order(updated_at: "DESC").page(params[:page]).per(CONTENTS_NUM)
     else
       render template: "welcome/index", layout: "welcome"
     end
