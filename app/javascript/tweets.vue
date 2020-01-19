@@ -16,9 +16,9 @@
                 | 開始日時
               datetime(
                 v-model="start_datetime"
+                format="yyyy/LL/d hh:mm"
                 type="datetime"
                 input-id="start_datetime"
-                format="yyyy/LL/d hh:mm"
                 name="tweets-search[start_datetime]"
               )
             .search-form__item
@@ -26,9 +26,9 @@
                 | 終了日時
               datetime(
                 v-model="end_datetime"
+                format="yyyy/LL/d hh:mm"
                 type="datetime"
                 input-id="end_datetime"
-                format="yyyy/LL/d hh:mm"
                 name="tweets-search[end_datetime]"
               )
             .search-form__item
@@ -38,7 +38,7 @@
           .search-result.col.s6
             label
               | 検索結果
-            draggable(:list="search_result_tweets" group="people")#note-tweets-preview.cards
+            draggable(:list="search_result_tweets" group="people" @update="changeMarkdown()" @remove="changeMarkdown()")#note-tweets-preview.cards
               tweet(:tweet="element" v-for="(element, index) in search_result_tweets" :key="element.id_str")
       .note.col.s4
         .note__title
@@ -52,46 +52,27 @@
           button(type="button" @click="copyToClipboard()").waves-effect.waves-light.btn.grey
             | コピー
           .note-body__inner
-            input(
-              type="radio" id="tab1" name="tab" value="1" v-model="isActive"
-              @click="changeTweets()"
-            )
-            label(
-              for="tab1"
-              :class="{'blue lighten-2': isActive === '1'}"
-              :disabled="isActive ==='1'"
-            ).waves-effect.waves-light.btn.grey
+            input(v-model="isActive" @click="changeTweets()" type="radio" id="tab1" name="tab" value="1")
+            label(for="tab1" :class="{'blue lighten-2': isActive === '1'}" :disabled="isActive ==='1'").waves-effect.waves-light.btn.grey
               | Markdown
-            input(
-              type="radio" id="tab2" name="tab" value="2" v-model="isActive"
-              @click="changeMarkdown()"
-            )
-            label(
-              for="tab2"
-              :class="{'blue lighten-2': isActive ==='2'}"
-              :disabled="isActive ==='2'"
-            ).waves-effect.waves-light.btn.grey
+            input(v-model="isActive" @click="changeMarkdown()" type="radio" id="tab2" name="tab" value="2")
+            label(for="tab2" :class="{'blue lighten-2': isActive ==='2'}" :disabled="isActive ==='2'").waves-effect.waves-light.btn.grey
               | Preview
           ul.note-body__inner
             li(v-if="isActive === '1'")
               .note__inner.is-preview.col.s12
-                draggable(:list="note_tweets" group="people").cards
+                draggable(:list="note_tweets" group="people" @update="changeMarkdown()" @remove="changeMarkdown()").cards
                   tweet(:tweet="element" v-for="(element, index) in note_tweets" :key="element.id_str")
             li(v-if="isActive === '2'")
               .note__inner.is-markdown.col.s12
                 .note__form
                   .tweets_markdown
                     .input-field.col.s12
-                      textarea(
-                        ref="textArea"
-                        v-model="markdownBody"
-                        name="note[body]"
-                        id="note_body"
-                        v-bind:rows="rows"
-                      ).materialize-textarea
+                      textarea(v-model="markdownBody" v-bind:rows="rows").materialize-textarea
       .hide
         input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
         input.note_all_search_result_tweets(type="hidden" name="note[all_search_result_tweets]" :value="JSON.stringify(all_search_result_tweets)")
+        input#note_body.note_body(type="hidden" name="note[body]" :value="markdownBody")
 
 </template>
 <script>
@@ -150,7 +131,6 @@ export default {
       const markdown = this.markdownBody
       const tweets = this.all_search_result_tweets
       let m2t = new Markdown2Tweets({ 'markdown': markdown, 'tweets': tweets })
-
       this.note_tweets = m2t.setTweets()
     },
     copyToClipboard() {
