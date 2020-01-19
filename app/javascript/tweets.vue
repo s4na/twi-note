@@ -1,7 +1,7 @@
 <template lang="pug">
   .search-form__inner
     .row
-      .col.s8
+      .col.s7
         .search-form__title
           h3
             | ツイート検索
@@ -14,23 +14,11 @@
             .search-form__item
               label.search-form__start-datetime
                 | 開始日時
-              datetime(
-                v-model="start_datetime"
-                format="yyyy/LL/d hh:mm"
-                type="datetime"
-                input-id="start_datetime"
-                name="tweets-search[start_datetime]"
-              )
+              datetime(v-model="start_datetime" format="yyyy/LL/d hh:mm" type="datetime" input-id="start_datetime" name="tweets-search[start_datetime]")
             .search-form__item
               label.search-form__end-datetime
                 | 終了日時
-              datetime(
-                v-model="end_datetime"
-                format="yyyy/LL/d hh:mm"
-                type="datetime"
-                input-id="end_datetime"
-                name="tweets-search[end_datetime]"
-              )
+              datetime(v-model="end_datetime" format="yyyy/LL/d hh:mm" type="datetime" input-id="end_datetime" name="tweets-search[end_datetime]")
             .search-form__item
               .search-form__button
                 button(type="button" @click="searchTweets").a-search-button.waves-effect.waves-light.btn.blue.lighten-2
@@ -40,6 +28,13 @@
               | 検索結果
             draggable(:list="search_result_tweets" group="people" @update="changeMarkdown()" @remove="changeMarkdown()")#note-tweets-preview.cards
               tweet(:tweet="element" v-for="(element, index) in search_result_tweets" :key="element.id_str")
+      .draggable-tools.add-padding.col.s1
+        .draggable-tool.col.s12
+          button(type="button" @click="change_all_result_tweets_to_note_tweets()")#change_all_result_tweets_to_note_tweets.btn.btn-secondary.grey
+            | >>
+        .draggable-tool.col.s12
+          button(type="button" @click="change_all_note_tweets_to_result_tweets()")#change_all_note_tweets_to_result_tweets.btn.btn-secondary.grey
+            | <<
       .note.col.s4
         .note__title
           h3
@@ -65,10 +60,9 @@
                   tweet(:tweet="element" v-for="(element, index) in note_tweets" :key="element.id_str")
             li(v-if="isActive === '2'")
               .note__inner.is-markdown.col.s12
-                .note__form
-                  .tweets_markdown
-                    .input-field.col.s12
-                      textarea(v-model="markdownBody" v-bind:rows="rows").materialize-textarea
+                .note-form
+                  .note-form__inner.col.s12
+                    textarea(v-model="markdownBody" v-bind:rows="rows").note-form__textarea.note_body.materialize-textarea
       .hide
         input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
         input.note_all_search_result_tweets(type="hidden" name="note[all_search_result_tweets]" :value="JSON.stringify(all_search_result_tweets)")
@@ -122,6 +116,14 @@ export default {
     this.end_datetime = today.toISOString()
   },
   methods: {
+    change_all_result_tweets_to_note_tweets: function() {
+      this.note_tweets = this.note_tweets.concat(this.search_result_tweets)
+      this.search_result_tweets = []
+    },
+    change_all_note_tweets_to_result_tweets: function() {
+      this.search_result_tweets = this.search_result_tweets.concat(this.note_tweets)
+      this.note_tweets = []
+    },
     changeMarkdown () {
       let m2t = new Markdown2Tweets({'tweets': this.note_tweets})
       const markdown = m2t.setMarkdown()
