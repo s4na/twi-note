@@ -1,13 +1,9 @@
-.row
-  .col.s12
-    h1
-      = @note.title
-  
-  .container  
-    h3
-      = Note.human_attribute_name(:body)
-    pre.grey.lighten-2
-      = @note.body
+.container.note-show
+  h1.note-show__title
+    = @note.title
+
+  pre.note-show__text.grey.lighten-2
+    = @note.body
 
 .action
   = link_to edit_note_path(@note), class: "waves-effect waves-light btn grey"
