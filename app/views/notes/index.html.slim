@@ -1,46 +1,41 @@
 .row
   .col.s12
     h1 ノート一覧
-
 .container
   .col.s12
     = paginate @notes
   .col.s12
-    table.highlight
-      thead
-        tr.row
-          th.col.s4
-            | タイトル
-          th.col.s3
-            | 日付
-          th.col.s5
-            | 操作
-      tbody
-        - @notes.each do |note|
-          tr.row
-            td.col.s4
-              = note.title
-            td.col.s3
-              = l note.updated_at, format: :ymdhm_sla
-            td.col.s5
-              = link_to note, class: "waves-effect waves-light btn grey"
-                i.material-icons
-                  | view_module
-                | 表示
-              |  
-              = link_to edit_note_path(note), class: "waves-effect waves-light btn grey"
-                i.material-icons
-                  | edit
-                | 編集
-              |  
-              = link_to note, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "waves-effect waves-light btn red lighten-2" do
-                i.material-icons
-                  | delete
-                | 削除
-              |  
+    .table-header.row
+      .col.s4
+        | タイトル
+      .col.s3
+        | 日付
+      .col.s5
+        | 操作
+    - @notes.each do |note|
+      .table-row.row
+        .col.s4.table-row__inner
+          = link_to note, class: "table-col is-text"
+            = note.title
+        .col.s3.table-row__inner
+          = link_to note, class: "table-col is-text"
+            = l note.updated_at, format: :ymdhm_sla
+        .col.s5.table-row__inner
+          .table-col
+            = link_to note, class: "waves-effect waves-light btn grey"
+              i.material-icons
+                | view_module
+              | 表示
+            = link_to edit_note_path(note), class: "waves-effect waves-light btn grey"
+              i.material-icons
+                | edit
+              | 編集
+            = link_to note, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "waves-effect waves-light btn red lighten-2" do
+              i.material-icons
+                | delete
+              | 削除
   .col.s12
     = paginate @notes
-
 .action
   = link_to new_note_path, class: "waves-effect waves-light btn" do
     .action__inner
