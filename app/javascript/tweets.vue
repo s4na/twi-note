@@ -1,72 +1,78 @@
 <template lang="pug">
   .search-form__inner
-    .row
-      .col.s7
-        .search-form__title
-          h3
-            | ツイート検索
-        .search-form__body.col.s12
-          .search-form__items.col.s6
-            .search-form__item
-              label.search-form__query
-                | 検索キーワード（例：#Ruby）
-              input(ref="query" type="text" value="#Ruby")
-            .search-form__item
-              label.search-form__start-datetime
-                | 開始日時
-              datetime(v-model="start_datetime" format="yyyy/LL/d hh:mm" type="datetime" input-id="start_datetime" name="tweets-search[start_datetime]")
-            .search-form__item
-              label.search-form__end-datetime
-                | 終了日時
-              datetime(v-model="end_datetime" format="yyyy/LL/d hh:mm" type="datetime" input-id="end_datetime" name="tweets-search[end_datetime]")
-            .search-form__item
-              .search-form__button
-                button(type="button" @click="searchTweets").a-search-button.waves-effect.waves-light.btn.blue.lighten-2
-                  | 検索
-          .search-result.col.s6
-            label
-              | 検索結果
-            draggable(:list="search_result_tweets" group="people" @update="changeMarkdown()" @remove="changeMarkdown()")#note-tweets-preview.cards
-              tweet(:tweet="element" v-for="(element, index) in search_result_tweets" :key="element.id_str")
-      .draggable-tools.add-padding.col.s1
-        .draggable-tool.col.s12
-          button(type="button" @click="change_all_result_tweets_to_note_tweets()")#change_all_result_tweets_to_note_tweets.btn.btn-secondary.grey
-            | >>
-        .draggable-tool.col.s12
-          button(type="button" @click="change_all_note_tweets_to_result_tweets()")#change_all_note_tweets_to_result_tweets.btn.btn-secondary.grey
-            | <<
-      .note.col.s4
+    .search-form__block
+      .search-form-header
+        h2.search-form-header__title
+          | ツイート検索
+      .search-form__body
+        .search-form__items
+          .search-form__item
+            label.a-label
+              | 検索キーワード（例：#Ruby）
+            input(ref="query" type="text" value="#Ruby").search-form__query.a-text-input
+          .search-form__item
+            label.a-label
+              | 開始日時
+            datetime(v-model="start_datetime" format="yyyy/LL/d hh:mm" type="datetime" input-id="start_datetime" name="tweets-search[start_datetime]").search-form__start-datetime.a-text-input
+          .search-form__item
+            label.a-label
+              | 終了日時
+            datetime(v-model="end_datetime" format="yyyy/LL/d hh:mm" type="datetime" input-id="end_datetime" name="tweets-search[end_datetime]").search-form__end-datetime.a-text-input
+          .search-form__item
+            .search-form__inner--center
+              button(type="button" @click="searchTweets").search-form__button.a-button.is-secondary
+                | 検索
+        .search-form__result
+          label.a-label
+            | 検索結果
+          draggable(:list="search_result_tweets" group="people" @update="changeMarkdown()" @remove="changeMarkdown()")#note-tweets-preview.cards
+            tweet(:tweet="element" v-for="(element, index) in search_result_tweets" :key="element.id_str")
+    .search-form__tools
+      .search-form__tool
+        button(type="button" @click="change_all_result_tweets_to_note_tweets()")#change_all_result_tweets_to_note_tweets.a-button
+          | >>
+      .search-form__tool
+        button(type="button" @click="change_all_note_tweets_to_result_tweets()")#change_all_note_tweets_to_result_tweets.a-button
+          | <<
+    .search-form__block
+      .search-form-header
+        h2.search-form-header__title
+          | ノート
+        .search-form-header__items
+          .search-form-header__item
+            button(type="button" @click="copyToClipboard()").a-button
+              | コピー
+          .search-form-header__item
+            button(type="submit").a-button.is-primary
+              i.material-icons
+                | done
+              | ノートを保存
+      .note
         .note__title
-          h3
-            | Notes
-          .search-form__title
-            label
-              | {{ noteTitleHumanAttributeName }}
-            input(type="text" name="note[title]" id="note_title" :value="noteTitle")
+          label.a-label
+            | {{ noteTitleHumanAttributeName }}
+          input(type="text" name="note[title]" id="note_title" :value="noteTitle").a-text-input
         .note__body
-          button(type="button" @click="copyToClipboard()").waves-effect.waves-light.btn.grey
-            | コピー
-          .note-body__inner
-            input(v-model="isActive" @click="changeTweets()" type="radio" id="tab1" name="tab" value="1")
-            label(for="tab1" :class="{'blue lighten-2': isActive === '1'}" :disabled="isActive ==='1'").waves-effect.waves-light.btn.grey
-              | Markdown
-            input(v-model="isActive" @click="changeMarkdown()" type="radio" id="tab2" name="tab" value="2")
-            label(for="tab2" :class="{'blue lighten-2': isActive ==='2'}" :disabled="isActive ==='2'").waves-effect.waves-light.btn.grey
+          .note-body__inner.tabs
+            input(v-model="isActive" @click="changeTweets()" type="radio" id="tab1" name="tab" value="1").a-tab-radio
+            label(for="tab1" :class="{'is-current': isActive === '1'}" :disabled="isActive ==='1'").a-tab
               | Preview
+            input(v-model="isActive" @click="changeMarkdown()" type="radio" id="tab2" name="tab" value="2").a-tab-radio
+            label(for="tab2" :class="{'is-current': isActive ==='2'}" :disabled="isActive ==='2'").a-tab
+              | Text
           ul.note-body__inner
             li(v-if="isActive === '1'")
-              .note__inner.is-preview.col.s12
+              .note__inner.is-preview
                 draggable(:list="note_tweets" group="people" @update="changeMarkdown()" @remove="changeMarkdown()").cards
                   tweet(:tweet="element" v-for="(element, index) in note_tweets" :key="element.id_str")
             li(v-if="isActive === '2'")
-              .note__inner.is-markdown.col.s12
+              .note__inner.is-markdown
                 .note-form
-                  .note-form__inner.col.s12
-                    textarea(v-model="markdownBody" v-bind:rows="rows").note-form__textarea.note_body.materialize-textarea
-      .hide
-        input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
-        input.note_all_search_result_tweets(type="hidden" name="note[all_search_result_tweets]" :value="JSON.stringify(all_search_result_tweets)")
-        input#note_body.note_body(type="hidden" name="note[body]" :value="markdownBody")
+                  textarea(v-model="markdownBody" v-bind:rows="rows").note-form__textarea.a-text-input
+    .hide
+      input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
+      input.note_all_search_result_tweets(type="hidden" name="note[all_search_result_tweets]" :value="JSON.stringify(all_search_result_tweets)")
+      input#note_body.note_body(type="hidden" name="note[body]" :value="markdownBody")
 
 </template>
 <script>

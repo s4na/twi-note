@@ -1,0 +1,37 @@
+.a-tab
+  display: flex
+  align-items: center
+  color: $non-current-color
+  background-color: $non-current-background-color
+  border-bottom: solid 3px $non-current-border-color
+  padding: 0 16px
+  width: 50%
+  transition: background-color 1s
+
+  &.is-current
+    color: $current-color
+    background-color: $current-background-color
+    border-bottom: solid 3px $current-border-color
+  &:hover
+    color: $current-color
+    border-bottom: solid 3px lighten($current-border-color, 10%)
+
+.a-tab:disabled
+  pointer-events: none  
+  box-shadow: none
+  cursor: default
+
+.a-tab-radio
+  position: absolute
+  opacity: 0
+  pointer-events: none
+  box-sizing: border-box
+  padding: 0
+
+.tabs
+  display: flex
+  height: 48px
+  width: 100%
+  margin: 0px
+  background-color: #fff
+  white-space: nowrap

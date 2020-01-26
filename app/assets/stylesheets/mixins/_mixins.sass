@@ -1,0 +1,45 @@
+=blue-button-style
+  display: inline-block
+  padding: 0.3em 0.5em
+  text-decoration: none
+  color: #FFF
+  background: #35b1fd
+  border-bottom: solid 2px #0078d2
+  border-radius: 12px
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19)
+  font-weight: bold
+  font-size: 2rem
+
+=is-edged-material
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)
+
+=is-material
+  +is-edged-material
+  border-radius: 7px
+
+=button-color($button-color)
+  background: $button-color
+  border-bottom: solid 1px darken($button-color, 15%)
+  box-shadow: inset 0 0px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.19)
+  &:active
+    border-bottom: solid 1px $button-color
+    box-shadow: 0px 0px 1.5px rgba(0, 0, 0, 1)
+
+=table-cell
+  padding-left: 10px
+  padding-right: 10px
+
+  &--title
+    width: 423px
+  &--date
+    width: 200px
+  &--controller
+    width: 305px
+
+=table-row
+  display: flex
+  flex-wrap: nowrap
+
+  background-color: #faf9f9
+  &:nth-child(even)
+    background-color: #e6dfe0

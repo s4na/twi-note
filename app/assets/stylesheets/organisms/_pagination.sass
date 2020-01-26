@@ -1,0 +1,32 @@
+.pagination
+  display: flex
+  justify-content: center
+  margin-bottom: 20px
+
+.pagination__inner
+  +is-edged-material
+  display: flex
+  justify-content: center
+
+  border-radius: 4px
+  *
+    &:first-child
+      border-radius: 4px 0 0 4px
+    &:last-child
+      border-radius: 0 4px 4px 0
+
+.pagination__link
+  +horizontal-card
+  display: flex
+  font-size: 1rem
+  background-color: #DFDFDF
+
+.pagination__link.current
+    padding: 6px 18px
+    color: #FFFFFF
+    background-color: grey
+
+.pagination__link > a
+  padding: 6px 18px
+  color: #9F9F9F
+  
