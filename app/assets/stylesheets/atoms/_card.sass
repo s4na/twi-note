@@ -1,0 +1,23 @@
+.card
+  padding: 6px 18px
+  border-radius: 0 0 2px 2px
+
+  border-left: solid 1px $card-border-color
+  border-right: solid 1px $card-border-color
+  border-bottom: solid 1px $card-border-color
+  
+  background-color: $card-background-color
+
+  &:first-child
+    border-top: solid 1px $card-border-color
+    border-radius: 2px 2px 0 0
+  &:last-child
+    border-radius: 0 0 2px 2px
+
+=horizontal-card
+  border-top: solid 1px $padination-border-color
+  border-right: solid 1px $padination-border-color
+  border-bottom: solid 1px $padination-border-color
+  background-color: $padination-color
+  &:first-child
+    border-left: solid 1px $padination-border-color

@@ -1,13 +1,17 @@
-.container.note-show
-  h1.note-show__title
-    = @note.title
+.container
+  .note-show
+    .note-show__header
+      h1.note-show__title
+        | ノート：
+        = @note.title
+      .note-show__items
+        .note-show__item
+          = link_to edit_note_path(@note), class: "a-button is-warning"
+            i.material-icons
+              | edit
+            | 編集
 
-  pre.note-show__text.grey.lighten-2
-    = @note.body
-
-.action
-  = link_to edit_note_path(@note), class: "waves-effect waves-light btn grey"
-    .action__inner
-      i.material-icons
-        | edit
-      | 編集
+    .cards
+      .card
+        pre.note-show__text
+          = @note.body
