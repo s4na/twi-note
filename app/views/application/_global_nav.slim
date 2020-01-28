@@ -17,3 +17,19 @@ nav.global-nav
             i.material-icons.global-nav-item__image
               | exit_to_app
             | ログアウト
+
+  #global-nav__drawer
+    input#global-nav__input.global-nav__unshown(type="checkbox")
+    label#global-nav__open(for="global-nav__input")
+      span
+    label#global-nav__close.global-nav__unshown(for="global-nav__input")
+    div#global-nav-content
+      .global-nav-content__items
+        = link_to notes_path, class: "global-nav-content__item" do
+          i.material-icons
+            | list
+          | ノート一覧
+        = link_to destroy_user_session_path, method: :delete, class: "global-nav-content__item"  do
+          i.material-icons
+            | exit_to_app
+          | ログアウト

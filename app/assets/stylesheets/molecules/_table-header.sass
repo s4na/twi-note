@@ -2,11 +2,12 @@
   +table-row
   flex-direction: col
 
+  @media screen and (max-width:979px)
+    display: none
+  @media screen and (min-width:980px)
+
   &__cell
     +table-cell
-
-    &--title
-      border-left: 0.5px solid #9e9e9e
 
     &--title,
     &--date,
@@ -14,6 +15,14 @@
       padding-left: 10px
       padding-right: 10px
       font-size: 1.5rem
-      border-top: 0.5px solid #9e9e9e
-      border-right: 0.5px solid #9e9e9e
-      border-bottom: 0.5px solid #9e9e9e
+
+    @media screen and (max-width:979px)
+    @media screen and (min-width:980px)
+      &--title
+        border-left: 0.5px solid #9e9e9e
+      &--title,
+      &--date,
+      &--controller
+        border-top: 0.5px solid #9e9e9e
+        border-right: 0.5px solid #9e9e9e
+        border-bottom: 0.5px solid #9e9e9e
