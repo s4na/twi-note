@@ -6,18 +6,6 @@
   background-color: $white
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)
 
-.global-nav__inner
-
-.global-nav-logo__container
-  height: 100%
-  padding-left: 20px
-  font-size: 32px
-  
-.global-nav-logo__icon
-  height: 86%
-  margin-left: 5px
-  margin-right: 5px
-
 .global-nav__items
   list-style: none
   display: flex
@@ -32,24 +20,52 @@
   padding: 0px 0.5em
   min-width: 133px
 
-.global-nav-item__inner
+#global-nav__drawer
+  @media screen and (max-width:979px)
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    padding-left: 1rem
+    padding-right: 1rem
+
+  @media screen and (min-width:980px)
+    display: none
+
+.global-nav__unshown
+  display: none
+
+#global-nav__open 
+  display: inline-block
+  width: 36px
+  height: 29px
+  vertical-align: middle
+
+#global-nav__open span,
+#global-nav__open span:before,
+#global-nav__open span:after 
+  position: absolute
+  height: 4px
+  width: 36px
+  border-radius: 3px
+  background: #555
+  display: block
+  content: ''
+  cursor: pointer
+
+#global-nav__open span:before 
+  bottom: -12px
+
+#global-nav__open span:after 
+  bottom: -24px
+
+#global-nav__close 
+  display: none
+  width: 100%
   height: 100%
-
-.global-nav-item__text
-  height: 100%
-  display: flex
-
-.global-nav-item__link
-  height: 100%
-
-.global-nav-item__image
-  height: 100%
-  margin-top: 17px
-  margin-bottom: 17px
-
-
-
-
-
-
-
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 99
+  background: black
+  opacity: 0
+  transition: .3s ease-in-out
