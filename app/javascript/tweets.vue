@@ -32,10 +32,10 @@
     .search-form__small-block
       .search-form__tools
         .search-form__tool
-          button(type="button" @click="change_all_result_tweets_to_note_tweets()")#change_all_result_tweets_to_note_tweets.a-button
+          button(type="button" @click="change_all_result_tweets_to_note_tweets()" :class="{'is-disabled': isActive ==='markdown'}" :disabled="isActive ==='markdown'")#change_all_result_tweets_to_note_tweets.a-button
             | >>
         .search-form__tool
-          button(type="button" @click="change_all_note_tweets_to_result_tweets()")#change_all_note_tweets_to_result_tweets.a-button
+          button(type="button" @click="change_all_note_tweets_to_result_tweets()" :class="{'is-disabled': isActive ==='markdown'}" :disabled="isActive ==='markdown'")#change_all_note_tweets_to_result_tweets.a-button
             | <<
     .search-form__block
       .search-form-header
@@ -43,7 +43,7 @@
           | ノート
         .search-form-header__items
           .search-form-header__item
-            button(type="button" @click="copyToClipboard()").a-button
+            button(type="button" @click="copyToClipboard()" :class="{'is-disabled': isActive ==='markdown'}" :disabled="isActive ==='markdown'").a-button
               | コピー
           .search-form-header__item
             button(type="submit").a-button.is-primary
