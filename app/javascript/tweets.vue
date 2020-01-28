@@ -21,19 +21,22 @@
           .search-form__item
             .search-form__inner--center
               button(type="button" @click="searchTweets").search-form__button.a-button.is-secondary
+                i.material-icons
+                  | search
                 | 検索
         .search-form__result
           label.a-label
             | 検索結果
           draggable(:list="search_result_tweets" group="people" @update="changeMarkdown()" @remove="changeMarkdown()")#note-tweets-preview.cards
             tweet(:tweet="element" v-for="(element, index) in search_result_tweets" :key="element.id_str")
-    .search-form__tools
-      .search-form__tool
-        button(type="button" @click="change_all_result_tweets_to_note_tweets()")#change_all_result_tweets_to_note_tweets.a-button
-          | >>
-      .search-form__tool
-        button(type="button" @click="change_all_note_tweets_to_result_tweets()")#change_all_note_tweets_to_result_tweets.a-button
-          | <<
+    .search-form__small-block
+      .search-form__tools
+        .search-form__tool
+          button(type="button" @click="change_all_result_tweets_to_note_tweets()")#change_all_result_tweets_to_note_tweets.a-button
+            | >>
+        .search-form__tool
+          button(type="button" @click="change_all_note_tweets_to_result_tweets()")#change_all_note_tweets_to_result_tweets.a-button
+            | <<
     .search-form__block
       .search-form-header
         h2.search-form-header__title
@@ -45,7 +48,7 @@
           .search-form-header__item
             button(type="submit").a-button.is-primary
               i.material-icons
-                | done
+                | save
               | ノートを保存
       .note
         .note__title
