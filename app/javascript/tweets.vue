@@ -76,6 +76,7 @@
       input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
       input.note_all_search_result_tweets(type="hidden" name="note[all_search_result_tweets]" :value="JSON.stringify(all_search_result_tweets)")
       input#note_body.note_body(type="hidden" name="note[body]" :value="markdownBody")
+      input#note_edit_mode.note_edit_mode(type="hidden" name="note[edit_mode]" :value="isActive")
 
 </template>
 <script>
@@ -89,6 +90,7 @@ export default {
   props: {
     noteTitleHumanAttributeName: String,
     noteTitle: String,
+    noteEditMode: String,
   },
   components: {
     'draggable': Draggable,
@@ -123,16 +125,23 @@ export default {
     const oneWeekBefore = moment(today).add(-7, "days").toDate()
     this.start_datetime = oneWeekBefore.toISOString()
     this.end_datetime = today.toISOString()
+
+    if (this.noteEditMode !== '' && this.noteEditMode !== null){
+      this.isActive = this.noteEditMode
+    }
   },
   methods: {
     change_all_result_tweets_to_note_tweets: function() {
       this.note_tweets = this.note_tweets.concat(this.search_result_tweets)
       this.search_result_tweets = []
+      
       this.changeMarkdown()
     },
     change_all_note_tweets_to_result_tweets: function() {
       this.search_result_tweets = this.search_result_tweets.concat(this.note_tweets)
       this.note_tweets = []
+
+      this.changeMarkdown()
     },
     changeMarkdown () {
       let m2t = new Markdown2Tweets({'tweets': this.note_tweets})
