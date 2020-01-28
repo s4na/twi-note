@@ -66,7 +66,7 @@
           ul.note-body__inner
             li(v-if="isActive === '1'")
               .note__inner.is-preview
-                draggable(:list="note_tweets" group="people" @update="changeMarkdown()" @remove="changeMarkdown()").cards
+                draggable(:list="note_tweets" group="people" @add="changeMarkdown()" @update="changeMarkdown()" @remove="changeMarkdown()").cards
                   tweet(:tweet="element" v-for="(element, index) in note_tweets" :key="element.id_str")
             li(v-if="isActive === '2'")
               .note__inner.is-markdown
@@ -128,6 +128,7 @@ export default {
     change_all_result_tweets_to_note_tweets: function() {
       this.note_tweets = this.note_tweets.concat(this.search_result_tweets)
       this.search_result_tweets = []
+      this.changeMarkdown()
     },
     change_all_note_tweets_to_result_tweets: function() {
       this.search_result_tweets = this.search_result_tweets.concat(this.note_tweets)
