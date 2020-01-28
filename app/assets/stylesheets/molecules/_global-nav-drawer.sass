@@ -1,0 +1,84 @@
+#global-nav__drawer
+  display: flex
+  justify-content: flex-end
+  align-items: center
+  padding-left: 1rem
+  padding-right: 1rem
+
+.global-nav__unshown
+  display: none
+
+#global-nav__open 
+  display: inline-block
+  width: 36px
+  height: 29px
+  vertical-align: middle
+
+#global-nav__open span,
+#global-nav__open span:before,
+#global-nav__open span:after 
+  position: absolute
+  height: 4px
+  width: 36px
+  border-radius: 3px
+  background: #555
+  display: block
+  content: ''
+  cursor: pointer
+
+#global-nav__open span:before 
+  bottom: -12px
+
+#global-nav__open span:after 
+  bottom: -24px
+
+#global-nav__close 
+  display: none
+  width: 100%
+  height: 100%
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 99
+  background: black
+  opacity: 0
+  transition: .3s ease-in-out
+
+#global-nav-content 
+  width: 90%
+  max-width: 330px
+  height: 100%
+  position: fixed
+  top: 0
+  right: 0
+  z-index: 9999
+  overflow: auto
+  background: $white
+  transition: .3s ease-in-out
+  transform: translateX(105%)
+  -webkit-transform: translateX(105%)
+
+#global-nav__input:checked ~ #global-nav__close 
+  display: block
+  opacity: .5
+
+#global-nav__input:checked ~ #global-nav-content 
+  transform: translateX(0%)
+  -webkit-transform: translateX(0%)
+  box-shadow: 6px 0 25px rgba(0,0,0,.15)
+
+.global-nav-content__items
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+
+.global-nav-content__item  
+  display: flex
+  align-items: center
+  padding-top: 0.5rem
+  padding-bottom:  0.5rem
+  font-size: 25px
+  .material-icons
+    margin-left: 0.5rem
+    margin-right: 0.5rem
+    font-size: 38px
