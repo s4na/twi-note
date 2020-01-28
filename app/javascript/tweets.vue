@@ -57,18 +57,18 @@
           input(type="text" name="note[title]" id="note_title" :value="noteTitle").a-text-input
         .note__body
           .note-body__inner.tabs
-            input(v-model="isActive" @click="changeTweets()" type="radio" id="tab1" name="tab" value="1").a-tab-radio
-            label(for="tab1" :class="{'is-current': isActive === '1'}" :disabled="isActive ==='1'").a-tab
+            input(v-model="isActive" @click="changeTweets()" type="radio" id="tab-preview" name="tab" value="preview").a-tab-radio
+            label(for="tab-preview" :class="{'is-current': isActive === 'preview'}" :disabled="isActive ==='preview'").a-tab
               | Preview
-            input(v-model="isActive" @click="changeMarkdown()" type="radio" id="tab2" name="tab" value="2").a-tab-radio
-            label(for="tab2" :class="{'is-current': isActive ==='2'}" :disabled="isActive ==='2'").a-tab
+            input(v-model="isActive" @click="changeMarkdown()" type="radio" id="tab-markdown" name="tab" value="markdown").a-tab-radio
+            label(for="tab-markdown" :class="{'is-current': isActive ==='markdown'}" :disabled="isActive ==='markdown'").a-tab
               | Text
           ul.note-body__inner
-            li(v-if="isActive === '1'")
+            li(v-if="isActive === 'preview'")
               .note__inner.is-preview
                 draggable(:list="note_tweets" group="people" @add="changeMarkdown()" @update="changeMarkdown()" @remove="changeMarkdown()").cards
                   tweet(:tweet="element" v-for="(element, index) in note_tweets" :key="element.id_str")
-            li(v-if="isActive === '2'")
+            li(v-if="isActive === 'markdown'")
               .note__inner.is-markdown
                 .note-form
                   textarea(v-model="markdownBody" v-bind:rows="rows").note-form__textarea.a-text-input
@@ -103,7 +103,7 @@ export default {
       note_body: String,
       start_datetime: '',
       end_datetime: '',
-      isActive: '1',
+      isActive: 'preview',
       markdownBody: '',
     }
   },
