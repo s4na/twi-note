@@ -53,6 +53,6 @@ class NotesController < ApplicationController
     end
 
     def note_params
-      params.require(:note).permit(:title, :body, :tweets, :all_search_result_tweets)
+      params.require(:note).permit(:title, :body, :tweets, :all_search_result_tweets, :edit_mode)
     end
 end
