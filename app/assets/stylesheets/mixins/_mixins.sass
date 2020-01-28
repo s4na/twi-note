@@ -18,6 +18,7 @@
   border-radius: 7px
 
 =button-color($button-color)
+  color: $white
   background: $button-color
   border-bottom: solid 1px darken($button-color, 15%)
   box-shadow: inset 0 0px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.19)
@@ -30,16 +31,30 @@
   padding-right: 10px
 
   &--title
-    width: 423px
+    @media screen and (max-width:979px)
+      height: 3rem
+      width: 333px
+    @media screen and (min-width:980px)
+      width: 423px
   &--date
-    width: 200px
+    @media screen and (max-width:979px)
+      height: 3rem
+      width: 250px
+    @media screen and (min-width:980px)
+      width: 200px
   &--controller
-    width: 305px
+    @media screen and (max-width:979px)
+      height: 3rem
+      width: 100%
+    @media screen and (min-width:980px)
+      width: 305px
 
 =table-row
   display: flex
   flex-wrap: nowrap
 
-  background-color: #faf9f9
-  &:nth-child(even)
-    background-color: #e6dfe0
+  @media screen and (max-width:979px)
+  @media screen and (min-width:980px)
+    background-color: #faf9f9
+    &:nth-child(even)
+      background-color: #e6dfe0

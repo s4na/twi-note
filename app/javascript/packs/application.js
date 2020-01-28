@@ -5,6 +5,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require materialize
+//= require swiper
 
 require('@rails/ujs').start()
 // require('turbolinks').start()
@@ -19,3 +20,4 @@ require('channels')
 // const imagePath = (name) => images(name, true)
 
 require('../tweets.js')
+require('../swiper.js')

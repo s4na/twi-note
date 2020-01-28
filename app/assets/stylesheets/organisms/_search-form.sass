@@ -17,7 +17,7 @@
   flex-direction: column
   flex-wrap: nowrap
 
-  background-color: #FFFFFF
+  background-color: $white
   +is-material
 
 .search-form__items
@@ -39,13 +39,19 @@
 .search-form__tool
   +is-material
   display: flex
-  width: 72px
+  
   margin-bottom: 20px
   justify-content: center
+
+  @media screen and (max-width:979px)
+  @media screen and (min-width:980px)
+    width: 72px
 
 .search-form__tool > *
   border-radius: 7px
   width: 100%
+
+  
 
 .search-form__button
   width: 160px

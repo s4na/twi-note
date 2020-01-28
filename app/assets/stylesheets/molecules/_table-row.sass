@@ -1,3 +1,20 @@
 .table-row
   +table-row
-  flex-direction: row
+
+  @media screen and (max-width:979px)
+    // flex-direction: column
+    flex-direction: row
+    flex-wrap: nowrap
+    width: 100%
+
+    border-left: 0.5px solid #9e9e9e
+    border-right: 0.5px solid #9e9e9e
+    border-bottom: 0.5px solid #9e9e9e
+    &:nth-child(2)
+      border-top: 0.5px solid #9e9e9e
+
+    background-color: #faf9f9
+    &:nth-child(odd)
+      background-color: #e6dfe0
+  @media screen and (min-width:980px)
+    flex-direction: row
