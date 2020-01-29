@@ -204,8 +204,10 @@ export default {
       return JSON.stringify(this.note_tweets, null, 2)
     },
     rows:function() {
-        let size = this.markdownBody.split("\n").length;
-        let min = 40
+        const min = 10
+        const margin = 3
+        const size = this.markdownBody.split("\n").length + margin;
+
         return (size > min) ? size : min;
     }
   }
