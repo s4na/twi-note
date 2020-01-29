@@ -8,7 +8,7 @@
         .search-form__items
           .search-form__item
             label.a-label
-              | 検索キーワード（例：#Ruby）
+              | 検索キーワード
             input(ref="query" type="text" value="#Ruby").search-form__query.a-text-input
           .search-form__item
             label.a-label
