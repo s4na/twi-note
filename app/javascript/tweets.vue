@@ -43,7 +43,7 @@
           | ノート
         .search-form-header__items
           .search-form-header__item
-            button(type="button" @click="copyToClipboard()" :class="{'is-disabled': isActive ==='markdown'}" :disabled="isActive ==='markdown'").a-button
+            button(type="button" @click="copyToClipboard()" :class="{'is-disabled': isActive ==='preview'}" :disabled="isActive ==='markdown'").a-button
               | コピー
           .search-form-header__item
             button(type="submit").a-button.is-primary
