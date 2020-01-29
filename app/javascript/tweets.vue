@@ -46,12 +46,14 @@
             button(type="button" @click="copyToClipboard()" :class="{'is-disabled': isActive ==='preview'}" :disabled="isActive ==='preview'").a-button
               i.material-icons
                 | content_copy
-              | コピー
+              .search-form-header__inner-text
+                | コピー
           .search-form-header__item
             button(type="submit").a-button.is-primary
               i.material-icons
                 | save
-              | ノートを保存
+              .search-form-header__inner-text
+                | ノートを保存
       .note
         .note__title
           label.a-label

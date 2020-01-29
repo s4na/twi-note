@@ -1,12 +1,15 @@
 .search-form-header
-  margin-bottom: 20px
-  margin-left: 10px
-  margin-right: 10px
+  margin-bottom: 1.5rem
+  margin-left: 0.5rem
+  margin-right: 0.5rem
 
   &__items
     display: flex
     justify-content: flex-end
-    flex-wrap: wrap
+    flex-wrap: nowrap
   &__item
     margin-left: 10px
     margin-bottom: 2px
+  &__inner-text
+    @media screen and (max-width:979px)
+      display: none
