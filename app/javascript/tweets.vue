@@ -44,6 +44,8 @@
         .search-form-header__items
           .search-form-header__item
             button(type="button" @click="copyToClipboard()" :class="{'is-disabled': isActive ==='preview'}" :disabled="isActive ==='preview'").a-button
+              i.material-icons
+                | content_copy
               | コピー
           .search-form-header__item
             button(type="submit").a-button.is-primary

@@ -3,8 +3,7 @@
     h1.note-show__title
       = @note.title
     .note-show__items
-      .note-show__item
-        #js-note-body-copy
+      #js-note-body-copy
       .note-show__item
         = link_to edit_note_path(@note), class: "a-button is-warning"
           i.material-icons

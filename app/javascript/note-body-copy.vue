@@ -1,6 +1,8 @@
 <template lang="pug">
-  .note-body-copy
+  .note-show__item.note-body-copy
     button(type="button" @click="copyNoteBodyToClipboard()").a-button
+      i.material-icons
+        | content_copy
       | コピー
 </template>
 <script>
