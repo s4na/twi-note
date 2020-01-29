@@ -4,6 +4,8 @@
       = @note.title
     .note-show__items
       .note-show__item
+        #js-note-body-copy
+      .note-show__item
         = link_to edit_note_path(@note), class: "a-button is-warning"
           i.material-icons
             | edit
@@ -11,5 +13,5 @@
 
   .cards
     .card
-      pre.note-show__text
+      pre#note-show__text.note-show__text
         = @note.body

@@ -21,3 +21,4 @@ require('channels')
 
 require('../tweets.js')
 require('../swiper.js')
+require('../note-body-copy.js')
