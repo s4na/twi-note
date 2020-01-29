@@ -42,20 +42,18 @@
 
 .search-form__tool
   +is-material
-  display: flex
-  
+  display: flex  
   margin-bottom: 20px
   justify-content: center
 
-  @media screen and (max-width:979px)
   @media screen and (min-width:980px)
     width: 72px
 
 .search-form__tool > *
   border-radius: 7px
   width: 100%
-
-  
+  @media screen and (max-width:979px)
+    padding: 5px
 
 .search-form__button
   width: 160px
