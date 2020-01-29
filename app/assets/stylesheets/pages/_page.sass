@@ -3,7 +3,9 @@
     display: flex
     justify-content: flex-end
   &__item
-    min-width: 9rem
+    @media screen and (max-width:979px)
+      min-width: 9rem
+      padding-right: 1rem
   &__block
     margin-bottom: 30px
   &__title
