@@ -76,6 +76,6 @@ class TweetRepository
     end
 
     def sort_tweet_asc
-      @tweets.sort_by!{ |tweet| tweet[:created_at].to_i }
+      @tweets.sort_by! { |tweet| tweet[:created_at].to_i }
     end
 end
