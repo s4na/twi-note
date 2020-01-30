@@ -22,6 +22,7 @@ class TweetRepository
         search_tweets
       end
       add_tweet_params
+      sort_tweet_asc
 
       @tweets
     end
@@ -72,5 +73,9 @@ class TweetRepository
         tweet[:url] = "https://twitter.com/#{tweet[:user][:screen_name]}/status/#{tweet[:id_str]}?ref_src=twsrc%5Etfw"
         tweet[:markdown] = "> [#{tweet[:text]}](#{tweet[:url]})".gsub(/\R/, " ")
       end
+    end
+
+    def sort_tweet_asc
+      @tweets.sort_by!{ |tweet| tweet[:created_at].to_i }
     end
 end
