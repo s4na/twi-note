@@ -1,16 +1,17 @@
-.note-show
-  .note-show__header
-    h1.note-show__title
-      = @note.title
-    .note-show__items
-      #js-note-body-copy
-      .note-show__item
-        = link_to edit_note_path(@note), class: "a-button is-warning"
-          i.material-icons
-            | edit
-          | 編集
+.container
+  .note-show
+    .note-show__header
+      h1.note-show__title
+        = @note.title
+      .note-show__items
+        #js-note-body-copy
+        .note-show__item
+          = link_to edit_note_path(@note), class: "a-button is-warning"
+            i.material-icons
+              | edit
+            | 編集
 
-  .cards
-    .card
-      pre#note-show__text.note-show__text
-        = @note.body
+    .cards
+      .card
+        pre#note-show__text.note-show__text
+          = @note.body
