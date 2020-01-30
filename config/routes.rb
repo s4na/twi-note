@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   }
 
   resources :notes
+  resources :privacy_policies, only: %i(index)
+  resources :disclaimers, only: %i(index)
+
   namespace "api" do
     resources :tweets, only: %i(index)
   end
