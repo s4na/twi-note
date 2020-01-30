@@ -1,7 +1,7 @@
-.page
+.page__container
   .page__block
-      .thread__item
-        h1.page__title ノート一覧
+      .page__title
+        h1 ノート一覧
   .page__block
     .page__items
       .page__item
@@ -64,3 +64,4 @@
                           | 削除
   .page__block
     = paginate @notes
+= render 'footer'
