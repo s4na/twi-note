@@ -17,6 +17,13 @@ nav.global-nav
             i.material-icons.global-nav-item__image
               | exit_to_app
             | ログアウト
+    - unless user_signed_in?
+      li.global-nav__item
+        .global-nav-item__inner
+          = link_to root_path, class: "global-nav-item__link a-link" do
+            i.material-icons.global-nav-item__image
+              | home
+            | トップに戻る
 
   #global-nav__drawer
     input#global-nav__input.global-nav__unshown(type="checkbox")
@@ -25,11 +32,17 @@ nav.global-nav
     label#global-nav__close.global-nav__unshown(for="global-nav__input")
     div#global-nav-content
       .global-nav-content__items
-        = link_to notes_path, class: "global-nav-content__item" do
-          i.material-icons
-            | list
-          | ノート一覧
-        = link_to destroy_user_session_path, method: :delete, class: "global-nav-content__item"  do
-          i.material-icons
-            | exit_to_app
-          | ログアウト
+        - if user_signed_in?
+          = link_to notes_path, class: "global-nav-content__item" do
+            i.material-icons
+              | list
+            | ノート一覧
+          = link_to destroy_user_session_path, method: :delete, class: "global-nav-content__item"  do
+            i.material-icons
+              | exit_to_app
+            | ログアウト
+        - unless user_signed_in?
+          = link_to root_path, class: "global-nav-content__item"  do
+            i.material-icons.global-nav-item__image
+              | home
+            | トップに戻る
