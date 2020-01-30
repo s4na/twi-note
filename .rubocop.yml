@@ -1,3 +1,7 @@
+# Copyright (c) 2005-2020 David Heinemeier Hansson
+# MIT License
+# https://github.com/rails/rails/blob/master/MIT-LICENSE
+
 require:
   - rubocop-performance
   - rubocop-rails
