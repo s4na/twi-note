@@ -13,11 +13,11 @@
           .search-form__item
             label.a-label
               | 開始日時
-            datetime(v-model="start_datetime" format="yyyy/LL/d hh:mm" type="datetime" input-id="start_datetime" name="tweets-search[start_datetime]").search-form__start-datetime.a-text-input
+            datetime(v-model="start_datetime" format="yyyy/LL/d HH:mm" zone="Asia/Tokyo" type="datetime" input-id="start_datetime" name="tweets-search[start_datetime]").search-form__start-datetime.a-text-input
           .search-form__item
             label.a-label
               | 終了日時
-            datetime(v-model="end_datetime" format="yyyy/LL/d hh:mm" type="datetime" input-id="end_datetime" name="tweets-search[end_datetime]").search-form__end-datetime.a-text-input
+            datetime(v-model="end_datetime" format="yyyy/LL/d HH:mm" zone="Asia/Tokyo" type="datetime" input-id="end_datetime" name="tweets-search[end_datetime]").search-form__end-datetime.a-text-input
           .search-form__item
             .search-form__inner--center
               button(type="button" @click="searchTweets").search-form__button.a-button.is-secondary
@@ -89,6 +89,7 @@ import moment from 'moment'
 import Tweet from 'tweet'
 import Markdown2Tweets from './markdown2tweets.js'
 import { Datetime } from 'vue-datetime'
+import { DateTime } from 'luxon';
 
 export default {
   props: {
@@ -125,10 +126,8 @@ export default {
       this.note_body = document.querySelector('#js-note-body').innerText || null
     }
 
-    const today = new Date()
-    const oneWeekBefore = moment(today).add(-7, "days").toDate()
-    this.start_datetime = oneWeekBefore.toISOString()
-    this.end_datetime = today.toISOString()
+    this.start_datetime = DateTime.local().toISO()
+    this.end_datetime = DateTime.local().minus({ days: 7 }).toISO()
 
     if (this.noteEditMode !== '' && this.noteEditMode !== null){
       this.isActive = this.noteEditMode
