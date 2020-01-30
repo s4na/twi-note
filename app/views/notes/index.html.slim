@@ -1,67 +1,68 @@
-.page__container
-  .page__block
-      .page__title
-        h1 ノート一覧
-  .page__block
-    .page__items
-      .page__item
-        = link_to new_note_path, class: "a-button is-primary" do
-          i.material-icons
-            | add
-          | 追加
-  .page__block
-    = paginate @notes
-  .page__block
-    .thread
-      .thread__block
-        table.table
-          tbody.table__body
-            tr.table-header
-              th.table-header__cell--title
-                | タイトル
-              th.table-header__cell--date
-                | 日付
-              th.table-header__cell--controller
-                | 操作
-            - count = 0
-            - @notes.each do |note|
-              - count += 1
-              tr.table-row
-                td.table-cell--title
-                  = link_to note, class: ""
-                    = note.title
-                td.table-cell--date
-                  = link_to note, class: ""
-                    = l note.updated_at, format: :ymdhm_sla
-                td.table-cell--controller
-                  .table-cell__inner
-                    = link_to note, class: "a-button"
-                      i.material-icons
-                        | view_module
-                      | 表示
-                    = link_to edit_note_path(note), class: "a-button is-warning"
-                      i.material-icons
-                        | edit
-                      | 編集
-                    = link_to note, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "a-button is-danger" do
-                      i.material-icons
-                        | delete
-                      | 削除
-                td.table-cell--mobile
-                  div class="swiper-container-#{count} swiper-container swiper-container-horizontal"
-                    .swiper-wrapper
-                      .swiper-slide.swiper-slide--view
-                        = link_to note, class: ""
-                          = note.title
-                      .swiper-slide.swiper-slide--controller
-                        = link_to edit_note_path(note), class: "is-warning"
-                          i.material-icons
-                            | edit
-                          | 編集
-                        = link_to note, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "is-danger" do
-                          i.material-icons
-                            | delete
-                          | 削除
-  .page__block
-    = paginate @notes
+.container
+  .page__container
+    .page__block
+        .page__title
+          h1 ノート一覧
+    .page__block
+      .page__items
+        .page__item
+          = link_to new_note_path, class: "a-button is-primary" do
+            i.material-icons
+              | add
+            | 追加
+    .page__block
+      = paginate @notes
+    .page__block
+      .thread
+        .thread__block
+          table.table
+            tbody.table__body
+              tr.table-header
+                th.table-header__cell--title
+                  | タイトル
+                th.table-header__cell--date
+                  | 日付
+                th.table-header__cell--controller
+                  | 操作
+              - count = 0
+              - @notes.each do |note|
+                - count += 1
+                tr.table-row
+                  td.table-cell--title
+                    = link_to note, class: ""
+                      = note.title
+                  td.table-cell--date
+                    = link_to note, class: ""
+                      = l note.updated_at, format: :ymdhm_sla
+                  td.table-cell--controller
+                    .table-cell__inner
+                      = link_to note, class: "a-button"
+                        i.material-icons
+                          | view_module
+                        | 表示
+                      = link_to edit_note_path(note), class: "a-button is-warning"
+                        i.material-icons
+                          | edit
+                        | 編集
+                      = link_to note, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "a-button is-danger" do
+                        i.material-icons
+                          | delete
+                        | 削除
+                  td.table-cell--mobile
+                    div class="swiper-container-#{count} swiper-container swiper-container-horizontal"
+                      .swiper-wrapper
+                        .swiper-slide.swiper-slide--view
+                          = link_to note, class: ""
+                            = note.title
+                        .swiper-slide.swiper-slide--controller
+                          = link_to edit_note_path(note), class: "is-warning"
+                            i.material-icons
+                              | edit
+                            | 編集
+                          = link_to note, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "is-danger" do
+                            i.material-icons
+                              | delete
+                            | 削除
+    .page__block
+      = paginate @notes
 = render 'footer'
