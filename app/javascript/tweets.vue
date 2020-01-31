@@ -75,11 +75,11 @@
             li(v-if="isActive === 'markdown'")
               .note__inner.is-markdown
                 .note-form
-                  textarea(v-model="markdownBody" v-bind:rows="rows").note-form__textarea.a-text-input
+                  textarea(v-model="note_body" v-bind:rows="rows").note-form__textarea.a-text-input
     .hide
       input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
       input.note_all_search_result_tweets(type="hidden" name="note[all_search_result_tweets]" :value="JSON.stringify(all_search_result_tweets)")
-      input#note_body.note_body(type="hidden" name="note[body]" :value="markdownBody")
+      input#note_body.note_body(type="hidden" name="note[body]" :value="note_body")
       input#note_edit_mode.note_edit_mode(type="hidden" name="note[edit_mode]" :value="isActive")
 
 </template>
@@ -111,7 +111,6 @@ export default {
       start_datetime: '',
       end_datetime: '',
       isActive: 'preview',
-      markdownBody: '',
     }
   },
   created() {
@@ -123,7 +122,7 @@ export default {
       this.all_search_result_tweets = JSON.parse(document.querySelector('#js-note_all-search-result-tweets').innerText || null) || []
     }
     if (document.querySelector('#js-note-body') !== null) {
-      this.markdownBody = document.querySelector('#js-note-body').innerText || null
+      this.note_body = document.querySelector('#js-note-body').innerText || null
     }
 
     this.start_datetime = DateTime.local().minus({ days: 7 }).toISO()
@@ -149,10 +148,10 @@ export default {
     changeMarkdown () {
       let m2t = new Markdown2Tweets({'tweets': this.note_tweets})
       const markdown = m2t.setMarkdown()
-      this.markdownBody = markdown
+      this.note_body = markdown
     },
     changeTweets () {
-      const markdown = this.markdownBody
+      const markdown = this.note_body
       const tweets = this.all_search_result_tweets
       let m2t = new Markdown2Tweets({ 'markdown': markdown, 'tweets': tweets })
       this.note_tweets = m2t.setTweets()
@@ -209,7 +208,7 @@ export default {
     rows:function() {
         const min = 10
         const margin = 3
-        const size = this.markdownBody.split("\n").length + margin;
+        const size = this.note_body.split("\n").length + margin;
 
         return (size > min) ? size : min;
     }
