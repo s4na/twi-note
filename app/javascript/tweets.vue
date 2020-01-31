@@ -126,8 +126,8 @@ export default {
       this.note_body = document.querySelector('#js-note-body').innerText || null
     }
 
-    this.start_datetime = DateTime.local().toISO()
-    this.end_datetime = DateTime.local().minus({ days: 7 }).toISO()
+    this.start_datetime = DateTime.local().minus({ days: 7 }).toISO()
+    this.end_datetime = DateTime.local().toISO()
 
     if (this.noteEditMode !== '' && this.noteEditMode !== null){
       this.isActive = this.noteEditMode
