@@ -32,8 +32,10 @@
       | 本アプリは「勉強会ハッシュタグ」「開始時間」「終了時間」を入力するだけで、簡単にツイートをまとめることができます。
       br
       | これまでは勉強会参加者が個別にノートを作成しなければいけなかったところを、本アプリを用いるとツイートをまとめるのみで済むようになります。
-    = image_tag "welcome/issues-of-knowledge-retention.png", alt: "", class: "welcome__image"
+    .welcome__image
+      = image_tag "welcome/how-to-use.png", alt: ""
     p.welcome__text
       | これまで個別にとっていたノートが、ツイートをまとめることで簡単にできるようになります。
-    = image_tag "welcome/before-and-after-using-twi-note.png", alt: "", class: "welcome__image"
+    .welcome__image
+      = image_tag "welcome/before-and-after-using-twi-note.png", alt: ""
 = render 'footer'
