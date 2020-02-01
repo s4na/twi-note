@@ -10,7 +10,7 @@ class PrivacyPoliciesTest < ApplicationSystemTestCase
   end
 
   test "show privacy policies" do
-    visit root_path
+    visit privacy_policies_path
     assert_selector "h1", text: "プライバシーポリシー"
   end
 end
