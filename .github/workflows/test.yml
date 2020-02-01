@@ -42,6 +42,9 @@ jobs:
         # bundle exec slim-lint app/views -c config/slim_lint.yml
         bin/yarn eslint app/javascript
         bin/yarn eslint test/javascript
-    - name: Test
+    - name: Rails Test
       run: |
-        bin/test
+        bundle exec rails test && bundle exec rails test:system
+    - name: Yarn test
+      run: |
+        yarn test
