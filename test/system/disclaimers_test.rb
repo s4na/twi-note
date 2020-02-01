@@ -10,7 +10,7 @@ class DisclaimersTest < ApplicationSystemTestCase
   end
 
   test "show disclaimers" do
-    visit root_path
+    visit disclaimers_path
     assert_selector "h1", text: "免責事項"
   end
 end
