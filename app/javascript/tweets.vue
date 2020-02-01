@@ -20,7 +20,7 @@
             datetime(v-model="end_datetime" format="yyyy/LL/d HH:mm" zone="Asia/Tokyo" type="datetime" input-id="end_datetime" name="tweets-search[end_datetime]").search-form__end-datetime.a-text-input
           .search-form__item
             .search-form__inner--center
-              button(type="button" @click="searchTweets").search-form__button.a-button.is-secondary
+              button(type="button" @click="searchTweets").search-form__button.a-button.is-secondary#search-form__button
                 i.material-icons
                   | search
                 | 検索
@@ -62,10 +62,10 @@
         .note__body
           .note-body__inner.tabs
             input(v-model="isActive" @click="changeTweets()" type="radio" id="tab-preview" name="tab" value="preview").a-tab-radio
-            label(for="tab-preview" :class="{'is-current': isActive === 'preview'}" :disabled="isActive ==='preview'").a-tab
+            label(for="tab-preview" :class="{'is-current': isActive === 'preview'}" :disabled="isActive ==='preview'").a-tab#preview-mode
               | Preview
             input(v-model="isActive" @click="changeMarkdown()" type="radio" id="tab-markdown" name="tab" value="markdown").a-tab-radio
-            label(for="tab-markdown" :class="{'is-current': isActive ==='markdown'}" :disabled="isActive ==='markdown'").a-tab
+            label(for="tab-markdown" :class="{'is-current': isActive ==='markdown'}" :disabled="isActive ==='markdown'").a-tab#text-mode
               | Text
           ul.note-body__inner
             li(v-if="isActive === 'preview'")
@@ -75,7 +75,7 @@
             li(v-if="isActive === 'markdown'")
               .note__inner.is-markdown
                 .note-form
-                  textarea(v-model="note_body" v-bind:rows="rows").note-form__textarea.a-text-input
+                  textarea(v-model="note_body" v-bind:rows="rows").note-form__textarea.a-text-input#note-form__textarea
     .hide
       input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
       input.note_all_search_result_tweets(type="hidden" name="note[all_search_result_tweets]" :value="JSON.stringify(all_search_result_tweets)")

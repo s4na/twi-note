@@ -14,7 +14,7 @@ class NotesTest < ApplicationSystemTestCase
   end
 
   test "show notes" do
-    visit notes_url
+    visit notes_path
     assert_selector "h1", text: "ノート一覧"
   end
 
@@ -27,9 +27,10 @@ class NotesTest < ApplicationSystemTestCase
     visit notes_url
     click_on "追加"
 
+    find('label[for="tab-markdown"]').click
     fill_in "note[title]", with: @note.title
-    fill_in "note[body]", with: @note.body
-    click_on "保存"
+    fill_in "note-form__textarea", with: @note.body
+    click_on "ノートを保存"
 
     assert_text "ノートを作成しました"
   end
@@ -38,9 +39,10 @@ class NotesTest < ApplicationSystemTestCase
     visit notes_url
     click_on "編集", match: :first
 
+    find('label[for="tab-markdown"]').click
     fill_in "note[title]", with: @note.title
-    fill_in "note[body]", with: @note.body
-    click_on "保存"
+    fill_in "note-form__textarea", with: @note.body
+    click_on "ノートを保存"
 
     assert_text "ノートを更新しました"
   end
@@ -52,9 +54,5 @@ class NotesTest < ApplicationSystemTestCase
     end
 
     assert_text "ノートを削除しました"
-  end
-
-  test "edit a saved note and save it again" do
-    # ツイートをドラッグできないのが・・・
   end
 end
