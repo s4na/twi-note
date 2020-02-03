@@ -1,12 +1,14 @@
 .card
-  padding: 6px 18px
   border-radius: 0 0 2px 2px
-
   border-left: solid 1px $card-border-color
   border-right: solid 1px $card-border-color
   border-bottom: solid 1px $card-border-color  
   background-color: $card-background-color
 
+  @media screen and (max-width:979px)
+    padding: 0.25rem 0.5rem
+  @media screen and (min-width:980px)
+    padding: 0.5rem 1rem
   p
     word-break: break-all
 

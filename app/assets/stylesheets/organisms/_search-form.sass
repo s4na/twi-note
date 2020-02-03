@@ -1,14 +1,10 @@
-.search-form__body
-  margin-bottom: 0.5rem
-
 .search-form__inner
   display: flex
   flex-direction: row
   flex-wrap: nowrap
-
-.search-form__inner--center
-  display: flex
-  justify-content: center
+  &--center
+    display: flex
+    justify-content: center
 
 .search-form__block
   display: flex
@@ -20,17 +16,25 @@
   background-color: $white
   +is-material
 
-.search-form__items
-  margin-left: 0.5rem
-  margin-right: 0.5rem
-
-.search-form__item
-  margin-bottom: 1rem
+  & > *
+    @media screen and (max-width:979px)
+      margin-left: 0.5rem
+      margin-right: 0.5rem
+      &:last-child
+        margin-bottom: 0.5rem
+    @media screen and (min-width:980px)
+      margin-left: 1rem
+      margin-right: 1rem
+      &:last-child
+        margin-bottom: 1rem
 
 .search-form__small-block
   width: 10%
   display: flex
   justify-content: center
+
+.search-form__item
+  margin-bottom: 1rem
 
 .search-form__tools
   display: flex
@@ -58,7 +62,3 @@
 .search-form__button
   width: 160px
   margin: 0 auto
-
-.search-form__result
-  margin-left: 0.5rem
-  margin-right: 0.5rem
