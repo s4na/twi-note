@@ -30,7 +30,7 @@ nav.global-nav
     label#global-nav__open(for="global-nav__input")
       span
     label#global-nav__close.global-nav__unshown(for="global-nav__input")
-    div#global-nav-content
+    #global-nav-content
       .global-nav-content__items
         - if user_signed_in?
           = link_to notes_path, class: "global-nav-content__item" do

@@ -44,7 +44,7 @@
                         i.material-icons
                           | edit
                         | 編集
-                      = link_to note, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "a-button is-danger" do
+                      = link_to note, data: { confirm: "本当に削除しますか？" }, method: :delete, class: "a-button is-danger" do
                         i.material-icons
                           | delete
                         | 削除
@@ -59,10 +59,10 @@
                             i.material-icons
                               | edit
                             | 編集
-                          = link_to note, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "is-danger" do
+                          = link_to note, data: { confirm: "本当に削除しますか？" }, method: :delete, class: "is-danger" do
                             i.material-icons
                               | delete
                             | 削除
     .page__block
       = paginate @notes
-= render 'footer'
+= render "footer"
