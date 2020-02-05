@@ -27,7 +27,7 @@
         .search-form__result
           label.a-label
             | 検索結果
-          draggable(:list="search_result_tweets" group="people" @update="changeMarkdown()" @remove="changeMarkdown()")#note-tweets-preview.cards
+          draggable(:list="search_result_tweets" group="people" @update="changeMarkdown()" @remove="changeMarkdown()")#note-tweets-preview.cards--search-form
             tweet(:tweet="element" v-for="(element, index) in search_result_tweets" :key="element.id_str")
     .search-form__small-block
       .search-form__tools
@@ -70,7 +70,7 @@
           ul.note-body__inner
             li(v-if="isActive === 'preview'")
               .note__inner.is-preview
-                draggable(:list="note_tweets" group="people" @add="changeMarkdown()" @update="changeMarkdown()" @remove="changeMarkdown()").cards
+                draggable(:list="note_tweets" group="people" @add="changeMarkdown()" @update="changeMarkdown()" @remove="changeMarkdown()").cards--note
                   tweet(:tweet="element" v-for="(element, index) in note_tweets" :key="element.id_str")
             li(v-if="isActive === 'markdown'")
               .note__inner.is-markdown
