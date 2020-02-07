@@ -1,41 +1,97 @@
-.container
-  .welcome-logo__block--center
+.welcome__block
+  .welcome__container--center
+    h1.welcome__title
+      | 勉強会のノートをもっと簡単に。
+      br
+      | 知見をもっと共有したい
     .welcome-logo__image-container
       = image_tag "twi-note-icon/icon-196x196.png", alt: ""
-    = link_to new_user_session_path(), class: "welcome__block--button"
+    = link_to new_user_session_path(), class: "welcome__button"
       | サインイン画面に移動
-  .welcome__block
-    h1.welcome__title
-      | ついノート
-  .welcome__block
+.welcome__block
+  .welcome__container
     h2.welcome__sub-title
-      | はじめに
+      | 勉強会のノートがもっと簡単に取れるサービスです
     p.welcome__text
-      | 今回は勉強会参加者向けのノート作成支援アプリである「ついノート」を作成しました。
+      | これまでは勉強会参加者が個別にノートを作成しなければいけなかったところを、
       br
-      | 以下ではその背景とアプリの概要について説明します。
-  .welcome__block
-    h2.welcome__sub-title
-      | 背景
-    p.welcome__text
-      | エンジニアは最新の知識を得るために日々情報収集を行っています。
-      br
-      | その手法は様々ですが、勉強会への参加は直接現場のエンジニアからの話や意見を聞くことができる点で効果的です
-      br
-      | 一方で、勉強会参加の意義を高めるために、情報を整理・集約・定着させる必要があり、そこにはいくつかの課題があります。特に知識の集約を容易にすることは重要だと考えられます。
-      br
-      | そこで今回は、知識を整理・集約するのを助けてくれる「ついノート」を作成しました。
-  .welcome__block
-    h2.welcome__sub-title
-      | アプリケーションの概要
-    p.welcome__text
-      | 本アプリは「勉強会ハッシュタグ」「開始時間」「終了時間」を入力するだけで、簡単にツイートをまとめることができます。
-      br
-      | これまでは勉強会参加者が個別にノートを作成しなければいけなかったところを、本アプリを用いるとツイートをまとめるのみで済むようになります。
-    .welcome__image
-      = image_tag "welcome/how-to-use.png", alt: ""
-    p.welcome__text
-      | これまで個別にとっていたノートが、ツイートをまとめることで簡単にできるようになります。
-    .welcome__image
-      = image_tag "welcome/before-and-after-using-twi-note.png", alt: ""
+      | 本アプリを用いるとツイートをまとめるのみで済むようになります。
+    .welcome__3boxs
+      .welcome__3box
+        .welcome-3box__circle
+        .welcome__3box-inner
+          i.material-icons.welcome__box-image
+            | share
+          h3.welcome__box-title
+            | 共有
+          p.welcome__text
+            | 勉強会ハッシュタグで
+          p.welcome__text
+            | ツイートする
+      .welcome__3box
+        .welcome-3box__circle
+        .welcome__3box-inner
+          i.material-icons.welcome__box-image
+            | search
+          h3.welcome__box-title
+            | 検索
+          p.welcome__text
+            | みんなのツイートを
+          p.welcome__text
+            | 検索する
+      .welcome__3box
+        .welcome-3box__circle
+        .welcome__3box-inner
+          i.material-icons.welcome__box-image
+            | sort
+          h3.welcome__box-title
+            | 整理・集約
+          p.welcome__text
+            | ついノートでまとめる
+.welcome__block
+  .welcome__container
+    .welcome__2boxs
+      .welcome__2box
+        h2.welcome__sub-title
+          | みんなの知見が自分の知見になる
+        p.welcome__text
+          | 勉強会ハッシュタグで呟かれた内容がまとめられるので、勉強会参加者が共有した知見を自分の知見にすることができます。
+      .welcome__2box
+        .welcome__image
+          = image_tag "welcome/what-twi-note-can-do.png", alt: ""
+.welcome__block
+  .welcome__container
+    .welcome__2boxs
+      .welcome__2box
+        h2.welcome__sub-title
+          | ドラッグ＆ドロップで簡単に移動
+        p.welcome__text
+          | ドラッグ＆ドロップができるので、簡単にツイートをまとめることが可能です
+      .welcome__2box
+        .welcome__image
+          = image_tag "welcome/drag-and-drop.png", alt: ""
+.welcome__block
+  .welcome__container
+    .welcome__2boxs
+      .welcome__2box
+        h2.welcome__sub-title
+          | 日時を簡単に設定
+        p.welcome__text
+          | Datetime pickerを導入しているので、簡単に日付設定可能です。
+      .welcome__2box
+        .welcome__image
+          = image_tag "welcome/datetime-picker.png", alt: ""
+.welcome__block
+  .welcome__container
+    .welcome__2boxs
+      .welcome__2box
+        h2.welcome__sub-title
+          | テキストで手に入る
+        p.welcome__text
+          | 個人サービスを利用する際、最大の懸念事項はサービスが終了してデータにアクセスできなくなることだと思います。
+          br
+          | ついノートでは、最終的な成果物がテキストデータとして入手できるため、その心配がありません。
+      .welcome__2box
+        .welcome__image
+          = image_tag "welcome/backup.png", alt: ""
 = render "footer"

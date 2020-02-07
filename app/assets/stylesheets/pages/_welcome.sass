@@ -1,23 +1,8 @@
-=welcome__block--center
-  display: flex
-  align-items: center
-  flex-direction: column
-  align-items: cent
-  font-family: "Open Sans", "Hiragino Kaku Gothic ProN", Meiryo, Helvetica, Arial, sans-serif
-
 .welcome-body
+  padding-top: 3rem
   background-color: $white
 
-.welcome__block--center
-  +welcome__block--center
-  flex-direction: column
-  flex-wrap: wrap
-
-.welcome-logo__block--center
-  +welcome__block--center
-
 .welcome-logo__image-container
-  margin-top: 3rem
   margin-bottom: 1rem
   margin-left: 1rem
   display: inline-block
@@ -28,36 +13,128 @@
   margin: auto
 
 .welcome__block
-  font-family: "Open Sans", "Hiragino Kaku Gothic ProN", Meiryo, Helvetica, Arial, sans-serif
   line-height: 1.7
   margin-bottom: 3rem
+  padding-left: 1rem
+  padding-right: 1rem
 
-.welcome__block--button
+.welcome__button
   +blue-button-style
 
   text-align: center
   margin-top: 2rem
-  margin-bottom: 3rem
-
-.welcome__container > *
-  margin-left: 10px
-  margin-right: 10px
 
 .welcome__block--icon:active--button
   border-bottom: solid 2px #fd9535
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.30)
+
+.welcome__container
+  margin-left: auto
+  margin-right: auto
+
+  @media screen and (max-width:799px)
+    width: 400px
+  @media screen and (min-width:800px)
+    max-width: 800px
+
+.welcome__container--center
+  display: flex
+  align-items: center
+  flex-direction: column
+
+.welcome__2boxs
+  display: flex
+  align-items: center
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: space-around
+
+  min-height: 250px
+
+.welcome__2box
+  @media screen and (max-width:799px)
+    width: 100%
+  @media screen and (min-width:800px)
+    width: 50%
+  
+  & .welcome__text
+    width: 100%
+
+.welcome__3boxs
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+  justify-content: space-around
+  
+  @media screen and (max-width:799px)
+    flex-direction: column
+  @media screen and (min-width:800px)
+    flex-direction: row
+    max-width: 800px
+
+.welcome__3box
+  position: relative
+  width: 230px
+  height: 230px
+
+  margin-bottom: 2rem
+
+.welcome__3box-inner  
+  display: flex
+  height: 100%
+  width: 100%
+
+  flex-direction: column
+  flex-wrap: nowrap
+
+  align-items: center
+  justify-content: center
+  color: $white
+
+  & .welcome__box-title
+    z-index: 1
+    font-size: 2rem
+  & .welcome__text
+
+    width: 75%
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-bottom: 0px
+
+    z-index: 1
+.welcome__box-image
+  z-index: 1
+  font-size: 3rem !important
+
+.welcome-3box__circle
+  position: absolute
+  top: auto
+  right: auto
+  bottom: auto
+  left: auto
+
+  border-radius: 230px
+  width: 230px
+  height: 230px
+  
+  background-color: #35b1fd
+  transition-duration: .3s
 
 .welcome__image
   display: flex
   justify-content: center
   margin-bottom: 1rem
 
-.welcome__image > *
-  width: 70%
-  height: auto
+  & > *
+    width: 100%
+    height: auto
 
 .welcome__title
-  margin: 0rem
+  margin-bottom: 1rem
+  @media screen and (max-width:799px)
+    font-size: 1.6rem
+  @media screen and (min-width:800px)
 
 .welcome__sub-title
   font-size: 1.5rem
