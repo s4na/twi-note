@@ -38,6 +38,8 @@ jobs:
     # - uses: actions/checkout@v1
     
     - name: Set up node and yarn
+      if: steps.cache.outputs.cache-hit != 'true'
+      
       run: |
         curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
         echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
@@ -48,6 +50,8 @@ jobs:
         bundle -j 4
         bin/setup
     - name: Install chrome
+      if: steps.cache.outputs.cache-hit != 'true'
+      
       run: |
         wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
         echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
