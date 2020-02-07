@@ -34,7 +34,7 @@ jobs:
         path: ~/.cache/yarn
         key: ${{ runner.os }}-projectname-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}-${{ hashFiles(format('{0}{1}', github.workspace, '/Gemfile.lock')) }}
         restore-keys:
-          ${{ runner.os }}-projectname-
+          ${{ runner.os }}-projectname-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}-${{ hashFiles(format('{0}{1}', github.workspace, '/Gemfile.lock')) }}
 
     # - uses: actions/checkout@v1
     
