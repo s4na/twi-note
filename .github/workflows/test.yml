@@ -46,6 +46,8 @@ jobs:
         curl -sL https://deb.nodesource.com/setup_12.x | bash -
         apt install -y nodejs yarn
     - name: Build and setup
+      if: steps.cache.outputs.cache-hit != 'true'
+      
       run: |
         bundle -j 4
         bin/setup
