@@ -13,11 +13,11 @@
           .search-form__item
             label.a-label
               | 開始日時
-            datetime(v-model="start_datetime" format="yyyy/LL/d HH:mm" zone="Asia/Tokyo" type="datetime" input-id="start_datetime" name="tweets-search[start_datetime]").search-form__start-datetime.a-text-input
+            datetime(v-model="start_datetime" format="yyyy/LL/d HH:mm" zone="Asia/Tokyo" type="datetime" minute-step="10" input-id="start_datetime" name="tweets-search[start_datetime]").search-form__start-datetime.a-text-input
           .search-form__item
             label.a-label
               | 終了日時
-            datetime(v-model="end_datetime" format="yyyy/LL/d HH:mm" zone="Asia/Tokyo" type="datetime" input-id="end_datetime" name="tweets-search[end_datetime]").search-form__end-datetime.a-text-input
+            datetime(v-model="end_datetime" format="yyyy/LL/d HH:mm" zone="Asia/Tokyo" type="datetime" minute-step="10" input-id="end_datetime" name="tweets-search[end_datetime]").search-form__end-datetime.a-text-input
           .search-form__item
             .search-form__inner--center
               button(type="button" @click="searchTweets").search-form__button.a-button.is-secondary#search-form__button
