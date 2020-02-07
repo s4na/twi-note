@@ -113,7 +113,7 @@ export default {
       start_datetime: '',
       end_datetime: '',
       isActive: 'preview',
-      isExistSearchEesult: 0,
+      isExistSearchEesult: 1,
     }
   },
   created() {
