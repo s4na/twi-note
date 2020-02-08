@@ -13,28 +13,34 @@ on:
 jobs:
   build:
 
-    # runs-on: ubuntu-latest
-    # # container:
-    # #   image: ruby:2.6.5
-    strategy:
-      fail-fast: false
-      matrix:
-        # os: [ ubuntu-latest, macos-latest ]
-        os: [ ubuntu-latest ]
-        # ruby: [ 2.4, 2.5, 2.6, 2.7, jruby, truffleruby ]
-        ruby: [ 2.4, 2.5, 2.6, 2.7 ]
-    runs-on: ${{ matrix.os }}
-    steps:
-    - uses: actions/checkout@v2
-    - uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby }}
+    runs-on: ubuntu-latest
+    container:
+      image: ruby:2.6.5
 
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+
+
+
+
+    # strategy:
+    #   fail-fast: false
+    #   matrix:
+    #     # os: [ ubuntu-latest, macos-latest ]
+    #     os: [ ubuntu-latest ]
+    #     # ruby: [ 2.4, 2.5, 2.6, 2.7, jruby, truffleruby ]
+    #     ruby: [ 2.4, 2.5, 2.6, 2.7 ]
+    # runs-on: ${{ matrix.os }}
     # steps:
     # - uses: actions/checkout@v2
     # - uses: ruby/setup-ruby@v1
     #   with:
-    #     ruby-version: 2.6
+    #     ruby-version: ${{ matrix.ruby }}
+
+
 
     - name: Set up node and yarn
       run: |
