@@ -84,3 +84,14 @@ test('If the data is null, return null', () => {
 
   expect(JSON.stringify(returnTweets)).toBe(JSON.stringify(data.return_tweets))
 })
+
+// markdownからtweetに変換。tweet 0hitで
+test('Convert tweets to markdown', () => {
+  let m2t = new Markdown2Tweets({ 'markdown': 'hoge', 'tweets': '' })
+
+  let returnTweets = m2t.setTweets()
+  let list
+  for (list of returnTweets) { delete (list.id_str) }
+
+  expect(JSON.stringify(returnTweets)).toBe(JSON.stringify('hoge'))
+})
