@@ -59,8 +59,8 @@
       .note
         .note__title
           label.a-label
-            | {{ noteTitleHumanAttributeName }}
-          input(type="text" name="note[title]" id="note_title" :value="noteTitle").a-text-input
+            | {{ propNoteTitleHumanAttributeName }}
+          input(type="text" name="note[title]" id="note_title" v-model="noteTitle").a-text-input
         .note__body
           .note-body__inner.tabs
             input(v-model="isActive" @click="changeTweets()" type="radio" id="tab-preview" name="tab" value="preview").a-tab-radio
@@ -95,9 +95,9 @@ import { DateTime } from 'luxon'
 
 export default {
   props: {
-    noteTitleHumanAttributeName: String,
-    noteTitle: String,
-    noteEditMode: String,
+    propNoteTitleHumanAttributeName: String,
+    propNoteTitle: String,
+    propNoteEditMode: String,
   },
   components: {
     'draggable': Draggable,
@@ -114,6 +114,7 @@ export default {
       end_datetime: '',
       isActive: 'preview',
       isExistSearchEesult: 1,
+      noteTitle: '',
     }
   },
   created() {
@@ -132,13 +133,15 @@ export default {
       .minus({ hour: 1 })
       .minus({ minute: DateTime.local().minute % this.minuteStep })
       .toISO()
-    
+
     this.end_datetime = DateTime.local()
       .minus({ minute: DateTime.local().minute % this.minuteStep })
       .toISO()
 
-    if (this.noteEditMode !== '' && this.noteEditMode !== null){
-      this.isActive = this.noteEditMode
+    this.noteTitle = this.propNoteTitle
+
+    if (this.propNoteEditMode !== '' && this.propNoteEditMode !== null){
+      this.isActive = this.propNoteEditMode
     }
   },
   methods: {
@@ -160,10 +163,12 @@ export default {
       this.note_body = markdown
     },
     changeTweets () {
-      const markdown = this.note_body
-      const tweets = this.all_search_result_tweets
-      let m2t = new Markdown2Tweets({ 'markdown': markdown, 'tweets': tweets })
-      this.note_tweets = m2t.setTweets()
+      if ( this.note_body != null){
+        const markdown = this.note_body
+        const tweets = this.all_search_result_tweets
+        let m2t = new Markdown2Tweets({ 'markdown': markdown, 'tweets': tweets })
+        this.note_tweets = m2t.setTweets()
+      }
     },
     copyToClipboard() {
       let copyTarget = document.getElementById("note_body");
@@ -224,11 +229,18 @@ export default {
       return JSON.stringify(this.note_tweets, null, 2)
     },
     rows:function() {
-        const min = 10
+      
+      const min = 10
+      
+      if (this.note_body != null){
         const margin = 3
-        const size = this.note_body.split("\n").length + margin;
-
+        const size = this.note_body.split("\n").length + margin
         return (size > min) ? size : min;
+      }else{
+        return min
+      }
+      
+      
     }
   }
 }

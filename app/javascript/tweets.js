@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tweets) {
       new Vue({
         render: h => h(Tweets, { props: {
-          noteTitleHumanAttributeName: noteTitleHumanAttributeName,
-          noteTitle: noteTitle,
-          noteEditMode: noteEditMode
+          propNoteTitleHumanAttributeName: noteTitleHumanAttributeName,
+          propNoteTitle: noteTitle,
+          propNoteEditMode: noteEditMode
         } })
       }).$mount('#js-tweets')
     }
