@@ -42,26 +42,21 @@ jobs:
 
     # - uses: actions/checkout@v1
     
-    - name: Set up node and yarn
+    - name: Build and setup
       if: steps.cache.outputs.cache-hit != 'true'
       
       run: |
+        # Set up node and yarn
         curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
         echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
         curl -sL https://deb.nodesource.com/setup_12.x | bash -
         apt install -y nodejs yarn
 
-    - name: Build and setup
-      if: steps.cache.outputs.cache-hit != 'true'
-      
-      run: |
+        # Build and setup
         bundle -j 4
         bin/setup
 
-    - name: Install chrome
-      if: steps.cache.outputs.cache-hit != 'true'
-      
-      run: |
+        # Install chrome
         wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
         echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
         apt update -y
