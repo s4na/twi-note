@@ -12,19 +12,15 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     container:
       image: ruby:2.6.5
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.6
-
-
-
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.6
 
     # strategy:
     #   fail-fast: false
@@ -39,8 +35,6 @@ jobs:
     # - uses: ruby/setup-ruby@v1
     #   with:
     #     ruby-version: ${{ matrix.ruby }}
-
-
 
     - name: Set up node and yarn
       run: |
