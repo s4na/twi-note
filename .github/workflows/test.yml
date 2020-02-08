@@ -32,10 +32,12 @@ jobs:
         #   ${{ runner.os }}-
         
         
-        path: ~/.cache/yarn
-        key: ${{ runner.os }}-projectname-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}-${{ hashFiles(format('{0}{1}', github.workspace, '/Gemfile.lock')) }}
-        restore-keys:
+        path: |
+          ~/.cache/yarn
+        key: |
           ${{ runner.os }}-projectname-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}-${{ hashFiles(format('{0}{1}', github.workspace, '/Gemfile.lock')) }}
+        restore-keys: |
+          ${{ runner.os }}-projectname-
 
     # - uses: actions/checkout@v1
     
@@ -47,12 +49,14 @@ jobs:
         echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
         curl -sL https://deb.nodesource.com/setup_12.x | bash -
         apt install -y nodejs yarn
+
     - name: Build and setup
       if: steps.cache.outputs.cache-hit != 'true'
       
       run: |
         bundle -j 4
         bin/setup
+
     - name: Install chrome
       if: steps.cache.outputs.cache-hit != 'true'
       
@@ -61,9 +65,11 @@ jobs:
         echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
         apt update -y
         apt install -y google-chrome-stable
+
     - name: Rubocop
       run: |
         bundle exec rubocop ./rubocop.yml --parallel
+        
     - name: Lint
       run: |
         bundle exec slim-lint app/views -c config/slim_lint.yml
