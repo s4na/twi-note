@@ -195,7 +195,10 @@ export default {
         .then(json=> {
           json.forEach(c => { this.search_result_tweets.push(c) })
           this._check_add_tweets(json)
-          if (json === []){
+
+          console.log('json')
+          console.log(json)
+          if (json == ''){
             this.isExistSearchEesult = 0
           }else{
             this.isExistSearchEesult = 1
