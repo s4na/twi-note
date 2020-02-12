@@ -1,11 +1,11 @@
 .welcome__block
   .welcome__container--center
+    .welcome-logo__image-container
+      = image_tag "twi-note-icon/icon-196x196.png", alt: ""
     h1.welcome__title
       | 勉強会のノートをもっと簡単に。
       br
       | 知見をもっと共有したい
-    .welcome-logo__image-container
-      = image_tag "twi-note-icon/icon-196x196.png", alt: ""
     = link_to new_user_session_path(), class: "welcome__button"
       | サインイン画面に移動
 .welcome__block
