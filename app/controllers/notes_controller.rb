@@ -18,6 +18,7 @@ class NotesController < ApplicationController
 
   def new
     @note = Note.new
+    @note.build_search_setting
   end
 
   def edit
@@ -53,6 +54,9 @@ class NotesController < ApplicationController
     end
 
     def note_params
-      params.require(:note).permit(:title, :body, :tweets, :all_search_result_tweets, :edit_mode)
+      params.require(:note).permit(
+        :title, :body, :tweets, :all_search_result_tweets, :edit_mode,
+        search_setting_attributes: [:query, :start_datetime, :end_datetime]
+      )
     end
 end

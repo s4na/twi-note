@@ -8,6 +8,7 @@ class NotesTest < ApplicationSystemTestCase
   setup do
     Warden.test_mode!
     @user = users(:user_1)
+    @search_setting = search_settings(:search_setting_1)
     login_as(@user, scope: :user)
 
     @note = notes(:note_1)
@@ -30,6 +31,8 @@ class NotesTest < ApplicationSystemTestCase
     find('label[for="tab-markdown"]').click
     fill_in "note[title]", with: @note.title
     fill_in "note-form__textarea", with: @note.body
+    fill_in "note[search_setting_attributes][query]", with: @search_setting.query
+
     click_on "ノートを保存"
 
     assert_text "ノートを作成しました"
@@ -42,6 +45,8 @@ class NotesTest < ApplicationSystemTestCase
     find('label[for="tab-markdown"]').click
     fill_in "note[title]", with: @note.title
     fill_in "note-form__textarea", with: @note.body
+    fill_in "note[search_setting_attributes][query]", with: @search_setting.query
+
     click_on "ノートを保存"
 
     assert_text "ノートを更新しました"

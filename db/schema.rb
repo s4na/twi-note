@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_28_123653) do
+ActiveRecord::Schema.define(version: 2020_02_09_155806) do
   create_table "notes", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 2020_01_28_123653) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "edit_mode"
+  end
+
+  create_table "search_settings", force: :cascade do |t|
+    t.integer "note_id"
+    t.string "query"
+    t.string "start_datetime"
+    t.string "end_datetime"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["note_id"], name: "index_search_settings_on_note_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,4 +49,6 @@ ActiveRecord::Schema.define(version: 2020_01_28_123653) do
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "search_settings", "notes"
 end
