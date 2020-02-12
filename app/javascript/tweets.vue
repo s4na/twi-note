@@ -223,8 +223,6 @@ export default {
           json.forEach(c => { this.search_result_tweets.push(c) })
           this._check_add_tweets(json)
 
-          console.log('json')
-          console.log(json)
           if (json == ''){
             this.isExistSearchEesult = 0
           }else{
