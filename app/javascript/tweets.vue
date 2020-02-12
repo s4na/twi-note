@@ -9,15 +9,28 @@
           .search-form__item
             label.a-label
               | 検索キーワード
-            input(ref="query" type="text" value="#Ruby").search-form__query.a-text-input
+            input(
+              ref="query" type="text"
+              :value="noteSearchSettingQuery"
+              id="note_search_setting_attributes_query"
+              name="note[search_setting_attributes][query]"
+            ).search-form__query.a-text-input
           .search-form__item
             label.a-label
               | 開始日時
-            datetime(v-model="start_datetime" format="yyyy/LL/d HH:mm" zone="Asia/Tokyo" type="datetime" :minute-step="minuteStep" input-id="start_datetime" name="tweets-search[start_datetime]").search-form__start-datetime.a-text-input
+            datetime_picker(
+              v-model="start_datetime"
+              format="yyyy/LL/d HH:mm" zone="Asia/Tokyo" type="datetime" :minute-step="minuteStep"
+              input-id="note_search_setting_attributes_start_datetime" name="note[search_setting_attributes][start_datetime]"
+            ).search-form__start-datetime.a-text-input
           .search-form__item
             label.a-label
               | 終了日時
-            datetime(v-model="end_datetime" format="yyyy/LL/d HH:mm" zone="Asia/Tokyo" type="datetime" :minute-step="minuteStep" input-id="end_datetime" name="tweets-search[end_datetime]").search-form__end-datetime.a-text-input
+            datetime_picker(
+              v-model="end_datetime"
+              format="yyyy/LL/d HH:mm" zone="Asia/Tokyo" type="datetime" :minute-step="minuteStep"
+              input-id="note_search_setting_attributes_end_datetime" name="note[search_setting_attributes][end_datetime]"
+            ).search-form__end-datetime.a-text-input
           .search-form__item
             .search-form__inner--center
               button(type="button" @click="searchTweets").search-form__button.a-button.is-secondary#search-form__button
@@ -98,11 +111,14 @@ export default {
     noteTitleHumanAttributeName: String,
     noteTitle: String,
     noteEditMode: String,
+    noteSearchSettingQuery: String,
+    noteSearchSettingStartDatetime: String,
+    noteSearchSettingEndDatetime: String,
   },
   components: {
     'draggable': Draggable,
     'tweet': Tweet,
-    'datetime': Datetime,
+    'datetime_picker': Datetime,
   },
   data: function () {
     return {
@@ -128,20 +144,31 @@ export default {
       this.note_body = document.querySelector('#js-note-body').innerText || null
     }
 
-    this.start_datetime = DateTime.local()
-      .minus({ hour: 1 })
-      .minus({ minute: DateTime.local().minute % this.minuteStep })
-      .toISO()
-    
-    this.end_datetime = DateTime.local()
-      .minus({ minute: DateTime.local().minute % this.minuteStep })
-      .toISO()
+    if (this.noteSearchSettingStartDatetime == '') {
+      this.start_datetime = DateTime.local()
+        .minus({ hour: 1 })
+        .minus({ minute: DateTime.local().minute % this.minuteStep })
+        .toISO()
+    } else {
+      this.start_datetime = this.string_to_datetime(this.noteSearchSettingStartDatetime)
+    }
+
+    if (this.noteSearchSettingEndDatetime == '') {
+      this.end_datetime = DateTime.local()
+        .minus({ minute: DateTime.local().minute % this.minuteStep })
+        .toISO()
+    } else {
+      this.end_datetime = this.string_to_datetime(this.noteSearchSettingEndDatetime)
+    }
 
     if (this.noteEditMode !== '' && this.noteEditMode !== null){
       this.isActive = this.noteEditMode
     }
   },
   methods: {
+    string_to_datetime: function(str) {
+      return DateTime.local.apply(this, str.split(/[/ :]/).map(Number)).toISO()
+    },
     change_all_result_tweets_to_note_tweets: function() {
       this.note_tweets = this.note_tweets.concat(this.search_result_tweets)
       this.search_result_tweets = []

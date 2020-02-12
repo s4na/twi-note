@@ -6,7 +6,15 @@
         - @note.errors.full_messages.each do |message|
           li = message
 
-  #js-tweets.hidden(data-note-id="#{@note.id}" data-note-title="#{@note.title}" data-note-edit-mode="#{@note.edit_mode}" data-note-title-human-attribute-name='#{ Note.human_attribute_name("title") }')
+  #js-tweets.hidden(
+    data-note-id="#{@note.id}"
+    data-note-title="#{@note.title}"
+    data-note-edit_mode="#{@note.edit_mode}"
+    data-note-title-human-attribute-name='#{ Note.human_attribute_name("title") }'
+    data-note-search_setting-query="#{@note.search_setting.query}"
+    data-note-search_setting-start_datetime="#{@note.search_setting.start_datetime}"
+    data-note-search_setting-end_datetime="#{@note.search_setting.end_datetime}"
+  )
     #js-note-body.hidden
       = @note.body
     #js-note-tweets.hidden
