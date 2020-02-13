@@ -33,7 +33,7 @@ class NotesTest < ApplicationSystemTestCase
     fill_in "note-form__textarea", with: @note.body
     fill_in "note[search_setting_attributes][query]", with: @search_setting.query
 
-    click_on "ノートを保存"
+    click_on "保存"
 
     assert_text "ノートを作成しました"
   end
@@ -47,7 +47,7 @@ class NotesTest < ApplicationSystemTestCase
     fill_in "note-form__textarea", with: @note.body
     fill_in "note[search_setting_attributes][query]", with: @search_setting.query
 
-    click_on "ノートを保存"
+    click_on "保存"
 
     assert_text "ノートを更新しました"
   end
