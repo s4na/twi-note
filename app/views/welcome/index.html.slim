@@ -3,11 +3,9 @@
     .welcome-logo__image-container
       = image_tag "twi-note-icon/icon-196x196.png", alt: ""
     h1.welcome__title
-      | 勉強会のノートをもっと簡単に。
-      br
-      | 知見をもっと共有したい
+      | 勉強会ノートにツイートを貼ろう
     = link_to new_user_session_path(), class: "welcome__button"
-      | サインイン画面に移動
+      | ついノートを使ってみる
 .welcome__block
   .welcome__container
     h2.welcome__sub-title
@@ -15,19 +13,19 @@
     p.welcome__text
       | これまでは勉強会参加者が個別にノートを作成しなければいけなかったところを、
       br
-      | 本アプリを用いるとツイートをまとめるのみで済むようになります。
+      | ついノートを用いるとツイートをまとめるのみで済むようになります。
     .welcome__3boxs
       .welcome__3box
         .welcome-3box__circle
         .welcome__3box-inner
-          i.material-icons.welcome__box-image
-            | share
+          .welcome__box-image
+            = image_tag "welcome/Twitter_Logo_White.png", alt: ""
           h3.welcome__box-title
-            | 共有
+            | ツイート
           p.welcome__text
-            | 勉強会ハッシュタグで
+            | 勉強会で参加者が
           p.welcome__text
-            | ツイートする
+            | ツイートをします
       .welcome__3box
         .welcome-3box__circle
         .welcome__3box-inner
@@ -36,18 +34,20 @@
           h3.welcome__box-title
             | 検索
           p.welcome__text
-            | みんなのツイートを
+            | 勉強会でつぶやかれた
           p.welcome__text
-            | 検索する
+            | ツイートを検索します
       .welcome__3box
         .welcome-3box__circle
         .welcome__3box-inner
           i.material-icons.welcome__box-image
-            | sort
+            | content_paste
           h3.welcome__box-title
-            | 整理・集約
+            | 貼り付ける
           p.welcome__text
-            | ついノートでまとめる
+            | ツイートをノートに
+          p.welcome__text
+            | 貼り付けます
 .welcome__block
   .welcome__container
     .welcome__2boxs
@@ -64,9 +64,9 @@
     .welcome__2boxs
       .welcome__2box
         h2.welcome__sub-title
-          | ドラッグ＆ドロップで簡単に移動
+          | ツイートをドラッグ＆ドロップ
         p.welcome__text
-          | ドラッグ＆ドロップができるので、簡単にツイートをまとめることが可能です
+          | ツイートをドラッグ＆ドロップで操作することができるので、ツイートを簡単にまとめることができます。
       .welcome__2box
         .welcome__image
           = image_tag "welcome/drag-and-drop.png", alt: ""
@@ -75,22 +75,9 @@
     .welcome__2boxs
       .welcome__2box
         h2.welcome__sub-title
-          | 日時を簡単に設定
-        p.welcome__text
-          | Datetime pickerを導入しているので、簡単に日付設定可能です。
-      .welcome__2box
-        .welcome__image
-          = image_tag "welcome/datetime-picker.png", alt: ""
-.welcome__block
-  .welcome__container
-    .welcome__2boxs
-      .welcome__2box
-        h2.welcome__sub-title
           | テキストで手に入る
         p.welcome__text
-          | 個人サービスを利用する際、最大の懸念事項はサービスが終了してデータにアクセスできなくなることだと思います。
-          br
-          | ついノートでは、最終的な成果物がテキストデータとして入手できるため、その心配がありません。
+          | 人それぞれノートの取り方は違うと思います。ついノートではツイートをテキストで手に入れることができるので、その後データを好きなものに使うことができます
       .welcome__2box
         .welcome__image
           = image_tag "welcome/backup.png", alt: ""

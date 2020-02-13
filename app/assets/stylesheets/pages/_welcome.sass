@@ -76,17 +76,34 @@
   position: relative
   width: 230px
   height: 230px
+  margin-bottom: 36px
 
-  margin-bottom: 2rem
+  &::before
+    display: block
+    content: ""
+    position: absolute
+    width: 0
+    height: 0
+    border: 19px solid transparent
+    border-left-color: #35b1fd
+    @media screen and (max-width:799px)
+      // top: 102%
+      // left: 98px
+      top: 104%
+      left: 99px
+      transform: rotate(90deg)
+    @media screen and (min-width:800px)
+      top: 99px
+      left: 104%
+  &:last-child::before
+    border-style: none
 
 .welcome__3box-inner  
   display: flex
   height: 100%
   width: 100%
-
   flex-direction: column
   flex-wrap: nowrap
-
   align-items: center
   justify-content: center
   color: $white
@@ -95,17 +112,22 @@
     z-index: 1
     font-size: 2rem
   & .welcome__text
-
     width: 75%
     display: flex
     flex-direction: column
     align-items: center
     margin-bottom: 0px
-
     z-index: 1
+
 .welcome__box-image
   z-index: 1
   font-size: 3rem !important
+  
+  height: 52px
+  img
+    height: auto
+    width: 38px
+    margin: 15px
 
 .welcome-3box__circle
   position: absolute
@@ -113,12 +135,11 @@
   right: auto
   bottom: auto
   left: auto
-
   border-radius: 230px
   width: 230px
   height: 230px
-  
-  background-color: #35b1fd
+  // background-color: #35b1fd
+  background-color: #1ba1f2
   transition-duration: .3s
 
 .welcome__image
