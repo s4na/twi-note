@@ -66,9 +66,9 @@
           .search-form-header__item
             button(type="submit").a-button.is-primary
               i.material-icons
-                | save
+                | note
               .search-form-header__inner-text
-                | ノートを保存
+                | 保存
       .note
         .note__title
           label.a-label
@@ -229,7 +229,9 @@ export default {
             this.isExistSearchEesult = 1
           }
         })
-        .catch(error => { console.warn('Failed to parsing', error) })
+        .catch(error => {
+          console.warn('Failed to parsing', error)
+        })
     },
     _check_add_tweets (tweets) {
       let addTweets = []
