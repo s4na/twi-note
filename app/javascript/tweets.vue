@@ -66,7 +66,7 @@
           .search-form-header__item
             button(type="submit").a-button.is-primary
               i.material-icons
-                | note
+                | cloud_upload
               .search-form-header__inner-text
                 | 保存
       .note
