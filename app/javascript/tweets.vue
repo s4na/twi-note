@@ -10,8 +10,8 @@
             label.a-label
               | 検索キーワード
             input(
-              ref="query" type="text"
-              :value="noteSearchSettingQuery"
+              type="text"
+              v-model="query"
               id="note_search_setting_attributes_query"
               name="note[search_setting_attributes][query]"
             ).search-form__query.a-text-input
@@ -130,6 +130,7 @@ export default {
       end_datetime: '',
       isActive: 'preview',
       isExistSearchEesult: 1,
+      query: String,
     }
   },
   created() {
@@ -164,6 +165,8 @@ export default {
     if (this.noteEditMode !== '' && this.noteEditMode !== null){
       this.isActive = this.noteEditMode
     }
+
+    this.query = this.noteSearchSettingQuery
   },
   methods: {
     string_to_datetime: function(str) {
@@ -204,7 +207,7 @@ export default {
     },
     searchTweets: function() {
       this.search_result_tweets = []
-      const query = encodeURIComponent(this.$refs.query.value)
+      const query = encodeURIComponent(this.query)
       const start_datetime = encodeURIComponent(moment(this.start_datetime).format('YYYY-MM-DD HH:mm'));
       const end_datetime = encodeURIComponent(moment(this.end_datetime).format('YYYY-MM-DD HH:mm'));
 
