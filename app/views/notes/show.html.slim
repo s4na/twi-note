@@ -4,7 +4,11 @@
       h1.note-show__title
         = @note.title
       .note-show__items
-        #js-note-body-copy
+        .note-show__item
+          = link_to "#{notes_download_path(@note)}.txt", class: "a-button"
+            i.material-icons
+              | file_download
+            | ダウンロード
         .note-show__item
           = link_to edit_note_path(@note), class: "a-button is-warning"
             i.material-icons
