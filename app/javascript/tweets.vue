@@ -40,7 +40,7 @@
         .search-form__result
           label.a-label
             | 検索結果
-          .search-form__no-result(v-if="this.isExistSearchEesult === 0")
+          .search-form__no-result(v-if="this.isExistSearchResult === 0")
             | 検索結果なし
           draggable(:list="search_result_tweets" group="people" @update="changeMarkdown()" @remove="changeMarkdown()")#note-tweets-preview.cards--search-form
             tweet(:tweet="element" v-for="(element, index) in search_result_tweets" :key="element.id_str")
@@ -129,7 +129,7 @@ export default {
       start_datetime: '',
       end_datetime: '',
       isActive: 'preview',
-      isExistSearchEesult: 1,
+      isExistSearchResult: 1,
       query: String,
     }
   },
@@ -227,9 +227,9 @@ export default {
           this._check_add_tweets(json)
 
           if (json == ''){
-            this.isExistSearchEesult = 0
+            this.isExistSearchResult = 0
           }else{
-            this.isExistSearchEesult = 1
+            this.isExistSearchResult = 1
           }
         })
         .catch(error => { console.warn('Failed to parsing', error) })
