@@ -3,8 +3,8 @@ nav.global-nav
     = link_to root_path, class: "global-nav-logo__container a-link" do
       = image_tag "twi-note-icon/icon-72x72.png", alt: "twi-note icon", class: "global-nav-logo__icon"
       | ついノート
-  ul.global-nav__items
-    - if user_signed_in?
+  - if user_signed_in?
+    ul.global-nav__items
       li.global-nav__item
         .global-nav-item__inner
           = link_to notes_path, class: "global-nav-item__link a-link" do
@@ -17,32 +17,24 @@ nav.global-nav
             i.material-icons.global-nav-item__image
               | exit_to_app
             | ログアウト
-    - unless user_signed_in?
-      li.global-nav__item
-        .global-nav-item__inner
-          = link_to root_path, class: "global-nav-item__link a-link" do
-            i.material-icons.global-nav-item__image
-              | home
-            | トップに戻る
-
-  #global-nav__drawer
-    input#global-nav__input.global-nav__unshown(type="checkbox")
-    label#global-nav__open(for="global-nav__input")
-      span
-    label#global-nav__close.global-nav__unshown(for="global-nav__input")
-    #global-nav-content
-      .global-nav-content__items
-        - if user_signed_in?
-          = link_to notes_path, class: "global-nav-content__item" do
-            i.material-icons
-              | list
-            | ノート一覧
-          = link_to destroy_user_session_path, method: :delete, class: "global-nav-content__item"  do
-            i.material-icons
-              | exit_to_app
-            | ログアウト
-        - unless user_signed_in?
-          = link_to root_path, class: "global-nav-content__item"  do
-            i.material-icons.global-nav-item__image
-              | home
-            | トップに戻る
+    #global-nav__drawer
+      input#global-nav__input.global-nav__unshown(type="checkbox")
+      label#global-nav__open(for="global-nav__input")
+        span
+      label#global-nav__close.global-nav__unshown(for="global-nav__input")
+      #global-nav-content
+        .global-nav-content__items
+          - if user_signed_in?
+            = link_to notes_path, class: "global-nav-content__item" do
+              i.material-icons
+                | list
+              | ノート一覧
+            = link_to destroy_user_session_path, method: :delete, class: "global-nav-content__item"  do
+              i.material-icons
+                | exit_to_app
+              | ログアウト
+          - unless user_signed_in?
+            = link_to root_path, class: "global-nav-content__item"  do
+              i.material-icons.global-nav-item__image
+                | home
+              | トップに戻る
