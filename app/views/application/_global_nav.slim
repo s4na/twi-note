@@ -2,7 +2,7 @@ nav.global-nav
   .global-nav__inner
     = link_to root_path, class: "global-nav-logo__container a-link" do
       = image_tag "twi-note-icon/icon-72x72.png", alt: "twi-note icon", class: "global-nav-logo__icon"
-      | ついノート
+      = image_tag "twi-note-icon/text-448x93.png", alt: "twi-note text", class: "global-nav-logo__icon--text"
   - if user_signed_in?
     ul.global-nav__items
       li.global-nav__item
