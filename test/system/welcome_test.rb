@@ -11,6 +11,6 @@ class WelcomesTest < ApplicationSystemTestCase
 
   test "show welcome when user is not logged in" do
     visit root_path
-    assert_selector "h1", text: "勉強会ノートにツイートを貼ろう"
+    assert_selector "h1", text: "勉強会のノートに、ツイートを貼ろう"
   end
 end
