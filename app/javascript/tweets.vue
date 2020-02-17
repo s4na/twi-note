@@ -43,7 +43,7 @@
             | 検索結果
           .search-form__no-search-result(v-if="this.isExistSearchResult === 0 && this.isSearched === 1")
             | 検索結果がありません
-          .search-form__no-search-query(v-if="this.isExistSearchQuery === 0" && this.isSearched === 1")
+          .search-form__no-search-query(v-if="this.isExistSearchQuery === 0 && this.isSearched === 1")
             | 「検索キーワード」が入力されていません
           draggable(:list="search_result_tweets" group="people" @update="changeMarkdown()" @remove="changeMarkdown()")#note-tweets-preview.cards--search-form
             tweet(:tweet="element" v-for="(element, index) in search_result_tweets" :key="element.id_str")
