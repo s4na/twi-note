@@ -40,8 +40,10 @@
         .search-form__result
           label.a-label
             | 検索結果
-          .search-form__no-result(v-if="this.isExistSearchResult === 0")
-            | 検索結果なし
+          .search-form__no-search-result(v-if="this.isExistSearchResult === 0")
+            | 検索結果がありません
+          .search-form__no-search-query(v-if="this.isExistSearchQuery === 0")
+            | 「検索キーワード」が入力されていません
           draggable(:list="search_result_tweets" group="people" @update="changeMarkdown()" @remove="changeMarkdown()")#note-tweets-preview.cards--search-form
             tweet(:tweet="element" v-for="(element, index) in search_result_tweets" :key="element.id_str")
     .search-form__small-block
@@ -130,6 +132,7 @@ export default {
       end_datetime: '',
       isActive: 'preview',
       isExistSearchResult: 1,
+      isExistSearchQuery: 1,
       query: String,
     }
   },
@@ -206,35 +209,41 @@ export default {
       return meta ? meta.getAttribute('content') : ''
     },
     searchTweets: function() {
-      this.search_result_tweets = []
-      const query = encodeURIComponent(this.query)
-      const start_datetime = encodeURIComponent(moment(this.start_datetime).format('YYYY-MM-DD HH:mm'));
-      const end_datetime = encodeURIComponent(moment(this.end_datetime).format('YYYY-MM-DD HH:mm'));
+      if (this.query != '') {
+        this.isExistSearchQuery = 1
 
-      fetch(`/api/tweets.json?query=${query}&start_datetime=${start_datetime}&end_datetime=${end_datetime}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-Token': this.token()
-        },
-        credentials: 'same-origin',
-        redirect: 'manual',
-      })
-        .then(response => { return response.json() })
-        .then(json=> {
-          json.forEach(c => { this.search_result_tweets.push(c) })
-          this._check_add_tweets(json)
+        this.search_result_tweets = []
+        const query = encodeURIComponent(this.query)
+        const start_datetime = encodeURIComponent(moment(this.start_datetime).format('YYYY-MM-DD HH:mm'));
+        const end_datetime = encodeURIComponent(moment(this.end_datetime).format('YYYY-MM-DD HH:mm'));
 
-          if (json == ''){
-            this.isExistSearchResult = 0
-          }else{
-            this.isExistSearchResult = 1
-          }
+        fetch(`/api/tweets.json?query=${query}&start_datetime=${start_datetime}&end_datetime=${end_datetime}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-Token': this.token()
+          },
+          credentials: 'same-origin',
+          redirect: 'manual',
         })
-        .catch(error => {
-          console.warn('Failed to parsing', error)
-        })
+          .then(response => { return response.json() })
+          .then(json=> {
+            json.forEach(c => { this.search_result_tweets.push(c) })
+            this._check_add_tweets(json)
+
+            if (json == ''){
+              this.isExistSearchResult = 0
+            }else{
+              this.isExistSearchResult = 1
+            }
+          })
+          .catch(error => {
+            console.warn('Failed to parsing', error)
+          })
+      } else {
+        this.isExistSearchQuery = 0
+      }
     },
     _check_add_tweets (tweets) {
       let addTweets = []
