@@ -11,12 +11,15 @@ class TweetsTest < ApplicationSystemTestCase
     @user = users(:user_1)
     login_as(@user, scope: :user)
 
+    @search_setting = search_settings(:search_setting_1)
     @note = notes(:note_1)
   end
 
   test "show tweets" do
     visit notes_url
     click_on "追加"
+
+    fill_in "note[search_setting_attributes][query]", with: @search_setting.query
 
     # Disable until you find a workaround.
     # 👉Select year, month and day with vue-datetime.
