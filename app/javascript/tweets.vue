@@ -8,12 +8,13 @@
         .search-form__items
           .search-form__item
             label.a-label
-              | 検索キーワード
+              | 検索キーワード（勉強会ハッシュタグなど）
             input(
               type="text"
               v-model="query"
               id="note_search_setting_attributes_query"
               name="note[search_setting_attributes][query]"
+              placeholder="例：#sendagayarb"
             ).search-form__query.a-text-input
           .search-form__item
             label.a-label
@@ -38,11 +39,11 @@
                   | search
                 | 検索
         .search-form__result
-          label.a-label
+          label.a-label(v-if="this.isExistSearchResult === 1 && this.isSearched === 1")
             | 検索結果
-          .search-form__no-search-result(v-if="this.isExistSearchResult === 0")
+          .search-form__no-search-result(v-if="this.isExistSearchResult === 0 && this.isSearched === 1")
             | 検索結果がありません
-          .search-form__no-search-query(v-if="this.isExistSearchQuery === 0")
+          .search-form__no-search-query(v-if="this.isExistSearchQuery === 0" && this.isSearched === 1")
             | 「検索キーワード」が入力されていません
           draggable(:list="search_result_tweets" group="people" @update="changeMarkdown()" @remove="changeMarkdown()")#note-tweets-preview.cards--search-form
             tweet(:tweet="element" v-for="(element, index) in search_result_tweets" :key="element.id_str")
@@ -133,6 +134,7 @@ export default {
       isActive: 'preview',
       isExistSearchResult: 1,
       isExistSearchQuery: 1,
+      isSearched: 0,
       query: String,
     }
   },
@@ -237,6 +239,7 @@ export default {
             }else{
               this.isExistSearchResult = 1
             }
+            this.isSearched = 1
           })
           .catch(error => {
             console.warn('Failed to parsing', error)
