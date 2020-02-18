@@ -23,5 +23,9 @@ module TwiNote
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]
     I18n.available_locales = [:ja, :en]
     config.i18n.default_locale = :ja
+
+    config.to_prepare do
+      Devise::SessionsController.layout "welcome"
+    end
   end
 end
