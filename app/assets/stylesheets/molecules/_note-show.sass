@@ -1,7 +1,7 @@
 .note-show
   +is-material
   background-color: $white
-  padding: 10px
+  padding: 1rem
   
   &__title
     margin-bottom: 10px
@@ -19,4 +19,25 @@
       padding-right: 2rem
   &__text
     padding: 20px 0
-    white-space: pre-wrap
+
+  &__card
+    border-radius: 0 0 2px 2px
+    border-left: solid 1px $card-border-color
+    border-right: solid 1px $card-border-color
+    border-bottom: solid 1px $card-border-color  
+    background-color: $card-background-color
+
+    @media screen and (max-width:599px)
+      padding: 1rem 2rem
+    @media screen and (min-width:600px)
+      padding: 1rem 3rem
+    p
+      white-space: pre-wrap
+      word-break: break-word
+
+    &:first-child
+      border-top: solid 1px $card-border-color
+      border-radius: 2px 2px 0 0
+    &:last-child
+      border-radius: 0 0 2px 2px
+
