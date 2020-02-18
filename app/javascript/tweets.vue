@@ -117,6 +117,7 @@ export default {
     noteSearchSettingQuery: String,
     noteSearchSettingStartDatetime: String,
     noteSearchSettingEndDatetime: String,
+    datetimeCurrent: String,
   },
   components: {
     'draggable': Draggable,
@@ -150,18 +151,20 @@ export default {
       this.note_body = document.querySelector('#js-note-body').innerText || null
     }
 
+    let today = DateTime.fromISO(this.datetimeCurrent)
+
     if (this.noteSearchSettingStartDatetime == '') {
-      this.start_datetime = DateTime.local()
+      this.start_datetime = today
         .minus({ hour: 1 })
-        .minus({ minute: DateTime.local().minute % this.minuteStep })
+        .minus({ minute: today.minute % this.minuteStep })
         .toISO()
     } else {
       this.start_datetime = this.string_to_datetime(this.noteSearchSettingStartDatetime)
     }
 
     if (this.noteSearchSettingEndDatetime == '') {
-      this.end_datetime = DateTime.local()
-        .minus({ minute: DateTime.local().minute % this.minuteStep })
+      this.end_datetime = today
+        .minus({ minute: today.minute % this.minuteStep })
         .toISO()
     } else {
       this.end_datetime = this.string_to_datetime(this.noteSearchSettingEndDatetime)

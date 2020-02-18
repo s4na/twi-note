@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const noteSearchSettingQuery = tweets.getAttribute('data-note-search_setting-query')
     const noteSearchSettingStartDatetime = tweets.getAttribute('data-note-search_setting-start_datetime')
     const noteSearchSettingEndDatetime = tweets.getAttribute('data-note-search_setting-end_datetime')
+    const datetimeCurrent = tweets.getAttribute('data-datetime-current')
 
     if (tweets) {
       new Vue({
@@ -19,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
           noteEditMode: noteEditMode,
           noteSearchSettingQuery: noteSearchSettingQuery,
           noteSearchSettingStartDatetime: noteSearchSettingStartDatetime,
-          noteSearchSettingEndDatetime: noteSearchSettingEndDatetime
+          noteSearchSettingEndDatetime: noteSearchSettingEndDatetime,
+          datetimeCurrent: datetimeCurrent
         } })
       }).$mount('#js-tweets')
     }

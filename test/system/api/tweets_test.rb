@@ -16,17 +16,31 @@ class TweetsTest < ApplicationSystemTestCase
   end
 
   test "show tweets" do
+    travel_to Time.zone.parse("2021-11-24 11:22:33")
+
     visit notes_url
     click_on "追加"
 
     fill_in "note[search_setting_attributes][query]", with: @search_setting.query
+    find("#note_search_setting_attributes_start_datetime").click
+    assert_text "November 2021"
+    find(".vdatetime-calendar__month__day", text: "16").click
+    find(".vdatetime-popup__actions__button--confirm", text: "Ok").click
+    find(".vdatetime-time-picker__item", text: "22").click
+    find(".vdatetime-time-picker__item", text: "30").click
+    find(".vdatetime-popup__actions__button--confirm", text: "Ok").click
 
-    # Disable until you find a workaround.
-    # 👉Select year, month and day with vue-datetime.
-    # fill_in "tweets-search[start_datetime]", with: "2019-11-10 23:59"
-    # fill_in "tweets-search[end_datetime]", with: "2019-11-20 23:59"
-
+    find("#note_search_setting_attributes_end_datetime").click
+    assert_text "November 2021"
+    find(".vdatetime-calendar__month__day", text: "16").click
+    find(".vdatetime-popup__actions__button--confirm", text: "Ok").click
+    find(".vdatetime-time-picker__item", text: "23").click
+    find(".vdatetime-time-picker__item", text: "30").click
+    find(".vdatetime-popup__actions__button--confirm", text: "Ok").click
     click_on "検索"
-    assert_text "Markdown、初めて見たときはフォントのせいもあってか、「ゲジゲジみたいだな」って思った記憶"
+
+    travel_back
+
+    assert find(".card", text: "Markdown、初めて見たときはフォントのせいもあってか、「ゲジゲジみたいだな」って思った記憶")
   end
 end
