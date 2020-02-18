@@ -1,17 +1,20 @@
 .sign_in__contents
   padding-top: 4rem
   margin-bottom: 2rem
-  & > *
-    @media screen and (max-width:979px)
-      margin-bottom: 1rem
-    @media screen and (min-width:980px)
-      margin-bottom: 1.5rem
+  padding-left: 1rem
+  padding-right: 1rem
 
 .sign_in__title
   text-align: center
   
 .sign_in__text
+  display: flex
+  align-items: center
+  justify-content: center
   text-align: center
+  
+  img
+    height: 54px
   @media screen and (max-width:979px)
     font-size: 1.5rem
   @media screen and (min-width:980px)
@@ -19,10 +22,16 @@
   
 .sign_in__link
   text-align: center
-  
+  margin-top: 3rem
+  margin-bottom: 3rem
+
 .sign_in__link--button
   +blue-button-style
   text-align: center
+  @media screen and (max-width:559px)
+    font-size: 1.75rem
+  @media screen and (max-width:560px)
+    white-space: pre
   
 .sign_in__link:active--button
   border-bottom: solid 2px #fd9535
@@ -30,8 +39,4 @@
 
 .sign_in__proviso
   text-align: center
-  
-  @media screen and (max-width:979px)
-    font-size: 1.25rem
-  @media screen and (min-width:980px)
-    font-size: 1.5rem
+  font-size: 1rem
