@@ -1,72 +1,41 @@
 .welcome__block
   .welcome__container--center
     .welcome-logo__image-container
-      = image_tag "twi-note-icon/icon-196x196.png", alt: ""
+      = image_tag "twi-note-icon/icon&text-196x196.png", alt: ""
     h1.welcome__title
-      | 勉強会のノートに、ツイートを貼ろう
+      | ノートにツイートを貼れるサービス
     = link_to new_user_session_path(), class: "welcome__button"
-      | ついノートを使ってみる
-.welcome__block
-  .welcome__container
+      | いますぐ使ってみる
+.welcome-info__block
+  .welcome-info__container
     h2.welcome__sub-title
-      | 勉強会のノートがもっと簡単に取れるサービスです
-    p.welcome__text
-      | これまでは勉強会参加者が個別にノートを作成しなければいけなかったところを、
-      br
-      | ついノートを用いるとツイートをまとめるのみで済むようになります。
-    .welcome__3boxs
-      .welcome__3box
-        .welcome-3box__circle
-        .welcome__3box-inner
-          .welcome__box-image
-            = image_tag "welcome/Twitter_Logo_White.png", alt: ""
-          h3.welcome__box-title
-            | ツイート
-          p.welcome__text
-            | 勉強会で参加者が
-          p.welcome__text
-            | ツイートをします
-      .welcome__3box
-        .welcome-3box__circle
-        .welcome__3box-inner
-          i.material-icons.welcome__box-image
-            | search
-          h3.welcome__box-title
-            | 検索
-          p.welcome__text
-            | 勉強会でつぶやかれた
-          p.welcome__text
-            | ツイートを検索します
-      .welcome__3box
-        .welcome-3box__circle
-        .welcome__3box-inner
-          i.material-icons.welcome__box-image
-            | content_paste
-          h3.welcome__box-title
-            | 貼り付ける
-          p.welcome__text
-            | ツイートをノートに
-          p.welcome__text
-            | 貼り付けます
+      | twi-noteは、ツイートがノートに簡単に貼れるサービスです
+    .welcome__container
+      p.welcome__text
+        | 通常、ツイートをノートに貼る場合は一つ一つのツイートをコピーしなければなりません。
+        | twi-noteでは検索結果をそのままノートに貼り付けることができます。
+.weocome-feature__header
+  h2.welcome__sub-title
+    | ツイートを簡単に貼るための仕組み
 .welcome__block
   .welcome__container
     .welcome__2boxs
       .welcome__2box
-        h2.welcome__sub-title
-          | みんなの知見が自分の知見になる
+        h3.welcome__sub-title
+          | 検索結果の全ツイートを一括で貼れる
         p.welcome__text
-          | 勉強会ハッシュタグで呟かれた内容がまとめられるので、勉強会参加者が共有した知見を自分の知見にすることができます。
+          | ツイートの検索結果を全てノートに貼り付けたいとき便利です。
       .welcome__2box
         .welcome__image
-          = image_tag "welcome/what-twi-note-can-do.png", alt: ""
+          = image_tag "welcome/all-move.png", alt: ""
 .welcome__block
   .welcome__container
     .welcome__2boxs
       .welcome__2box
-        h2.welcome__sub-title
-          | ツイートをドラッグ＆ドロップ
+        h3.welcome__sub-title
+          | ツイートをドラッグ＆ドロップで貼れる
         p.welcome__text
-          | ツイートをドラッグ＆ドロップで操作することができるので、ツイートを簡単にまとめることができます。
+          | ツイート一つ一つをドラッグ＆ドロップで、好きなところに貼り付けることができます。
       .welcome__2box
         .welcome__image
           = image_tag "welcome/drag-and-drop.png", alt: ""
@@ -74,11 +43,22 @@
   .welcome__container
     .welcome__2boxs
       .welcome__2box
-        h2.welcome__sub-title
-          | テキストで手に入る
+        h3.welcome__sub-title
+          | 時間を指定して、ツイートを検索できる
         p.welcome__text
-          | 人それぞれノートの取り方は違うと思います。ついノートではツイートをテキストで手に入れることができるので、その後データを好きなものに使うことができます
+          | ある日時からある日時までのツイートを検索できます。ツイッターの公式サイトでは、時間を指定して検索することはできません。
       .welcome__2box
         .welcome__image
-          = image_tag "welcome/backup.png", alt: ""
+          = image_tag "welcome/time-specification.png", alt: ""
+.welcome__block
+  .welcome__container
+    .welcome__2boxs
+      .welcome__2box
+        h3.welcome__sub-title
+          | 作成したノートをダウンロードできる
+        p.welcome__text
+          | twi-noteでは、作成したノートをダウンロードできます。テキストファイルとして手に入れられるので、普段利用しているノートアプリをそのまま使った上で、使うことができます。
+      .welcome__2box
+        .welcome__image
+          = image_tag "welcome/download.png", alt: ""
 = render "footer"
