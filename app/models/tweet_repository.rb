@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class TweetRepository
+  def initialize(twitter_app_id, twitter_app_secret)
+    @twitter_app_id = twitter_app_id
+    @twitter_app_secret = twitter_app_secret
+  end
+
   def search(params)
     set_params(params)
     tweets
@@ -29,8 +34,8 @@ class TweetRepository
 
     def client
       @client ||= Twitter::REST::Client.new(
-        consumer_key: ENV["TWITTWE_APP_ID"],
-        consumer_secret: ENV["TWITTWE_APP_SECRET"]
+        consumer_key: @twitter_app_id,
+        consumer_secret: @twitter_app_secret
       )
     end
 
