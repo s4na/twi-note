@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
 class TweetRepository
+  def initialize(twitter_app_id, twitter_app_secret)
+    @twitter_app_id = twitter_app_id
+    @twitter_app_secret = twitter_app_secret
+  end
+
   def search(params)
     set_params(params)
-    tweets
+    tweets(params)
   end
 
   private
@@ -15,12 +20,13 @@ class TweetRepository
       @since_id = nil
     end
 
-    def tweets
-      if Rails.env.test? || ENV["NO_EXTERNAL_API"]
+    def tweets(params)
+      if (Rails.env.test? || ENV["NO_EXTERNAL_API"]) && !params[:EXTERNAL_API]
         load_file_tweets
       else
         search_tweets
       end
+
       add_tweet_params
       sort_tweet_asc
 
@@ -29,8 +35,8 @@ class TweetRepository
 
     def client
       @client ||= Twitter::REST::Client.new(
-        consumer_key: ENV["TWITTWE_APP_ID"],
-        consumer_secret: ENV["TWITTWE_APP_SECRET"]
+        consumer_key: @twitter_app_id,
+        consumer_secret: @twitter_app_secret
       )
     end
 
