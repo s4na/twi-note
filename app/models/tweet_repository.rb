@@ -8,7 +8,7 @@ class TweetRepository
 
   def search(params)
     set_params(params)
-    tweets
+    tweets(params)
   end
 
   private
@@ -20,12 +20,13 @@ class TweetRepository
       @since_id = nil
     end
 
-    def tweets
-      if Rails.env.test? || ENV["NO_EXTERNAL_API"]
+    def tweets(params)
+      if (Rails.env.test? || ENV["NO_EXTERNAL_API"]) && !params[:EXTERNAL_API]
         load_file_tweets
       else
         search_tweets
       end
+
       add_tweet_params
       sort_tweet_asc
 
