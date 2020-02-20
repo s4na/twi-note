@@ -2,41 +2,11 @@
   padding-top: 3rem
   background-color: $white
   font-family: "ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,"MS Pゴシック","MS PGothic",sans-serif
-  
-  @media screen and (max-width:799px)
-    h1
-      font-size: 36px
-    h2
-      font-size: 36px
-    h3
-      font-size: 36px
-    p
-      font-size: 20px
-      color: #888b8d
-    strong
-      // color: #82A0BC
-      // color: #e9566e
-      // color: #B95F89
-  
-  @media screen and (min-width:800px)
-    h1
-      font-size: 48px
-    h2
-      font-size: 48px
-    h3
-      font-size: 38px
-    p
-      font-size: 24px
-      color: #888b8d
-    strong
-      // color: #82A0BC
-      // color: #e9566e
-      // color: #B95F89
-
 
 .welcome__block
   line-height: 1.7
   margin-bottom: 3rem
+
   @media screen and (max-width:799px)
     padding-left: 1rem
     padding-right: 1rem
@@ -71,8 +41,8 @@
   flex-direction: row
   flex-wrap: wrap
   justify-content: space-between
-
   min-height: 250px
+
   @media screen and (min-width:800px)
     margin-bottom: 10rem
 
@@ -111,7 +81,7 @@
     width: 0
     height: 0
     border: 19px solid transparent
-    // border-left-color: #35b1fd
+
     border-left-color: #82A0BC
     @media screen and (max-width:799px)
       top: 104%
@@ -163,9 +133,6 @@
   border-radius: 230px
   width: 230px
   height: 230px
-  // background-color: #35b1fd
-  // background-color: #1ba1f2
-  // background-color: #A7CCED
   background-color: #82A0BC
   transition-duration: .3s
 
@@ -181,17 +148,34 @@
 .welcome__title
   margin-bottom: 1rem
   text-align: center
+
   @media screen and (max-width:799px)
-    font-size: 1.6rem
+    font-size: 36px
   @media screen and (min-width:800px)
+    font-size: 48px
 
 .welcome__sub-title
-  font-size: 1.5rem
   margin-top: 0rem
   margin-bottom: 2rem
   text-align: center
+
+  @media screen and (max-width:799px)
+    font-size: 36px
+  
+  @media screen and (min-width:800px)
+    font-size: 48px
+
+h3.welcome__sub-title
+  @media screen and (min-width:800px)
+    font-size: 38px
 
 .welcome__text
   font-size: 1rem
   margin-top: 0rem
   margin-bottom: 1rem
+  color: #888b8d
+
+  @media screen and (max-width:799px)
+    font-size: 20px
+  @media screen and (min-width:800px)
+    font-size: 24px
