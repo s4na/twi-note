@@ -11,7 +11,6 @@ class TweetRepositoryTest < ActiveSupport::TestCase
         body: { "grant_type"=>"client_credentials" },
         headers: {
         "Accept"=>"*/*",
-        "Authorization"=>"Basic Rm5JdTJsSnhnQWlTU00ySzBVTDVkTURSVzo4MVBZME9ISHZWWTRraUxQTHNVZmNwUUdiTDhXdTNraThMSWtLemt5UmltM21qU0VDMg==",
         "Connection"=>"close",
         "Content-Type"=>"application/x-www-form-urlencoded",
         "Host"=>"api.twitter.com",
@@ -29,7 +28,6 @@ class TweetRepositoryTest < ActiveSupport::TestCase
     stub_request(:get, "https://api.twitter.com/1.1/search/tweets.json?count=100&exclude=retweets&q=hoge&result_type=recent&since_id&until=2020-02-19").
     with(
       headers: {
-      "Authorization"=>"Bearer AAAA%2FAAA%3DAAAAAAAA",
       "Connection"=>"close",
       "Host"=>"api.twitter.com",
       "User-Agent"=>"TwitterRubyGem/6.2.0"
@@ -55,7 +53,7 @@ class TweetRepositoryTest < ActiveSupport::TestCase
       }
     )
 
-    tweets = TweetRepository.new(ENV["TWITTWE_APP_ID"], ENV["TWITTWE_APP_SECRET"])
+    tweets = TweetRepository.new("id", "secret")
       .search(
         query: "hoge",
         start_datetime: "2020-02-16 10:00",
