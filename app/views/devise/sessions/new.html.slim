@@ -1,9 +1,9 @@
 .container
   .sign_in__contents
-    p.sign_in__text
+    h2.sign_in__title
       = image_tag "welcome/Twitter_Logo_Blue.png", alt: ""
       | Twitterと連携すると
-    p.sign_in__text
+    h2.sign_in__title
       | 「twi-note」が使えるようになります
     .sign_in__link
       = render "devise/shared/links"
@@ -12,4 +12,6 @@
       | 及び、
       = link_to "免責事項", disclaimers_path, class: "a-link is-blue"
       | を理解し同意したことと致します。
+  .sign_in__footer
+      = link_to "トップページに戻る", root_path, class: "sign_in_buttton"
 = render "footer"

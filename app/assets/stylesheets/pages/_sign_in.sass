@@ -5,21 +5,25 @@
   padding-right: 1rem
 
 .sign_in__title
+  display: flex
+  align-items: center
+  justify-content: center
   text-align: center
-  
+
+  @media screen and (max-width:559px)
+    font-size: 20px
+  @media screen and (min-width:560px)
+    font-size: 24px
+
+  img
+    height: 54px
+
 .sign_in__text
   display: flex
   align-items: center
   justify-content: center
   text-align: center
-  
-  img
-    height: 54px
-  @media screen and (max-width:979px)
-    font-size: 1.5rem
-  @media screen and (min-width:980px)
-    font-size: 2rem
-  
+
 .sign_in__link
   text-align: center
   margin-top: 3rem
@@ -30,9 +34,8 @@
   text-align: center
   @media screen and (max-width:559px)
     font-size: 1.75rem
-  @media screen and (max-width:560px)
     white-space: pre
-  
+
 .sign_in__link:active--button
   border-bottom: solid 2px #fd9535
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.30)
@@ -40,3 +43,29 @@
 .sign_in__proviso
   text-align: center
   font-size: 1rem
+
+.sign_in__footer
+  display: flex
+  justify-content: center
+  margin-top: 24rem
+  margin-bottom: 3rem
+
+.sign_in_buttton
+  width: 24rem
+
+  font-weight: 700
+  font-size: 1.375rem
+  color: #35b1fd
+  border: solid 1px #35b1fd
+  border-radius: 2em
+  min-height: 2.6125em
+  cursor: pointer
+  display: flex
+  justify-content: center
+  align-items: center
+  padding-left: 1em
+  padding-right: 1em
+
+  &:hover
+    color: white
+    background-color: #35b1fd
