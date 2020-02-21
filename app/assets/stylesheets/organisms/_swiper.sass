@@ -5,16 +5,13 @@
   width: 100%
 
 .swiper-slide
-  display: flex
   width: 100%
-  align-items: center
   font-weight: bold
 
   a
-    display: flex
-    height: 100%
-    align-items: center
     font-size: 20px
+    padding-top: 0.8rem
+    padding-bottom: 0.8rem
 
   img
     margin-right: 0.2em
@@ -22,11 +19,15 @@
     margin-right: 0.2em
 
 .swiper-slide--view
-  word-break: break-all
+
   a
-    width: 100%
+    display: block
+    height: 100%
     padding-left: 1rem
     padding-right: 1rem
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
 
 .swiper-slide--controller
   a
