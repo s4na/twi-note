@@ -304,8 +304,10 @@ export default {
     rows: function () {
       const min = 10
       const margin = 3
+      if (this.note_body === '' || this.note_body === null) {
+        return min
+      }
       const size = this.note_body.split('\n').length + margin
-
       return size > min ? size : min
     }
   }
