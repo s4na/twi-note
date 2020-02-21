@@ -60,4 +60,22 @@ class NotesTest < ApplicationSystemTestCase
 
     assert_text "ノートを削除しました"
   end
+
+  test "when note.body is empty, check that it is empty even after converting to markdown and returning" do
+    visit note_path(@note)
+    click_on "編集"
+
+    find('label[for="tab-markdown"]').click
+    fill_in "note-form__textarea", with: ""
+    click_on "保存"
+
+    assert_text "ノートを更新しました"
+    click_on "編集"
+
+    find('label[for="tab-preview"]').click
+    find('label[for="tab-markdown"]').click
+    click_on "保存"
+
+    assert_text @note.body, find("#note-show__text").text
+  end
 end
