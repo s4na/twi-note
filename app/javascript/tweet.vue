@@ -7,7 +7,6 @@
       p(lang="ja" dir="ltr")
         | {{ tweet["text"] }}
         br
-        //- img(:src="image_src").card__twitter-logo
         img(:src="image_src").card__twitter-logo
         | &mdash; {{ tweet["user"]["name"] }} (@{{ tweet["user"]["screen_name"] }})
 </template>
