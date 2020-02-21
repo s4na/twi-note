@@ -39,8 +39,9 @@ jobs:
     - name: Lint
       run: |
         bundle exec slim-lint app/views -c config/slim_lint.yml
-        bin/yarn eslint app/javascript
-        bin/yarn eslint test/javascript
+        bin/yarn prettier-eslint --write 'app/**/*.js'
+        bin/yarn prettier-eslint --write 'app/**/*.vue'
+        bin/yarn prettier-eslint --write 'test/**/*.js'
     - name: Test
       run: |
         bundle exec rails test && bundle exec rails test:system
