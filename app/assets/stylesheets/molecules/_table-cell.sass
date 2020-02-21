@@ -1,20 +1,22 @@
 .table-cell
   +table-cell
   
-  display: flex
   min-height: 3rem
-  align-items: center
 
   &--title > a
-    padding-top: 0.2rem
-    padding-bottom: 0.2rem
+    height: 100%
+    display: block
+    padding-top: 0.6rem
+    padding-bottom: 0.6rem
     padding-left: 0.6rem
     padding-right: 0.6rem
-    word-break: break-all
+    display: block
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
   &--date > a
     justify-content: center
 
-  &--title > a,
   &--date > a
     display: flex
     height: 100%
