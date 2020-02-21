@@ -71,6 +71,7 @@ group :development do
   gem "rubocop-performance"
   gem "slim_lint"
   gem "html2slim"
+  gem "bullet"
 end
 
 gem "slim-rails"

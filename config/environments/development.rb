@@ -63,4 +63,14 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_mailer.default_url_options = { host: "localhost:3000" }
+
+  # Add code to add bullet gem
+  # https://maetoo11.hatenablog.com/entry/2016/03/14/212524
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+  end
 end
