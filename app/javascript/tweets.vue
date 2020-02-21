@@ -76,7 +76,7 @@
         .note__title
           label.a-label
             | {{ noteTitleHumanAttributeName }}
-          input(type="text" name="note[title]" id="note_title" :value="noteTitle").a-text-input
+          input(type="text" name="note[title]" id="note_title" v-model="noteTitle").a-text-input
         .note__body
           .note-body__inner.tabs
             input(v-model="isActive" @click="changeTweets()" type="radio" id="tab-preview" name="tab" value="preview").a-tab-radio
