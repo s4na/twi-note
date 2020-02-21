@@ -12,7 +12,7 @@
 <script>
 export default {
   props: {
-    tweet: Object,
-  },
+    tweet: Object
+  }
 }
 </script>

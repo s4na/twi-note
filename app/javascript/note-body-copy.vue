@@ -8,7 +8,7 @@
 <script>
 export default {
   methods: {
-    copyNoteBodyToClipboard() {
+    copyNoteBodyToClipboard () {
       const element = document.querySelector('#note-show__text')
       const range = document.createRange()
       range.selectNodeContents(element)
@@ -17,7 +17,7 @@ export default {
       selection.removeAllRanges()
       selection.addRange(range)
       document.execCommand('copy')
-      alert("クリップボードにコピーしました")
+      alert('クリップボードにコピーしました')
       selection.removeAllRanges()
     }
   }

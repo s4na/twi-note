@@ -117,12 +117,12 @@ export default {
     noteSearchSettingQuery: String,
     noteSearchSettingStartDatetime: String,
     noteSearchSettingEndDatetime: String,
-    datetimeCurrent: String,
+    datetimeCurrent: String
   },
   components: {
-    'draggable': Draggable,
-    'tweet': Tweet,
-    'datetime_picker': Datetime,
+    draggable: Draggable,
+    tweet: Tweet,
+    datetime_picker: Datetime
   },
   data: function () {
     return {
@@ -136,16 +136,23 @@ export default {
       isExistSearchResult: 1,
       isExistSearchQuery: 1,
       isSearched: 0,
-      query: String,
+      query: String
     }
   },
-  created() {
+  created () {
     // if innerText is null then []
     if (document.querySelector('#js-note-tweets') !== null) {
-      this.note_tweets = JSON.parse(document.querySelector('#js-note-tweets').innerText || null) || []
+      this.note_tweets =
+        JSON.parse(
+          document.querySelector('#js-note-tweets').innerText || null
+        ) || []
     }
     if (document.querySelector('#js-note_all-search-result-tweets') !== null) {
-      this.all_search_result_tweets = JSON.parse(document.querySelector('#js-note_all-search-result-tweets').innerText || null) || []
+      this.all_search_result_tweets =
+        JSON.parse(
+          document.querySelector('#js-note_all-search-result-tweets')
+            .innerText || null
+        ) || []
     }
     if (document.querySelector('#js-note-body') !== null) {
       this.note_body = document.querySelector('#js-note-body').innerText || null
@@ -159,7 +166,9 @@ export default {
         .minus({ minute: today.minute % this.minuteStep })
         .toISO()
     } else {
-      this.start_datetime = this.string_to_datetime(this.noteSearchSettingStartDatetime)
+      this.start_datetime = this.string_to_datetime(
+        this.noteSearchSettingStartDatetime
+      )
     }
 
     if (this.noteSearchSettingEndDatetime == '') {
@@ -167,79 +176,94 @@ export default {
         .minus({ minute: today.minute % this.minuteStep })
         .toISO()
     } else {
-      this.end_datetime = this.string_to_datetime(this.noteSearchSettingEndDatetime)
+      this.end_datetime = this.string_to_datetime(
+        this.noteSearchSettingEndDatetime
+      )
     }
 
-    if (this.noteEditMode !== '' && this.noteEditMode !== null){
+    if (this.noteEditMode !== '' && this.noteEditMode !== null) {
       this.isActive = this.noteEditMode
     }
 
     this.query = this.noteSearchSettingQuery
   },
   methods: {
-    string_to_datetime: function(str) {
+    string_to_datetime: function (str) {
       return DateTime.local.apply(this, str.split(/[/ :]/).map(Number)).toISO()
     },
-    change_all_result_tweets_to_note_tweets: function() {
+    change_all_result_tweets_to_note_tweets: function () {
       this.note_tweets = this.note_tweets.concat(this.search_result_tweets)
       this.search_result_tweets = []
-      
+
       this.changeMarkdown()
     },
-    change_all_note_tweets_to_result_tweets: function() {
-      this.search_result_tweets = this.search_result_tweets.concat(this.note_tweets)
+    change_all_note_tweets_to_result_tweets: function () {
+      this.search_result_tweets = this.search_result_tweets.concat(
+        this.note_tweets
+      )
       this.note_tweets = []
 
       this.changeMarkdown()
     },
     changeMarkdown () {
-      let m2t = new Markdown2Tweets({'tweets': this.note_tweets})
+      let m2t = new Markdown2Tweets({ tweets: this.note_tweets })
       const markdown = m2t.setMarkdown()
       this.note_body = markdown
     },
     changeTweets () {
       const markdown = this.note_body
       const tweets = this.all_search_result_tweets
-      let m2t = new Markdown2Tweets({ 'markdown': markdown, 'tweets': tweets })
+      let m2t = new Markdown2Tweets({ markdown: markdown, tweets: tweets })
       this.note_tweets = m2t.setTweets()
     },
-    copyToClipboard() {
-      let copyTarget = document.getElementById("note_body");
-      copyTarget.select();
-      document.execCommand("Copy");
-      alert("クリップボードにコピーしました");
+    copyToClipboard () {
+      let copyTarget = document.getElementById('note_body')
+      copyTarget.select()
+      document.execCommand('Copy')
+      alert('クリップボードにコピーしました')
     },
     token () {
       const meta = document.querySelector('meta[name="csrf-token"]')
       return meta ? meta.getAttribute('content') : ''
     },
-    searchTweets: function() {
+    searchTweets: function () {
       if (this.query != '') {
         this.isExistSearchQuery = 1
 
         this.search_result_tweets = []
         const query = encodeURIComponent(this.query)
-        const start_datetime = encodeURIComponent(moment(this.start_datetime).format('YYYY-MM-DD HH:mm'));
-        const end_datetime = encodeURIComponent(moment(this.end_datetime).format('YYYY-MM-DD HH:mm'));
+        const start_datetime = encodeURIComponent(
+          moment(this.start_datetime).format('YYYY-MM-DD HH:mm')
+        )
+        const end_datetime = encodeURIComponent(
+          moment(this.end_datetime).format('YYYY-MM-DD HH:mm')
+        )
 
-        fetch(`/api/tweets.json?query=${query}&start_datetime=${start_datetime}&end_datetime=${end_datetime}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json; charset=utf-8',
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-Token': this.token()
-          },
-          credentials: 'same-origin',
-          redirect: 'manual',
-        })
-          .then(response => { return response.json() })
-          .then(json=> {
-            json.forEach(c => { this.search_result_tweets.push(c) })
+        fetch(
+          `/api/tweets.json?query=${query}&start_datetime=${start_datetime}&end_datetime=${end_datetime}`,
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json; charset=utf-8',
+              'X-Requested-With': 'XMLHttpRequest',
+              'X-CSRF-Token': this.token()
+            },
+            credentials: 'same-origin',
+            redirect: 'manual'
+          }
+        )
+          .then(response => {
+            return response.json()
+          })
+          .then(json => {
+            json.forEach(c => {
+              this.search_result_tweets.push(c)
+            })
             this._check_add_tweets(json)
 
-            if (json == ''){
+            if (json == '') {
               this.isExistSearchResult = 0
-            }else{
+            } else {
               this.isExistSearchResult = 1
             }
             this.isSearched = 1
@@ -255,25 +279,34 @@ export default {
       let addTweets = []
       tweets.forEach(c => {
         let isMatch = 0
-        for(let i = 0; i < this.all_search_result_tweets.length ; i++){
-          if (this.all_search_result_tweets[i].id_str === c.id_str && this.all_search_result_tweets[i].user.id_str === c.user.id_str){ isMatch = 1 }
+        for (let i = 0; i < this.all_search_result_tweets.length; i++) {
+          if (
+            this.all_search_result_tweets[i].id_str === c.id_str &&
+            this.all_search_result_tweets[i].user.id_str === c.user.id_str
+          ) {
+            isMatch = 1
+          }
         }
-        if ( isMatch === 0){ addTweets.push(c) }
+        if (isMatch === 0) {
+          addTweets.push(c)
+        }
       })
-      addTweets.forEach(c => { this.all_search_result_tweets.push(c) })
+      addTweets.forEach(c => {
+        this.all_search_result_tweets.push(c)
+      })
     }
   },
   computed: {
     minuteStep: () => 10,
-    tweetsString() {
+    tweetsString () {
       return JSON.stringify(this.note_tweets, null, 2)
     },
-    rows:function() {
-        const min = 10
-        const margin = 3
-        const size = this.note_body.split("\n").length + margin;
+    rows: function () {
+      const min = 10
+      const margin = 3
+      const size = this.note_body.split('\n').length + margin
 
-        return (size > min) ? size : min;
+      return size > min ? size : min
     }
   }
 }

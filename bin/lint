@@ -2,5 +2,4 @@
 
 bundle exec rubocop --parallel
 bundle exec slim-lint app/views -c config/slim_lint.yml
-bin/yarn eslint app/javascript
-bin/yarn eslint test/javascript
+yarn format
