@@ -7,9 +7,9 @@
 //= require materialize
 //= require swiper
 
-import RailsUjs from '@rails/ujs'
+import * as RailsUjs from '@rails/ujs'
 // require('turbolinks').start()
-import RailsActiveStorage from '@rails/activestorage'
+import * as RailsActiveStorage from '@rails/activestorage'
 
 import '../tweets.js'
 import '../swiper.js'
