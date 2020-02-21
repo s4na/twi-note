@@ -1,6 +1,7 @@
 note_1:
   user: user_1
   title: sendagaya.rb
+  edit_mode: preview
   body: |-
     [
       {
@@ -22,11 +23,53 @@ note_1:
         }
       }
     ]
-
+  tweets: |-
+    [
+      {
+        "id_str": "1198188330703192066",
+        "text": "そういえばGitHub ActionsがmacOSでもCI回せるのってなんでなんだろう？ライセンスとか実行環境など気になる",
+        "user": {
+          "id_str": "1072823223190835201",
+          "screen_name": "s4na_penguin",
+          "name": "s4na / Nabetani そうだ！Rubyを書こう！"
+        }
+      },
+      {
+        "id_str": "1198172767029325825",
+        "text": "ここで id_str ってのが役にたつのか\n\nTwitter Gemのレスポンスに含まれてて、なんで？って思ってたけど、こういうことだったのか〜〜",
+        "user": {
+          "id_str": "1072823223190835201",
+          "screen_name": "s4na_penguin",
+          "name": "s4na / Nabetani そうだ！Rubyを書こう！"
+        }
+      }
+    ]
 note_2:
   user: user_1
   title: omotesando.rb
+  edit_mode: preview
   body: |-
+    [
+      {
+        "id_str": "1198188330703192066",
+        "text": "そういえばGitHub ActionsがmacOSでもCI回せるのってなんでなんだろう？ライセンスとか実行環境など気になる",
+        "user": {
+          "id_str": "1072823223190835201",
+          "screen_name": "s4na_penguin",
+          "name": "s4na / Nabetani そうだ！Rubyを書こう！"
+        }
+      },
+      {
+        "id_str": "1198164810891808768",
+        "text": "Twitter IDをRubyとJS間で使っているけど下2桁が変わってる\n\nこれがいわゆる浮動小数点数の誤差ってやつかな？",
+        "user": {
+          "id_str": "1072823223190835201",
+          "screen_name": "s4na_penguin",
+          "name": "s4na / Nabetani そうだ！Rubyを書こう！"
+        }
+      }
+    ]
+  tweets: |-
     [
       {
         "id_str": "1198188330703192066",
