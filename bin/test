@@ -1,4 +1,5 @@
 #!/bin/bash
 
-bundle exec rails test && bundle exec rails test:system
+bundle exec rails test
 yarn test
+bundle exec rails test:system

@@ -5,6 +5,7 @@ export default class Markdown2Tweets {
     this.markdown = params['markdown']
     this.tweets = params['tweets']
   }
+
   setTweets () {
     this.returnTweets = []
     if (this.markdown !== '') {
@@ -12,6 +13,7 @@ export default class Markdown2Tweets {
     }
     return this.returnTweets || []
   }
+
   setMarkdown () {
     this.returnMarkdown = ''
     if (this.tweets.length !== 0) {
@@ -19,24 +21,27 @@ export default class Markdown2Tweets {
     }
     return this.returnMarkdown || ''
   }
+
   _setReturnMarkdown () {
     let indexs = JSON.parse(JSON.stringify(this.tweets, null, 2))
     for (let index of indexs) {
       this.returnMarkdown += index['markdown'] + '\n\n'
     }
   }
+
   _setReturnTweets () {
     this._setOrder()
     this._ascendingSort()
-    this._changeFragment()
-    this._addFirstFragmentTextText()
-    this._addLastFragmentText()
+    this._changeFragmentToTweet()
+    this._addFirstFragmentTextToTweet()
+    this._addLastFragmentTextToTweet()
     this._ascendingSort()
 
     for (let id = 0; id < this.orders.length; id++) {
       this.returnTweets.push(this.orders[id].data)
     }
   }
+
   _setOrder () {
     this.orders = []
     for (const tweet of this.tweets) {
@@ -44,11 +49,11 @@ export default class Markdown2Tweets {
 
       if (address >= 0) {
         let newTweet = this._checkLineBreak(tweet, address)
-
         this.orders.push(newTweet)
       }
     }
   }
+
   _checkLineBreak (tweet, address) {
     let length = tweet.markdown.length
     let endPoint = address + length
@@ -69,12 +74,14 @@ export default class Markdown2Tweets {
       data: tweet
     }
   }
+
   _ascendingSort () {
     this.orders = this.orders.sort(function (a, b) {
       return a.address < b.address ? -1 : 1
     })
   }
-  _changeFragment () {
+
+  _changeFragmentToTweet () {
     for (let id = 0; id < this.orders.length; id++) {
       if (id !== 0) {
         if (this.orders[id - 1].end_point < this.orders[id].address) {
@@ -94,7 +101,8 @@ export default class Markdown2Tweets {
       }
     }
   }
-  _addFirstFragmentTextText () {
+
+  _addFirstFragmentTextToTweet () {
     const ordersFirstAddress = Math.min.apply(
       null,
       this.orders.map(function (o) {
@@ -115,7 +123,8 @@ export default class Markdown2Tweets {
       })
     }
   }
-  _addLastFragmentText () {
+
+  _addLastFragmentTextToTweet () {
     const ordersLastAddress = Math.max.apply(
       null,
       this.orders.map(function (o) {

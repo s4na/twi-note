@@ -44,5 +44,6 @@ jobs:
         bin/yarn prettier-eslint --write 'test/**/*.js'
     - name: Test
       run: |
-        bundle exec rails test && bundle exec rails test:system
+        bundle exec rails test
         yarn test
+        bundle exec rails test:system
