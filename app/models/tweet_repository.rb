@@ -21,16 +21,18 @@ class TweetRepository
     end
 
     def tweets(params)
+      search_tweets(params)
+      add_tweet_params
+      sort_tweet_asc
+      @tweets
+    end
+
+    def search_tweets(params)
       if (Rails.env.test? || ENV["NO_EXTERNAL_API"]) && !params[:EXTERNAL_API]
         load_file_tweets
       else
-        search_tweets
+        search_on_twitter
       end
-
-      add_tweet_params
-      sort_tweet_asc
-
-      @tweets
     end
 
     def client
@@ -53,7 +55,7 @@ class TweetRepository
       end
     end
 
-    def search_tweets
+    def search_on_twitter
       result_tweets = client.search(
         @query,
         count: 100,
@@ -61,7 +63,6 @@ class TweetRepository
         until: @end_date,
         exclude: "retweets",
         since_id: @since_id).to_h
-
       @tweets = result_tweets[:statuses]
 
       extract_time_period
