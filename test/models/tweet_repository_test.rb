@@ -41,12 +41,22 @@ class TweetRepositoryTest < ActiveSupport::TestCase
 
     tweets = TweetRepository.new("id", "secret")
       .search(
+        EXTERNAL_API: 1,
         query: "hoge",
         start_datetime: "2020-02-16 10:00",
-        end_datetime: "2020-02-19 11:00",
-        EXTERNAL_API: 1
+        end_datetime: "2020-02-19 11:00"
       )
 
     assert_equal "そろそろリモートワークやらフレックスやら活用していきたいゾ", tweets.first[:text]
+  end
+
+  test "#search if EXTERNAL_API is nil" do
+    tweets = TweetRepository.new("id", "secret")
+      .search(
+        query: "hoge",
+        start_datetime: "2020-02-16 10:00",
+        end_datetime: "2020-02-19 11:00",
+      )
+    assert_equal "次回は神速さん！！！ #ginzarails", tweets.first[:text]
   end
 end
