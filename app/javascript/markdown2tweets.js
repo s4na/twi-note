@@ -32,9 +32,9 @@ export default class Markdown2Tweets {
   _setReturnTweets () {
     this._setOrder()
     this._ascendingSort()
-    this._changeFragment()
-    this._addFirstFragmentTextText()
-    this._addLastFragmentText()
+    this._changeFragmentToTweet()
+    this._addFirstFragmentTextToTweet()
+    this._addLastFragmentTextToTweet()
     this._ascendingSort()
 
     for (let id = 0; id < this.orders.length; id++) {
@@ -49,7 +49,6 @@ export default class Markdown2Tweets {
 
       if (address >= 0) {
         let newTweet = this._checkLineBreak(tweet, address)
-
         this.orders.push(newTweet)
       }
     }
@@ -81,7 +80,8 @@ export default class Markdown2Tweets {
       return a.address < b.address ? -1 : 1
     })
   }
-  _changeFragment () {
+
+  _changeFragmentToTweet () {
     for (let id = 0; id < this.orders.length; id++) {
       if (id !== 0) {
         if (this.orders[id - 1].end_point < this.orders[id].address) {
@@ -102,7 +102,7 @@ export default class Markdown2Tweets {
     }
   }
 
-  _addFirstFragmentTextText () {
+  _addFirstFragmentTextToTweet () {
     const ordersFirstAddress = Math.min.apply(
       null,
       this.orders.map(function (o) {
@@ -124,7 +124,7 @@ export default class Markdown2Tweets {
     }
   }
 
-  _addLastFragmentText () {
+  _addLastFragmentTextToTweet () {
     const ordersLastAddress = Math.max.apply(
       null,
       this.orders.map(function (o) {
