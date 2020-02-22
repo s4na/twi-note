@@ -11,7 +11,7 @@
         | &mdash; {{ tweet["user"]["name"] }} (@{{ tweet["user"]["screen_name"] }})
 </template>
 <script>
-import image_src from "../assets/images/welcome/Twitter_Logo_Blue.png"
+import image_src from '../assets/images/welcome/Twitter_Logo_Blue.png'
 
 export default {
   props: {
