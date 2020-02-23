@@ -48,11 +48,7 @@ class TweetRepository
         JSON.load(file)
       end
 
-      @tweets = []
-      result_tweets.each do |tweet|
-        result = JSON.parse(tweet.to_json, { symbolize_names: true })
-        @tweets.push(result)
-      end
+      @tweets = JSON.parse(result_tweets.to_json, { symbolize_names: true })[:statuses]
     end
 
     def search_on_twitter
