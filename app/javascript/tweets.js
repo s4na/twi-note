@@ -20,21 +20,19 @@ document.addEventListener('DOMContentLoaded', () => {
     )
     const datetimeCurrent = tweets.getAttribute('data-datetime-current')
 
-    if (tweets) {
-      new Vue({
-        render: h =>
-          h(Tweets, {
-            props: {
-              noteTitleHumanAttributeName: noteTitleHumanAttributeName,
-              noteTitle: noteTitle,
-              noteEditMode: noteEditMode,
-              noteSearchSettingQuery: noteSearchSettingQuery,
-              noteSearchSettingStartDatetime: noteSearchSettingStartDatetime,
-              noteSearchSettingEndDatetime: noteSearchSettingEndDatetime,
-              datetimeCurrent: datetimeCurrent
-            }
-          })
-      }).$mount('#js-tweets')
-    }
+    new Vue({
+      render: h =>
+        h(Tweets, {
+          props: {
+            noteTitleHumanAttributeName: noteTitleHumanAttributeName,
+            noteTitle: noteTitle,
+            noteEditMode: noteEditMode,
+            noteSearchSettingQuery: noteSearchSettingQuery,
+            noteSearchSettingStartDatetime: noteSearchSettingStartDatetime,
+            noteSearchSettingEndDatetime: noteSearchSettingEndDatetime,
+            datetimeCurrent: datetimeCurrent
+          }
+        })
+    }).$mount('#js-tweets')
   }
 })
