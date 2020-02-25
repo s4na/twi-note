@@ -8,7 +8,8 @@ require "webmock/minitest"
 require "supports/webmock_helper"
 
 WebMock.disable_net_connect!(
-  allow_localhost: true
+  allow_localhost: true,
+  allow: "chromedriver.storage.googleapis.com"
 )
 
 class ActiveSupport::TestCase
