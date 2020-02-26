@@ -47,31 +47,10 @@
             | 「検索キーワード」が入力されていません
           draggable(:list="search_result_tweets" group="people" @update="changeMarkdown()" @remove="changeMarkdown()")#note-tweets-preview.cards--search-form
             tweet(:tweet="element" v-for="(element, index) in search_result_tweets" :key="element.id_str")
-    .search-form__small-block
-      .search-form__tools
-        .search-form__tool
-          button(type="button" @click="change_all_result_tweets_to_note_tweets()" :class="{'is-disabled': isActive ==='markdown'}" :disabled="isActive ==='markdown'")#change_all_result_tweets_to_note_tweets.a-button
-            | >>
-        .search-form__tool
-          button(type="button" @click="change_all_note_tweets_to_result_tweets()" :class="{'is-disabled': isActive ==='markdown'}" :disabled="isActive ==='markdown'")#change_all_note_tweets_to_result_tweets.a-button
-            | <<
     .search-form__block
       .search-form-header
         h2.search-form-header__title
           | ノート
-        .search-form-header__items
-          .search-form-header__item
-            button(type="button" @click="copyToClipboard()" :class="{'is-disabled': isActive ==='preview'}" :disabled="isActive ==='preview'").a-button
-              i.material-icons
-                | content_copy
-              .search-form-header__inner-text
-                | コピー
-          .search-form-header__item
-            button(type="submit").a-button.is-primary
-              i.material-icons
-                | cloud_upload
-              .search-form-header__inner-text
-                | 保存
       .note
         .note__title
           label.a-label
@@ -94,12 +73,21 @@
               .note__inner.is-markdown
                 .note-form
                   textarea(v-model="note_body" v-bind:rows="rows").note-form__textarea.a-text-input#note-form__textarea
+    .search-form-footer
+      .search-form-footer__items
+        .search-form-footer__item
+          button(type="button" @click="change_all_result_tweets_to_note_tweets()" :class="{'is-disabled': isActive ==='markdown'}" :disabled="isActive ==='markdown'")#change_all_result_tweets_to_note_tweets.a-button
+            | 全てのツイートを貼る
+        .search-form-footer__item
+          button(type="submit").a-button.is-primary
+            i.material-icons
+              | cloud_upload
+            | 保存
     .hide
       input.note_tweets(type="hidden" name="note[tweets]" :value="JSON.stringify(note_tweets)")
       input.note_all_search_result_tweets(type="hidden" name="note[all_search_result_tweets]" :value="JSON.stringify(all_search_result_tweets)")
       input#note_body.note_body(type="hidden" name="note[body]" :value="note_body")
       input#note_edit_mode.note_edit_mode(type="hidden" name="note[edit_mode]" :value="isActive")
-
 </template>
 <script>
 import Draggable from 'vuedraggable'
