@@ -57,14 +57,14 @@
             | {{ noteTitleHumanAttributeName }}
           input(type="text" name="note[title]" id="note_title" v-model="noteTitle").a-text-input
         .note__body
-          .note-body__inner.tabs
+          .note-body__block.tabs
             input(v-model="isActive" @click="changeTweets()" type="radio" id="tab-preview" name="tab" value="preview").a-tab-radio
             label(for="tab-preview" :class="{'is-current': isActive === 'preview'}" :disabled="isActive ==='preview'").a-tab#preview-mode
               | Preview
             input(v-model="isActive" @click="changeMarkdown()" type="radio" id="tab-markdown" name="tab" value="markdown").a-tab-radio
             label(for="tab-markdown" :class="{'is-current': isActive ==='markdown'}" :disabled="isActive ==='markdown'").a-tab#text-mode
               | Markdown
-          ul.note-body__inner
+          ul.note-body__block
             li(v-if="isActive === 'preview'")
               .note__inner.is-preview
                 draggable(:list="note_tweets" group="people" @add="changeMarkdown()" @update="changeMarkdown()" @remove="changeMarkdown()").cards--note

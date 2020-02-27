@@ -2,7 +2,11 @@
   display: flex
   flex-direction: row
   flex-wrap: nowrap
-  height: calc(100vh - 140px)
+  @media screen and (max-width:979px)
+    height: calc(100vh - 140px + 60px)
+    
+  @media screen and (min-width:980px)
+    height: calc(100vh - 140px + 60px)
 
   &--center
     display: flex
