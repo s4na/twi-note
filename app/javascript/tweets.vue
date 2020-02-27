@@ -21,7 +21,7 @@
               | 開始日時
             datetime_picker(
               v-model="start_datetime"
-              format="yyyy/LL/d HH:mm" zone="Asia/Tokyo" type="datetime" :minute-step="minuteStep"
+              format="yyyy/LL/d HH:mm" zone="Asia/Tokyo" type="datetime" :minute-step="MINUTE_STEP"
               input-id="note_search_setting_attributes_start_datetime" name="note[search_setting_attributes][start_datetime]"
             ).search-form__start-datetime.a-text-input
           .search-form__item
@@ -29,7 +29,7 @@
               | 終了日時
             datetime_picker(
               v-model="end_datetime"
-              format="yyyy/LL/d HH:mm" zone="Asia/Tokyo" type="datetime" :minute-step="minuteStep"
+              format="yyyy/LL/d HH:mm" zone="Asia/Tokyo" type="datetime" :minute-step="MINUTE_STEP"
               input-id="note_search_setting_attributes_end_datetime" name="note[search_setting_attributes][end_datetime]"
             ).search-form__end-datetime.a-text-input
           .search-form__item
@@ -151,7 +151,7 @@ export default {
     if (this.noteSearchSettingStartDatetime == '') {
       this.start_datetime = today
         .minus({ hour: 1 })
-        .minus({ minute: today.minute % this.minuteStep })
+        .minus({ minute: today.minute % this.MINUTE_STEP })
         .toISO()
     } else {
       this.start_datetime = this.string_to_datetime(
@@ -161,7 +161,7 @@ export default {
 
     if (this.noteSearchSettingEndDatetime == '') {
       this.end_datetime = today
-        .minus({ minute: today.minute % this.minuteStep })
+        .minus({ minute: today.minute % this.MINUTE_STEP })
         .toISO()
     } else {
       this.end_datetime = this.string_to_datetime(
@@ -285,18 +285,18 @@ export default {
     }
   },
   computed: {
-    minuteStep: () => 10,
+    MINUTE_STEP: () => 10,
     tweetsString () {
       return JSON.stringify(this.note_tweets, null, 2)
     },
     rows: function () {
-      const min = 10
-      const margin = 3
+      const MIN = 10
+      const MARGIN = 3
       if (this.note_body === '' || this.note_body === null) {
-        return min
+        return MIN
       }
-      const size = this.note_body.split('\n').length + margin
-      return size > min ? size : min
+      const size = this.note_body.split('\n').length + MARGIN
+      return size > MIN ? size : MIN
     }
   }
 }
