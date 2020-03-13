@@ -1,5 +1,4 @@
 #!/bin/bash
 
-bundle exec rails test
 yarn test
-bundle exec rails test:system
+bundle exec rspec

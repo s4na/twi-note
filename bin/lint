@@ -1,5 +1,7 @@
 #!/bin/bash
 
-bundle exec rubocop --parallel
+bundle exec rubocop ./rubocop.yml --parallel
 bundle exec slim-lint app/views -c config/slim_lint.yml
-yarn format
+bin/yarn prettier-eslint --write 'app/**/*.js'
+bin/yarn prettier-eslint --write 'app/**/*.vue'
+bin/yarn prettier-eslint --write 'test/**/*.js'
