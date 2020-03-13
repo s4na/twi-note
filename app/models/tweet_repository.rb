@@ -43,7 +43,7 @@ class TweetRepository
     end
 
     def load_file_tweets
-      file_path = "#{Rails.root}/test/fixtures/files/twitter_api_search_response.json"
+      file_path = "#{Rails.root}/spec/javascript/twitter_api_search_response.json"
       result_tweets = open(file_path) do |file|
         JSON.load(file)
       end

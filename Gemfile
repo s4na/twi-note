@@ -59,6 +59,8 @@ group :development, :test do
   gem "pry-byebug"
   gem "pry-doc"
   gem "sqlite3", "~> 1.4"
+  gem "rspec-rails"
+  gem "factory_bot_rails"
 end
 
 group :production do
