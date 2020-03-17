@@ -9,13 +9,18 @@
             i.material-icons
               | file_download
             | ダウンロード
-        .note-show__item
-          = link_to edit_note_path(@note), class: "a-button is-warning"
-            i.material-icons
-              | edit
-            | 編集
-
+        - if current_user == @note.user
+          .note-show__item
+            = link_to edit_note_path(@note), class: "a-button is-warning"
+              i.material-icons
+                | edit
+              | 編集
     .cards
       .note-show__card
         p#note-show__text.note-show__text
           = @note.body
+
+  .page__block
+    .page__link
+      = link_to 'javascript:history.back()', class: "a-button add-padding"
+        = t "go-back-to-previous-page"

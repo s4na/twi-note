@@ -4,6 +4,7 @@ require "rails_helper"
 
 RSpec.describe User, type: :model do
   describe ".find_for_twitter_oauth" do
+    let(:user) { User.find_for_twitter_oauth(auth) }
     let(:auth) {
       OmniAuth::AuthHash.new({
         provider: "Twitter",
@@ -11,7 +12,6 @@ RSpec.describe User, type: :model do
         info: { nickname: "Alice" }
       })
     }
-    let(:user) { User.find_for_twitter_oauth(auth) }
 
     it { expect("Alice").to eq user.name }
     it { expect("1").to eq user.uid }

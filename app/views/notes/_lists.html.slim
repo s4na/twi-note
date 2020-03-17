@@ -1,0 +1,7 @@
+.thread
+  .thread__block
+    .lists
+      - @notes.each do |note|
+        .list
+          = link_to note_path(note)
+            = note.title
