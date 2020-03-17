@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  has_many :notes,      dependent: :destroy
+  has_many :notes, dependent: :destroy
+  has_many :follows, dependent: :destroy
+
+  has_many :followings, through: :follows, source: :followee
+  has_many :reverse_of_follows, class_name: "Follow", foreign_key: "followee_id"
+  has_many :followers, through: :reverse_of_follows, source: :user
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -22,6 +27,17 @@ class User < ApplicationRecord
     end
 
     user
+  end
+
+  def follow(other_user)
+    unless self == other_user
+      self.follows.find_or_create_by(followee: other_user)
+    end
+  end
+
+  def unfollow(other_user)
+    follow = self.follows.find_by(followee: other_user)
+    follow.destroy if follow
   end
 
   private
