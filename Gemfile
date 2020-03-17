@@ -49,16 +49,20 @@ group :test do
   gem "webmock"
 end
 
-# not default
+group :development, :test do
+  gem "sqlite3", "~> 1.4"
+end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Not default
 
 group :development, :test do
+  # Pry
   gem "pry-rails"
   gem "pry-byebug"
   gem "pry-doc"
-  gem "sqlite3", "~> 1.4"
+
+  # Test
   gem "rspec-rails"
   gem "factory_bot_rails"
 end
@@ -68,26 +72,45 @@ group :production do
 end
 
 group :development do
+  # Lint
   gem "rubocop", require: false
   gem "rubocop-rails"
   gem "rubocop-performance"
+
+  # Lint
   gem "slim_lint"
   gem "html2slim"
+
+  # N+1
   gem "bullet"
 end
 
+# Tamplate
 gem "slim-rails"
+
+# I18n
 gem "rails-i18n", "~> 6.0.0"
+gem "i18n-js"
+
+# Twitter API
 gem "twitter"
+
+# .env
 gem "dotenv-rails"
-gem "jquery-rails"
+
+# Devise
 gem "devise"
 gem "devise-i18n"
+
+# Omniauth
 gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-rails_csrf_protection"
 
+# JavaScript
+gem "jquery-rails"
 gem "materialize-sass", "~> 1.0.0"
 gem "material_icons"
-gem "i18n-js"
+
+# Pagination
 gem "kaminari"
