@@ -1,13 +1,4 @@
 ja:
-  date:
-    formats:
-      default: "%Y年%m月%d日"
-  time:
-    formats:
-      default: "%Y年%m月%d日(%a) %H時%M分"
-      ymdhm_hy: "%Y-%m-%d %H:%M"
-      ymdhm_sla: "%Y/%m/%d %H:%M"
-      ymd_hy: "%Y-%m-%d"
   activerecord:
     models:
       note: ノート
@@ -31,3 +22,24 @@ ja:
       next: "次 &rsaquo;"
       previous: "&lsaquo; 前"
       truncate: "&hellip;"
+  date:
+    formats:
+      default: "%Y年%m月%d日"
+  time:
+    formats:
+      default: "%Y年%m月%d日(%a) %H時%M分"
+      ymdhm_hy: "%Y-%m-%d %H:%M"
+      ymdhm_sla: "%Y/%m/%d %H:%M"
+      ymd_hy: "%Y-%m-%d"
+  follows:
+    create:
+      created: "フォローしました"
+    destroy:
+      destroyed: "フォロー解除しました"
+  user_notes_path: "ユーザーのノート一覧"
+  notes_path: "ノート一覧"
+  users_path: "ユーザー一覧"
+  followings_notes_path: "タイムライン"
+  root_path: "トップに戻る"
+  destroy_user_session_path: "ログアウト"
+  go-back-to-previous-page: "一つ前のページに戻る"

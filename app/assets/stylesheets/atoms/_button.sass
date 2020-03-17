@@ -1,13 +1,22 @@
 .a-button
-  display: flex
   height: 40px
   padding: 0.25em 0.5em
   border-radius: 4px
+  
+  display: flex
   justify-content: center
   align-items: center
   font-weight: bold
   text-decoration: none
   outline: none
+  
+  button
+    display: flex
+    justify-content: center
+    align-items: center
+    font-weight: bold
+    text-decoration: none
+    outline: none
 
   img
     margin-right: 0.2em
@@ -27,6 +36,10 @@
     +button-color($disabled-color)
     box-shadow: none
     cursor: pointer
+
+  &.add-padding
+    padding-left: 2rem
+    padding-right: 2rem
 
   @media screen and (min-width:980px)
     min-width: 4.5em
