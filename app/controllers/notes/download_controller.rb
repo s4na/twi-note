@@ -12,7 +12,7 @@ class Notes::DownloadController < ApplicationController
 
   private
     def set_note
-      @note = current_user.notes.find(params[:id])
+      @note = Note.find(params[:id])
     end
 
     def note_params
