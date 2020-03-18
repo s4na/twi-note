@@ -16,15 +16,11 @@ describe "followings", type: :system do
     before {
       visit user_path(user_2)
       click_on "フォローする"
-      # find("フォローする").click
     }
     it { expect(page).to have_content "フォローしました" }
 
     context "unfollow user_2" do
-      before {
-        click_on "フォロー中"
-        # find("フォロー中").click
-      }
+      before { click_on "フォロー中" }
       it { expect(page).to have_content "フォロー解除しました" }
     end
   end
