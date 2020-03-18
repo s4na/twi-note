@@ -43,6 +43,11 @@ $ rails server
 $ ./bin/setup
 ```
 
+### 環境変数のセット（テストでは不要）
+
+- TWITTER_APP_ID = Twitter API ID
+- TWITTER_APP_SECRET = Twitter API Secret
+
 ## テスト
 
 ヘッドレスブラウザテスト
