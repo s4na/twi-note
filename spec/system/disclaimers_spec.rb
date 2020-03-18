@@ -4,18 +4,10 @@ require "rails_helper"
 
 describe "disclaimers", type: :system do
   let!(:user_1) { FactoryBot.create(:user) }
-
-  before do
-    sign_in user_1
-  end
+  before { sign_in user_1 }
 
   context "show disclaimers" do
-    before do
-      visit disclaimers_path
-    end
-
-    it "check title" do
-      expect(page).to have_content "免責事項"
-    end
+    before { visit disclaimers_path }
+    it { expect(page).to have_content "免責事項" }
   end
 end

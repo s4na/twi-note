@@ -1,0 +1,13 @@
+.container
+  .page__container
+    .page__block
+      .page__title
+        h1 ユーザー一覧
+    .page__block
+      .thread
+        .thread__block
+          = render "users/lists"
+    .page__block
+      .page__link
+        = link_to "javascript:history.back()", class: "a-button add-padding"
+          = t "go-back-to-previous-page"

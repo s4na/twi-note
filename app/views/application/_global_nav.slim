@@ -10,13 +10,25 @@ nav.global-nav
           = link_to notes_path, class: "global-nav-item__link a-link" do
             i.material-icons.global-nav-item__image
               | list
-            | ノート一覧
+            = t "notes_path"
+      li.global-nav__item
+        .global-nav-item__inner
+          = link_to followings_notes_path, class: "global-nav-item__link a-link" do
+            i.material-icons.global-nav-item__image
+              | timeline
+            = t "followings_notes_path"
+      li.global-nav__item
+        .global-nav-item__inner
+          = link_to users_path, class: "global-nav-item__link a-link" do
+            i.material-icons.global-nav-item__image
+              | people
+            = t "users_path"
       li.global-nav__item
         .global-nav-item__inner
           = link_to destroy_user_session_path, method: :delete, class: "global-nav-item__link a-link"  do
             i.material-icons.global-nav-item__image
               | exit_to_app
-            | ログアウト
+            = t "destroy_user_session_path"
     #global-nav__drawer
       input#global-nav__input.global-nav__unshown(type="checkbox")
       label#global-nav__open(for="global-nav__input")
@@ -28,13 +40,21 @@ nav.global-nav
             = link_to notes_path, class: "global-nav-content__item" do
               i.material-icons
                 | list
-              | ノート一覧
+              = t "notes_path"
+            = link_to followings_notes_path, class: "global-nav-content__item" do
+              i.material-icons
+                | timeline
+              = t "followings_notes_path"
+            = link_to users_path, class: "global-nav-content__item" do
+              i.material-icons
+                | people
+              = t "users_path"
             = link_to destroy_user_session_path, method: :delete, class: "global-nav-content__item"  do
               i.material-icons
                 | exit_to_app
-              | ログアウト
+              = t "destroy_user_session_path"
           - unless user_signed_in?
             = link_to root_path, class: "global-nav-content__item"  do
               i.material-icons.global-nav-item__image
                 | home
-              | トップに戻る
+              = t "root_path"
