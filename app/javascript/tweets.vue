@@ -128,20 +128,11 @@ export default {
     }
   },
   created () {
-    // if innerText is null then []
-    if (document.querySelector('#js-note-tweets') !== null) {
-      this.note_tweets =
-        JSON.parse(
-          document.querySelector('#js-note-tweets').innerText || null
-        ) || []
-    }
-    if (document.querySelector('#js-note_all-search-result-tweets') !== null) {
-      this.all_search_result_tweets =
-        JSON.parse(
-          document.querySelector('#js-note_all-search-result-tweets')
-            .innerText || null
-        ) || []
-    }
+    this.note_tweets = this.get_inner_json('#js-note-tweets')
+    this.all_search_result_tweets = this.get_inner_json(
+      '#js-note_all-search-result-tweets'
+    )
+
     if (document.querySelector('#js-note-body') !== null) {
       this.note_body = document.querySelector('#js-note-body').innerText || null
     }
@@ -176,6 +167,20 @@ export default {
     this.query = this.noteSearchSettingQuery
   },
   methods: {
+    get_inner_json: function (str) {
+      // if innerText is null then []
+
+      if (document.querySelector(str) !== null && document.querySelector(str).innerText) {
+        let innerText = document.querySelector(str).innerText
+        if (innerText !== null) {
+          return JSON.parse(innerText) || []
+        } else {
+          return []
+        }
+      } else {
+        return []
+      }
+    },
     string_to_datetime: function (str) {
       return DateTime.local.apply(this, str.split(/[/ :]/).map(Number)).toISO()
     },
