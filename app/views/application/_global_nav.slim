@@ -13,18 +13,6 @@ nav.global-nav
             = t "notes_path"
       li.global-nav__item
         .global-nav-item__inner
-          = link_to followings_notes_path, class: "global-nav-item__link a-link" do
-            i.material-icons.global-nav-item__image
-              | timeline
-            = t "followings_notes_path"
-      li.global-nav__item
-        .global-nav-item__inner
-          = link_to users_path, class: "global-nav-item__link a-link" do
-            i.material-icons.global-nav-item__image
-              | people
-            = t "users_path"
-      li.global-nav__item
-        .global-nav-item__inner
           = link_to destroy_user_session_path, method: :delete, class: "global-nav-item__link a-link"  do
             i.material-icons.global-nav-item__image
               | exit_to_app
@@ -41,14 +29,6 @@ nav.global-nav
               i.material-icons
                 | list
               = t "notes_path"
-            = link_to followings_notes_path, class: "global-nav-content__item" do
-              i.material-icons
-                | timeline
-              = t "followings_notes_path"
-            = link_to users_path, class: "global-nav-content__item" do
-              i.material-icons
-                | people
-              = t "users_path"
             = link_to destroy_user_session_path, method: :delete, class: "global-nav-content__item"  do
               i.material-icons
                 | exit_to_app

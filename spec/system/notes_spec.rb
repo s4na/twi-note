@@ -7,10 +7,6 @@ describe "note", type: :system do
   let!(:note_1) { FactoryBot.create(:note, user: user_1) }
   let!(:search_setting_1) { FactoryBot.create(:search_setting, note: note_1) }
 
-  let!(:user_2) { FactoryBot.create(:user) }
-  let!(:note_2) { FactoryBot.create(:note, user: user_2) }
-  let!(:search_setting_2) { FactoryBot.create(:search_setting, note: note_2) }
-
   before { sign_in user_1 }
 
   context "show notes" do
@@ -64,11 +60,6 @@ describe "note", type: :system do
     end
 
     it { expect(page).to have_content "ノートを削除しました" }
-  end
-
-  context "show user_2's note" do
-    before { visit note_path(note_2) }
-    it { expect(page).to have_content note_2.title }
   end
 
   # System test for Vue.js
