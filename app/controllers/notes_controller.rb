@@ -2,8 +2,7 @@
 
 class NotesController < ApplicationController
   before_action :authenticate_user!, only: [:show, :new, :edit, :create, :update, :destroy]
-  before_action :set_note, only: [:show]
-  before_action :set_current_user_note, only: [:edit, :update, :destroy]
+  before_action :set_note, only: [:show, :edit, :update, :destroy]
 
   CONTENTS_NUM = 10
   def index
@@ -51,10 +50,6 @@ class NotesController < ApplicationController
 
   private
     def set_note
-      @note = Note.find(params[:id])
-    end
-
-    def set_current_user_note
       @note = current_user.notes.find(params[:id])
     end
 
