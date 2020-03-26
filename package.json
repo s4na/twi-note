@@ -41,5 +41,12 @@
   "scripts": {
     "test": "jest",
     "format": "prettier-eslint --write 'app/**/*.js' && prettier-eslint --write 'app/**/*.vue' && prettier-eslint --write 'test/**/*.js'"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/vendor/",
+      "/config/webpack/"
+    ]
   }
 }
