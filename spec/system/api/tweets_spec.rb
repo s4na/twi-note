@@ -21,7 +21,7 @@ describe "tweets", type: :system do
       find("#note_search_setting_attributes_start_datetime").click
 
       expect(page).to have_content "November 2021"
-    
+
       find(".vdatetime-calendar__month__day", text: "16").click
       find(".vdatetime-popup__actions__button--confirm", text: "Ok").click
       find(".vdatetime-time-picker__item", text: "22").click
