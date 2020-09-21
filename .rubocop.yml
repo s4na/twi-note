@@ -1,13 +1,10 @@
-# Copyright (c) 2005-2020 David Heinemeier Hansson
-# MIT License
-# https://github.com/rails/rails/blob/master/MIT-LICENSE
-
 require:
+  - rubocop-packaging
   - rubocop-performance
   - rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 2.5
   # RuboCop has a bunch of cops enabled by default. This setting tells RuboCop
   # to ignore them, so only the ones explicitly set in this file are enabled.
   DisabledByDefault: true
@@ -16,7 +13,6 @@ AllCops:
     - '**/templates/**/*'
     - '**/vendor/**/*'
     - 'actionpack/lib/action_dispatch/journey/parser.rb'
-    - 'railties/test/fixtures/tmp/**/*'
     - 'actionmailbox/test/dummy/**/*'
     - 'actiontext/test/dummy/**/*'
     - '**/node_modules/**/*'
@@ -34,6 +30,12 @@ Rails/AssertNot:
 Rails/RefuteMethods:
   Include:
     - '**/test/**/*'
+
+Rails/IndexBy:
+  Enabled: true
+
+Rails/IndexWith:
+  Enabled: true
 
 # Prefer &&/|| over and/or.
 Style/AndOr:
@@ -217,6 +219,12 @@ Lint/DeprecatedClassMethods:
 Style/ParenthesesAroundCondition:
   Enabled: true
 
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
 Style/RedundantBegin:
   Enabled: true
 
@@ -254,4 +262,10 @@ Performance/ReverseEach:
   Enabled: true
 
 Performance/UnfreezeString:
+  Enabled: true
+
+Performance/DeletePrefix:
+  Enabled: true
+
+Performance/DeleteSuffix:
   Enabled: true

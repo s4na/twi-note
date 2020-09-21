@@ -283,6 +283,8 @@ GEM
       unicode-display_width (>= 1.4.0, < 2.0)
     rubocop-ast (0.1.0)
       parser (>= 2.7.0.1)
+    rubocop-packaging (0.1.1)
+      rubocop (>= 0.75.0)
     rubocop-performance (1.6.1)
       rubocop (>= 0.71.0)
     rubocop-rails (2.6.0)
@@ -411,6 +413,7 @@ DEPENDENCIES
   rails-i18n (~> 6.0.0)
   rspec-rails
   rubocop
+  rubocop-packaging
   rubocop-performance
   rubocop-rails
   sass-rails (~> 5)
