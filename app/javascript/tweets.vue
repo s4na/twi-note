@@ -170,7 +170,10 @@ export default {
     get_inner_json: function (str) {
       // if innerText is null then []
 
-      if (document.querySelector(str) !== null && document.querySelector(str).innerText) {
+      if (
+        document.querySelector(str) !== null &&
+        document.querySelector(str).innerText
+      ) {
         let innerText = document.querySelector(str).innerText
         if (innerText !== null) {
           return JSON.parse(innerText) || []
