@@ -38,13 +38,13 @@ jobs:
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gem-use-ruby-${{ hashFiles('**/Gemfile.lock') }}
-      - name: Read Node.js version to install from `.nvmrc`
-        run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
-        id: nvm
+      - name: Read Node.js version to install from `.node-version`
+        run: echo "##[set-output name=NODE_VERSION;]$(cat .node-version)"
+        id: nodenv
       - name: Install required Node.js version
         uses: actions/setup-node@v1
         with:
-          node-version: "${{ steps.nvm.outputs.NVMRC }}"
+          node-version: "${{ steps.nodenv.outputs.NODE_VERSION }}"
       - name: Get Yarn cache directory path
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
