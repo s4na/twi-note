@@ -99,14 +99,12 @@ gem "twitter"
 # .env
 gem "dotenv-rails"
 
-# Devise
-gem "devise"
-gem "devise-i18n"
-
-# Omniauth
 gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-rails_csrf_protection"
+
+gem "devise", git: "https://github.com/heartcombo/devise"
+gem "devise-i18n"
 
 # JavaScript
 gem "jquery-rails"
