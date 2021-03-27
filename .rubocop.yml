@@ -228,6 +228,8 @@ Style/HashTransformValues:
 
 Style/RedundantBegin:
   Enabled: true
+  Exclude:
+    - 'bin/bundle'
 
 Style/RedundantReturn:
   Enabled: true
