@@ -4,10 +4,11 @@ require:
   - rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.7
   # RuboCop has a bunch of cops enabled by default. This setting tells RuboCop
   # to ignore them, so only the ones explicitly set in this file are enabled.
   DisabledByDefault: true
+  SuggestExtensions: false
   Exclude:
     - '**/tmp/**/*'
     - '**/templates/**/*'
@@ -88,9 +89,6 @@ Layout/EmptyLinesAroundModuleBody:
 Style/HashSyntax:
   Enabled: true
 
-Layout/FirstArgumentIndentation:
-  Enabled: true
-
 # Method definitions after `private` or `protected` isolated calls need one
 # extra level of indentation.
 Layout/IndentationConsistency:
@@ -117,6 +115,9 @@ Layout/SpaceAroundEqualsInParameterDefault:
   Enabled: true
 
 Layout/SpaceAroundKeyword:
+  Enabled: true
+
+Layout/SpaceAroundOperators:
   Enabled: true
 
 Layout/SpaceBeforeComma:
@@ -194,14 +195,14 @@ Lint/AmbiguousOperator:
 Lint/AmbiguousRegexpLiteral:
   Enabled: true
 
+Lint/DuplicateRequire:
+  Enabled: true
+
 Lint/ErbNewArguments:
   Enabled: true
 
 # Use my_method(my_arg) not my_method( my_arg ) or my_method my_arg.
 Lint/RequireParentheses:
-  Enabled: true
-
-Lint/ShadowingOuterLocalVariable:
   Enabled: true
 
 Lint/RedundantStringCoercion:
@@ -227,10 +228,15 @@ Style/HashTransformValues:
 
 Style/RedundantBegin:
   Enabled: true
+  Exclude:
+    - 'bin/bundle'
 
 Style/RedundantReturn:
   Enabled: true
   AllowMultipleReturnValues: true
+
+Style/RedundantRegexpEscape:
+  Enabled: true
 
 Style/Semicolon:
   Enabled: true
@@ -241,6 +247,9 @@ Style/ColonMethodCall:
   Enabled: true
 
 Style/TrivialAccessors:
+  Enabled: true
+
+Performance/BindCall:
   Enabled: true
 
 Performance/FlatMap:

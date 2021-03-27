@@ -5,8 +5,8 @@ module WebmockHelper
     # twitter oauth token
     stub_request(:post, "https://api.twitter.com/oauth2/token")
       .with(
-        body: { "grant_type"=>"client_credentials" },
-        headers: { "Connection"=>"close" }
+        body: { "grant_type" => "client_credentials" },
+        headers: { "Connection" => "close" }
       )
       .to_return(
         status: 200,
@@ -15,7 +15,7 @@ module WebmockHelper
       )
     # return twitter response
     stub_request(:get, "https://api.twitter.com/1.1/search/tweets.json?count=100&exclude=retweets&q=hoge&result_type=recent&since_id&until=2020-02-19")
-      .with(headers: { "Connection"=>"close" })
+      .with(headers: { "Connection" => "close" })
       .to_return(
         status: 200,
         body:
