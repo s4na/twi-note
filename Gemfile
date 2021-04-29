@@ -103,7 +103,7 @@ gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-rails_csrf_protection"
 
-gem "devise", git: "https://github.com/heartcombo/devise"
+gem "devise"
 gem "devise-i18n"
 
 # JavaScript
