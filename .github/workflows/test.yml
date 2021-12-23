@@ -77,5 +77,10 @@ jobs:
         run: |
           bin/yarn test
       - name: Test Rails
-        run: |
-          bundle exec rspec
+        run: bundle exec rspec -f j -o tmp/rspec_results.json -f p
+      - name: RSpec Report
+        uses: SonicGarden/rspec-report-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          json-path: tmp/rspec_results.json
+        if: always()
