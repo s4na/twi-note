@@ -90,7 +90,7 @@ end
 gem "slim-rails"
 
 # I18n
-gem "rails-i18n", "~> 6.0.0"
+gem "rails-i18n", "~> 7.0.2"
 gem "i18n-js"
 
 # Twitter API
