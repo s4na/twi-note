@@ -17,7 +17,7 @@
     "pug": "^3.0.1",
     "pug-plain-loader": "^1.0.0",
     "swiper": "^5.3.0",
-    "uuid": "8.3.2",
+    "uuid": "3.3.3",
     "vue": "^2.5.16",
     "vue-datetime": "^1.0.0-beta.11",
     "vue-loader": "14.2.2",
