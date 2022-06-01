@@ -9667,10 +9667,10 @@ void-elements@^3.1.0:
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-3.1.0.tgz#614f7fbf8d801f0bb5f0661f5b2f5785750e4f09"
   integrity sha1-YU9/v42AHwu18GYfWy9XhXUOTwk=
 
-vue-datetime@^1.0.0-beta.11:
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/vue-datetime/-/vue-datetime-1.0.0-beta.11.tgz#283b5182dabe0ab372e375e9c47acb3b41524ffa"
-  integrity sha512-znOQCX0n4nPMsfcwAhlCL47u52NwnYPrlGrqiSsT1sLZgtZmfNMBVO/c0QF6VA5ZszVtopxU0fjZVxu/VpM/Ug==
+vue-datetime@^1.0.0-beta.14:
+  version "1.0.0-beta.14"
+  resolved "https://registry.yarnpkg.com/vue-datetime/-/vue-datetime-1.0.0-beta.14.tgz#791e724500929cdfeb31395154d9a26fd27ffb46"
+  integrity sha512-n25LqldE1xryeoweohiqlxy8iUsi+UwZnKLaN4gXjk7xxGL6rUl1y/GGvkoMwJUzRKttw+QnQV4oFAYupUQdug==
 
 vue-eslint-parser@^8.0.1:
   version "8.3.0"
