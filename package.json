@@ -14,7 +14,7 @@
     "file-loader": "^5.1.0",
     "luxon": "^1.22.0",
     "moment": "^2.29.2",
-    "pug": "^3.0.1",
+    "pug": "^3.0.2",
     "pug-plain-loader": "^1.0.0",
     "swiper": "^5.3.0",
     "uuid": "8.3.2",
