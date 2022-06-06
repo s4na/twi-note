@@ -11,7 +11,7 @@
     "@rails/webpacker": "^5.4.3",
     "escape-html": "^1.0.3",
     "escape-string-regexp": "^5.0.0",
-    "file-loader": "^5.1.0",
+    "file-loader": "^6.2.0",
     "luxon": "^1.22.0",
     "moment": "^2.29.2",
     "pug": "^3.0.2",
