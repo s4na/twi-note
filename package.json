@@ -12,7 +12,7 @@
     "escape-html": "^1.0.3",
     "escape-string-regexp": "^5.0.0",
     "file-loader": "^6.2.0",
-    "luxon": "^1.22.0",
+    "luxon": "^1.28.0",
     "moment": "^2.29.3",
     "pug": "^3.0.2",
     "pug-plain-loader": "^1.1.0",
