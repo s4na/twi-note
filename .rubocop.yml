@@ -148,6 +148,7 @@ Style/FrozenStringLiteralComment:
     - 'activestorage/db/update_migrate/**/*.rb'
     - 'actionmailbox/db/migrate/**/*.rb'
     - 'actiontext/db/migrate/**/*.rb'
+    - 'app/views/**/*.slim'
 
 Style/RedundantFreeze:
   Enabled: true
@@ -180,6 +181,8 @@ Layout/IndentationStyle:
 # Empty lines should not have any spaces.
 Layout/TrailingEmptyLines:
   Enabled: true
+  Exclude:
+    - 'app/views/**/*.slim'
 
 # No trailing whitespace.
 Layout/TrailingWhitespace:
