@@ -78,7 +78,7 @@ group :development do
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
   gem "slimcop", require: false
-  
+
   # Lint
   gem "slim_lint"
   gem "html2slim"
