@@ -2,7 +2,8 @@
 
 勉強会参加者向けのノート作成支援アプリ
 
-[![](https://github.com/s4na/twi-note/workflows/build/badge.svg)](https://github.com/s4na/twi-note/actions)
+[![Lint](https://github.com/s4na/twi-note/actions/workflows/lint.yml/badge.svg)](https://github.com/s4na/twi-note/actions/workflows/lint.yml)
+[![Test](https://github.com/s4na/twi-note/actions/workflows/test.yml/badge.svg)](https://github.com/s4na/twi-note/actions/workflows/test.yml)
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/s4na/twi-note.svg)](http://isitmaintained.com/project/s4na/twi-note "Percentage of issues still open")
 
 [![twi-note-logo](./app/assets/images/twi-note-icon/icon-196x196.png)](https://twi-note.herokuapp.com/)
