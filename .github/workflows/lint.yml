@@ -1,4 +1,4 @@
-name: Test
+name: Lint
 
 on:
   push:
@@ -62,18 +62,11 @@ jobs:
           bundle install --jobs 4 --retry 3
       - name: Install Yarn
         run: yarn --frozen-lockfile
-      - name: Rails setup
-        run: |
-          bin/rails db:setup
 
-      - name: Test Yarn
+      - name: Check Lint
         run: |
-          bin/yarn test
-      - name: Test Rails
-        run: bundle exec rspec -f j -o tmp/rspec_results.json -f p
-      - name: RSpec Report
-        uses: SonicGarden/rspec-report-action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          json-path: tmp/rspec_results.json
-        if: always()
+          bundle exec rubocop --config ./.rubocop.yml --parallel
+          bundle exec slim-lint app/views -c config/slim_lint.yml
+          bin/yarn prettier-eslint --write 'app/**/*.js'
+          bin/yarn prettier-eslint --write 'app/**/*.vue'
+          bin/yarn prettier-eslint --write 'test/**/*.js'
