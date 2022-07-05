@@ -92,6 +92,7 @@ export default class Markdown2Tweets {
             fragmentTextLength
           )
           const address = this.orders[id - 1].end_point
+          const uuid = require('uuid').v4
 
           this.orders.push({
             address: address,
@@ -116,6 +117,7 @@ export default class Markdown2Tweets {
     if (ordersFirstAddress !== 0) {
       const fragmentTextLength = firstOrder.address
       const fragmentText = this.markdown.substr(0, fragmentTextLength)
+      const uuid = require('uuid').v4
 
       this.orders.push({
         address: 0,
@@ -143,6 +145,7 @@ export default class Markdown2Tweets {
         fragmentTextLength
       )
       const address = lastOrder.end_point + 1
+      const uuid = require('uuid').v4
 
       const fragmentOrder = {
         address: address,
