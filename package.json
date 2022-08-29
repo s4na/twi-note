@@ -27,7 +27,7 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "eslint": "^8.18.0",
+    "eslint": "^8.23.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^15.0.1",
