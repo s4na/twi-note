@@ -1,3 +1,15 @@
+# NO LONGER MAINTAINED
+Heroku recently announced the end of its free plan offerings.
+
+https://blog.heroku.com/next-chapter
+
+This app is running on Heroku Free dyno, but I decided to terminate this app after Heroku's announcement :sob:
+
+* I have no plans to migrate this app from Heroku to another platform. This app is OSS so you can fork it and make it work on another platform
+* This app will continue to run until Heroku stops this.  (Probably November 28, 2022 or later)
+
+Thank you.
+
 # twi-note <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fs4na%2Ftwi-note&text=%E5%8B%89%E5%BC%B7%E4%BC%9A%E6%94%AF%E6%8F%B4%E3%82%A2%E3%83%97%E3%83%AA%E3%80%8C%E3%81%A4%E3%81%84%E3%83%8E%E3%83%BC%E3%83%88%E3%80%8D&via=s4na_penguin&hashtags=#twi-note" target="_blank">![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)</a>
 
 勉強会参加者向けのノート作成支援アプリ
